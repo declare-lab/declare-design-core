@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.1
+
+- Centralize shared color constants used by both sites.
+- Make the ownership verifier reject literal consumer colors and `!important`
+  overrides in addition to local typography and inline visual styles.
+
 ## 2.2.0
 
 - Enforce single ownership of typography by rejecting all consumer declarations.

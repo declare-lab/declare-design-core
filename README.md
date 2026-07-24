@@ -172,11 +172,12 @@ expectations, then verifies that nested heading sizes decrease. This makes
 computed-style regression checks possible across themes and responsive
 viewports rather than limiting validation to source markup.
 
-Site-specific styles may compose layout, color accents, and domain
-visualizations. They do not own any typography property, including family,
-size, weight, line height, letter spacing, variation settings, style, or text
-transform. To customize the hierarchy, change the public type tokens through
-`declare-customize`; do not add wrapper-specific heading rules.
+Site-specific styles may compose layout and domain visualizations. They do not
+own typography, raw color constants, or cascade overrides. Typography includes
+family, size, weight, line height, letter spacing, variation settings, style,
+and text transform. To customize the hierarchy or palette, change the public
+tokens through `declare-customize`; do not add wrapper-specific heading rules,
+literal colors, or `!important`.
 
 The ownership auditor enforces that boundary:
 
@@ -186,9 +187,10 @@ python assets/declare-core/scripts/style_ownership.py audit \
 ```
 
 `fix` mode mechanically removes typography declarations from consumer SCSS.
-The audit also rejects non-data-driven inline styles and embedded style blocks
-in generated main-site pages. Inline custom properties are permitted for
-content data such as per-person image positioning.
+The audit rejects consumer typography, literal colors, `!important`,
+non-data-driven inline styles, and embedded style blocks in generated main-site
+pages. Inline custom properties are permitted for content data such as
+per-person image positioning.
 
 ## Components
 

@@ -68,6 +68,8 @@ class Report:
         return (
             self.typography_declarations == 0
             and self.literal_typography_lines == 0
+            and self.literal_color_lines == 0
+            and self.important_lines == 0
             and self.inline_style_violations == 0
             and self.embedded_style_blocks == 0
         )
@@ -223,6 +225,8 @@ def main() -> int:
         print(
             f"Style ownership {args.mode}: {report.style_files} files, "
             f"{report.typography_declarations} local typography declarations, "
+            f"{report.literal_color_lines} literal color lines, "
+            f"{report.important_lines} !important lines, "
             f"{report.inline_style_violations} inline-style violations, "
             f"{report.embedded_style_blocks} embedded style blocks."
         )

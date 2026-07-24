@@ -6,6 +6,13 @@
   line-height: var(--content-leading);
 }
 
+.page-wrapper,
+.page-content,
+.page-body {
+  min-width: 0;
+  max-width: 100%;
+}
+
 .btn,
 .btn-primary,
 .btn-secondary,

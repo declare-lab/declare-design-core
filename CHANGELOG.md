@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.1
+
+- Give the shared page composition classes one inherited width-safety baseline.
+- Leave flex/grid geometry and sidebar placement explicitly site-specific.
+
 ## 1.4.0
 
 - Make global design tokens and base element rules core-only.

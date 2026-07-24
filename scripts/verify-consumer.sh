@@ -78,6 +78,13 @@ for consumer_style in "$style_file" "$site_root/_sass/"*.scss; do
   fi
 
   if grep -Eq \
+    '\.(page-lead|page-lead--compact|page-lead--split|page-lead--wide|page-lead__copy|page-lead__actions|section-intro|section-intro--split)([[:space:]:>,+~.{#]|$)' \
+    "$consumer_style"; then
+    echo "Shared page-composition styling has reappeared in $consumer_style" >&2
+    exit 1
+  fi
+
+  if grep -Eq \
     '\.(site-layout|site-layout--lab|site-layout--personal|site-shell|site-shell__sidebar|site-shell__content|site-content|page-rail-layout|page-rail-layout__main)([[:space:]:>,+~.{#]|$)' \
     "$consumer_style"; then
     echo "Shared layout styling has reappeared in $consumer_style" >&2
@@ -106,7 +113,7 @@ for consumer_style in "$style_file" "$site_root/_sass/"*.scss; do
   fi
 
   if grep -Eq \
-    -- '--(accent|accent-hover|accent-light|accent-contrast|accent-2|accent-2-light|accent-3|accent-3-light|ink|ink-soft|paper|paper-2|paper-card|rule|rule-strong|text|text-secondary|text-muted|bg|bg-page|bg-card|bg-soft|border|border-hover|radius|radius-lg|shadow-sm|shadow-md|shadow-lg|transition|font|font-serif|font-sans|font-display|font-mono|heading-width|type-display|type-page-title|type-section-title|type-feature-title|type-card-title|type-stat|type-body|type-supporting|type-small|type-control|type-meta|type-label|type-context-nav|type-navigation|content-leading|content-measure|card-leading|compact-leading|weight-body|weight-meta|weight-emphasis|weight-label|weight-card|weight-section|weight-display|display-weight|section-weight|card-title-weight|max-width|chrome-height|control-height|compact-control-height|theme-toggle-size|footer-type|section-space|section-rule-space|section-nav-offset|section-heading-gap|section-label-height|section-label-padding|section-label-background|section-label-text|code-background|code-text|panel-padding-block|panel-padding-inline|card-padding-block|card-padding-inline|layout-gap|card-gap|card-border|featured-border)[[:space:]]*:' \
+    -- '--(accent|accent-hover|accent-light|accent-contrast|accent-2|accent-2-light|accent-3|accent-3-light|ink|ink-soft|paper|paper-2|paper-card|rule|rule-strong|text|text-secondary|text-muted|bg|bg-page|bg-card|bg-soft|border|border-hover|radius|radius-lg|shadow-sm|shadow-md|shadow-lg|transition|font|font-serif|font-sans|font-display|font-mono|heading-width|type-display|type-page-title|type-section-title|type-feature-title|type-card-title|type-stat|type-body|type-supporting|type-small|type-control|type-meta|type-label|type-context-nav|type-navigation|content-leading|content-measure|card-leading|compact-leading|weight-body|weight-meta|weight-emphasis|weight-label|weight-card|weight-section|weight-display|display-weight|section-weight|card-title-weight|max-width|chrome-height|control-height|compact-control-height|theme-toggle-size|footer-type|page-space-top|page-space-bottom|page-header-gap|page-meta-gap|page-lead-gap|page-lead-padding|section-space|section-rule-space|section-boundary-before|section-boundary-after|section-nav-offset|section-intro-gap|section-heading-gap|section-label-height|section-label-padding|section-label-background|section-label-text|code-background|code-text|panel-padding-block|panel-padding-inline|card-padding-block|card-padding-inline|layout-gap|card-gap|card-border|featured-border)[[:space:]]*:' \
     "$consumer_style"; then
     echo "A shared design token has reappeared in $consumer_style" >&2
     exit 1

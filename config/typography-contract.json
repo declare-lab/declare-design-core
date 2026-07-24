@@ -1,7 +1,111 @@
 {
-  "version": "2.0.0",
+  "version": "2.1.0",
   "scope_xpath": "//main[contains(concat(' ', normalize-space(@class), ' '), ' site-main ')]",
   "reject_fallback": true,
+  "role_expectations": {
+    "page-title": {
+      "size_token": "--type-page-title",
+      "weight_token": "--weight-display",
+      "family_token": "--font-sans",
+      "color_token": "--text",
+      "line_height_min": 1.05,
+      "line_height_max": 1.15
+    },
+    "section-title": {
+      "size_token": "--type-section-title",
+      "weight_token": "--weight-section",
+      "family_token": "--font-sans",
+      "color_token": "--text",
+      "line_height_min": 1.15,
+      "line_height_max": 1.3
+    },
+    "subsection-title": {
+      "size_token": "--type-feature-title",
+      "weight_token": "--weight-card",
+      "family_token": "--font-sans",
+      "color_token": "--text",
+      "line_height_min": 1.2,
+      "line_height_max": 1.4
+    },
+    "item-title": {
+      "size_token": "--type-card-title",
+      "weight_token": "--weight-card",
+      "family_token": "--font-sans",
+      "color_token": "--text",
+      "line_height_min": 1.2,
+      "line_height_max": 1.4
+    },
+    "minor-title": {
+      "size_token": "--type-body",
+      "weight_token": "--weight-card",
+      "family_token": "--font-sans",
+      "color_token": "--text",
+      "line_height_min": 1.25,
+      "line_height_max": 1.45
+    },
+    "body": {
+      "size_token": "--type-body",
+      "weight_token": "--weight-body",
+      "family_token": "--font-serif",
+      "color_token": "--text-secondary",
+      "line_height_min": 1.55,
+      "line_height_max": 1.8
+    },
+    "supporting": {
+      "size_token": "--type-supporting",
+      "weight_token": "--weight-body",
+      "family_token": "--font-serif",
+      "color_token": "--text-secondary",
+      "line_height_min": 1.5,
+      "line_height_max": 1.8
+    },
+    "small": {
+      "size_token": "--type-small",
+      "weight_token": "--weight-body",
+      "family_token": "--font-serif",
+      "color_token": "--text-secondary",
+      "line_height_min": 1.4,
+      "line_height_max": 1.7
+    },
+    "meta": {
+      "size_token": "--type-meta",
+      "weight_token": "--weight-meta",
+      "family_token": "--font-mono",
+      "color_token": "--text-muted",
+      "line_height_min": 1.3,
+      "line_height_max": 1.6
+    },
+    "label": {
+      "size_token": "--type-label",
+      "weight_token": "--weight-label",
+      "family_token": "--font-mono",
+      "line_height_min": 1.2,
+      "line_height_max": 1.5
+    },
+    "control": {
+      "size_token": "--type-control",
+      "weight_token": "--weight-label",
+      "family_token": "--font-sans",
+      "line_height_min": 1.2,
+      "line_height_max": 1.5
+    },
+    "navigation": {
+      "size_token": "--type-context-nav",
+      "weight_token": "--weight-meta",
+      "family_token": "--font-sans",
+      "line_height_min": 1.2,
+      "line_height_max": 1.5,
+      "active_weight_token": "--weight-emphasis"
+    },
+    "stat": {
+      "size_token": "--type-stat",
+      "weight_token": "--weight-emphasis",
+      "family_token": "--font-sans",
+      "color_token": "--text",
+      "line_height_min": 0.95,
+      "line_height_max": 1.1
+    }
+  },
   "excluded_paths": [
     "assets/declare-core/**",
     "nora/**",
@@ -46,7 +150,11 @@
     },
     {
       "name": "control",
-      "xpath": ".//button | .//input | .//select | .//textarea | .//nav//a | .//a[not(ancestor::p) and not(ancestor::h1) and not(ancestor::h2) and not(ancestor::h3) and not(ancestor::h4) and not(ancestor::h5) and not(ancestor::h6)] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-cat-badge ')]"
+      "xpath": ".//button | .//input | .//select | .//textarea | .//a[not(ancestor::nav) and not(ancestor::p) and not(ancestor::h1) and not(ancestor::h2) and not(ancestor::h3) and not(ancestor::h4) and not(ancestor::h5) and not(ancestor::h6)] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-cat-badge ')]"
+    },
+    {
+      "name": "navigation",
+      "xpath": ".//nav//a"
     },
     {
       "name": "stat",
@@ -66,7 +174,7 @@
     },
     {
       "name": "item-title",
-      "xpath": ".//h4 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' award-grid ')]//strong"
+      "xpath": ".//h4 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' award-grid ')]//strong | .//*[contains(concat(' ', normalize-space(@class), ' '), ' news-item ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-card ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' project-card ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' representative-card ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' hot-paper-list ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' note-card-link ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' update-card ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' funding-list ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' research-area-card ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' contribution-row ')]//h3"
     },
     {
       "name": "minor-title",

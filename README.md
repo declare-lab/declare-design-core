@@ -157,6 +157,7 @@ the deterministic Python fixer and verifier:
 python -m pip install -r assets/declare-core/requirements.txt
 python assets/declare-core/scripts/typography_dom.py fix --site _site
 python assets/declare-core/scripts/typography_dom.py verify --site _site
+python assets/declare-core/scripts/typography_dom.py verify --site _site --json
 ```
 
 The fixer assigns `data-type-role` from XPath rules and removes inline
@@ -164,6 +165,12 @@ typography declarations. The verifier checks those assignments, rejects stale
 or unknown roles, rejects unclassified text and inline typography, requires one
 non-empty root `h1`, and detects heading-level jumps.
 Standalone project systems such as NORA are excluded by the contract.
+
+Rendered pages also expose `window.DeclareTypography.audit()`. It checks every
+assigned role against the shared size, weight, family, color, and line-height
+expectations, then verifies that nested heading sizes decrease. This makes
+computed-style regression checks possible across themes and responsive
+viewports rather than limiting validation to source markup.
 
 Site-specific styles may compose layout, color accents, and domain
 visualizations. They do not own reading-hierarchy sizes or weights. To

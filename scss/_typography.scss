@@ -139,6 +139,19 @@
   line-height: var(--compact-leading) !important;
 }
 
+.declare-core .site-main [data-type-role="navigation"] {
+  font-family: var(--font-sans) !important;
+  font-size: var(--type-context-nav) !important;
+  font-weight: var(--weight-meta) !important;
+  letter-spacing: 0 !important;
+  line-height: var(--compact-leading) !important;
+}
+
+.declare-core .site-main .section-menu a.is-current,
+.declare-core .site-main .section-menu a.is-active {
+  font-weight: var(--weight-emphasis) !important;
+}
+
 .declare-core .site-main [data-type-role="stat"] {
   color: var(--text) !important;
   font-family: var(--font-sans) !important;

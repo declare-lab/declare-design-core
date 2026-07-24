@@ -48,6 +48,246 @@
     return "body";
   }
 
+  function resolveCustomProperty(name, seen) {
+    var visited = seen || {};
+    var value;
+    var variablePattern;
+
+    if (visited[name]) return "";
+    visited[name] = true;
+    value = window.getComputedStyle(root).getPropertyValue(name).trim();
+    variablePattern = /var\(\s*(--[\w-]+)(?:\s*,[^)]+)?\s*\)/g;
+
+    return value.replace(variablePattern, function (_, nestedName) {
+      return resolveCustomProperty(nestedName, visited);
+    });
+  }
+
+  function lengthToPixels(value) {
+    var numeric = Number.parseFloat(value);
+    if (!Number.isFinite(numeric)) return null;
+    if (value.indexOf("rem") !== -1) {
+      return (
+        numeric *
+        Number.parseFloat(window.getComputedStyle(root).fontSize || "16")
+      );
+    }
+    if (value.indexOf("px") !== -1 || /^-?[\d.]+$/.test(value)) {
+      return numeric;
+    }
+    return null;
+  }
+
+  function firstFamily(value) {
+    return (value.split(",")[0] || "")
+      .replace(/^["']|["']$/g, "")
+      .trim()
+      .toLowerCase();
+  }
+
+  function normalizedColor(value) {
+    var color = value.trim().toLowerCase();
+    var match;
+    var hex;
+
+    if (color.charAt(0) === "#") {
+      hex = color.slice(1);
+      if (hex.length === 3) {
+        hex = hex
+          .split("")
+          .map(function (character) {
+            return character + character;
+          })
+          .join("");
+      }
+      if (hex.length === 6) {
+        return [
+          Number.parseInt(hex.slice(0, 2), 16),
+          Number.parseInt(hex.slice(2, 4), 16),
+          Number.parseInt(hex.slice(4, 6), 16)
+        ].join(",");
+      }
+    }
+
+    match = color.match(/rgba?\(([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)/);
+    if (match) {
+      return [
+        Math.round(Number.parseFloat(match[1])),
+        Math.round(Number.parseFloat(match[2])),
+        Math.round(Number.parseFloat(match[3]))
+      ].join(",");
+    }
+    return color;
+  }
+
+  function auditTypography(contract) {
+    var expectations = contract.role_expectations || {};
+    var elements = Array.prototype.slice.call(
+      document.querySelectorAll("[data-type-role]")
+    );
+    var errors = [];
+    var propertyChecks = 0;
+    var propertyPasses = 0;
+    var transitionChecks = 0;
+    var transitionPasses = 0;
+    var roleCounts = {};
+
+    function check(condition, element, property, expected, actual) {
+      propertyChecks += 1;
+      if (condition) {
+        propertyPasses += 1;
+        return;
+      }
+      errors.push({
+        actual: actual,
+        expected: expected,
+        property: property,
+        role: element.getAttribute("data-type-role"),
+        tag: element.tagName.toLowerCase(),
+        text: element.textContent.trim().replace(/\s+/g, " ").slice(0, 72)
+      });
+    }
+
+    elements.forEach(function (element) {
+      var role = element.getAttribute("data-type-role");
+      var expectation = expectations[role];
+      var style = window.getComputedStyle(element);
+      var expectedSize;
+      var expectedWeight;
+      var expectedFamily;
+      var expectedColor;
+      var actualSize;
+      var lineHeightRatio;
+      var activeNavigation;
+
+      roleCounts[role] = (roleCounts[role] || 0) + 1;
+      if (!expectation) {
+        errors.push({
+          property: "role",
+          role: role,
+          tag: element.tagName.toLowerCase(),
+          text: element.textContent.trim().replace(/\s+/g, " ").slice(0, 72)
+        });
+        return;
+      }
+
+      expectedSize = lengthToPixels(
+        resolveCustomProperty(expectation.size_token)
+      );
+      actualSize = Number.parseFloat(style.fontSize);
+      check(
+        expectedSize !== null && Math.abs(actualSize - expectedSize) <= 0.25,
+        element,
+        "font-size",
+        expectedSize,
+        actualSize
+      );
+
+      activeNavigation =
+        role === "navigation" &&
+        (element.classList.contains("is-current") ||
+          element.classList.contains("is-active"));
+      expectedWeight = resolveCustomProperty(
+        activeNavigation && expectation.active_weight_token
+          ? expectation.active_weight_token
+          : expectation.weight_token
+      );
+      check(
+        String(style.fontWeight) === String(expectedWeight),
+        element,
+        "font-weight",
+        expectedWeight,
+        style.fontWeight
+      );
+
+      expectedFamily = firstFamily(
+        resolveCustomProperty(expectation.family_token)
+      );
+      check(
+        firstFamily(style.fontFamily) === expectedFamily,
+        element,
+        "font-family",
+        expectedFamily,
+        firstFamily(style.fontFamily)
+      );
+
+      lineHeightRatio =
+        Number.parseFloat(style.lineHeight) / Number.parseFloat(style.fontSize);
+      check(
+        lineHeightRatio >= expectation.line_height_min - 0.01 &&
+          lineHeightRatio <= expectation.line_height_max + 0.01,
+        element,
+        "line-height",
+        expectation.line_height_min + "-" + expectation.line_height_max,
+        Number(lineHeightRatio.toFixed(3))
+      );
+
+      if (expectation.color_token) {
+        expectedColor = normalizedColor(
+          resolveCustomProperty(expectation.color_token)
+        );
+        check(
+          normalizedColor(style.color) === expectedColor,
+          element,
+          "color",
+          expectedColor,
+          normalizedColor(style.color)
+        );
+      }
+    });
+
+    document.querySelectorAll("main h1, main h2, main h3, main h4, main h5, main h6")
+      .forEach(function (heading, index, headings) {
+        var level = Number.parseInt(heading.tagName.slice(1), 10);
+        var parentHeading = null;
+        var parentIndex;
+        var parentSize;
+        var currentSize;
+
+        for (parentIndex = index - 1; parentIndex >= 0; parentIndex -= 1) {
+          if (
+            Number.parseInt(headings[parentIndex].tagName.slice(1), 10) < level
+          ) {
+            parentHeading = headings[parentIndex];
+            break;
+          }
+        }
+        if (!parentHeading) return;
+
+        transitionChecks += 1;
+        parentSize = Number.parseFloat(
+          window.getComputedStyle(parentHeading).fontSize
+        );
+        currentSize = Number.parseFloat(
+          window.getComputedStyle(heading).fontSize
+        );
+        if (currentSize < parentSize) {
+          transitionPasses += 1;
+        } else {
+          errors.push({
+            actual: currentSize,
+            expected: "< " + parentSize,
+            property: "heading-transition",
+            role: heading.getAttribute("data-type-role"),
+            tag: heading.tagName.toLowerCase(),
+            text: heading.textContent.trim().replace(/\s+/g, " ").slice(0, 72)
+          });
+        }
+      });
+
+    return {
+      contract: contract.version,
+      elements: elements.length,
+      errors: errors,
+      passed: errors.length === 0,
+      propertyChecks: propertyChecks,
+      propertyPasses: propertyPasses,
+      roleCounts: roleCounts,
+      transitionChecks: transitionChecks,
+      transitionPasses: transitionPasses
+    };
+  }
+
   function applyTypographyContract(contract) {
     var scopes = evaluateXPath(contract.scope_xpath, document);
 
@@ -80,6 +320,13 @@
 
       scope.setAttribute("data-type-contract", contract.version);
     });
+
+    window.DeclareTypography = {
+      audit: function () {
+        return auditTypography(contract);
+      },
+      version: contract.version
+    };
 
     document.dispatchEvent(
       new CustomEvent("declare:typography-ready", {

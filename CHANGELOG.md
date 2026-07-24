@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.0
+
+- Separate quiet navigation typography from primary action controls.
+- Map repeated record and card headings to the shared item-title role.
+- Preserve subsection scale for explanatory structures such as FAQs and openings.
+
 ## 2.0.0
 
 - Replace wrapper-specific typography with one hierarchy derived from semantic HTML.

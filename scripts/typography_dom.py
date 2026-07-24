@@ -8,7 +8,8 @@ import fnmatch
 import json
 import re
 import sys
-from dataclasses import dataclass
+from collections import Counter
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Iterable
 
@@ -30,14 +31,51 @@ IGNORED_TEXT_ANCESTORS = frozenset(
 @dataclass
 class Audit:
     files: int = 0
+    files_passed: int = 0
     changed_files: int = 0
     assigned_roles: int = 0
     stripped_inline_properties: int = 0
-    errors: list[str] | None = None
+    elements_scanned: int = 0
+    role_checks: int = 0
+    direct_text_checks: int = 0
+    contract_checks: int = 0
+    inline_checks: int = 0
+    heading_nodes: int = 0
+    heading_structure_checks: int = 0
+    heading_transition_checks: int = 0
+    role_counts: Counter[str] = field(default_factory=Counter)
+    errors: list[str] = field(default_factory=list)
 
-    def __post_init__(self) -> None:
-        if self.errors is None:
-            self.errors = []
+    @property
+    def checks_total(self) -> int:
+        return (
+            self.role_checks
+            + self.direct_text_checks
+            + self.contract_checks
+            + self.inline_checks
+            + self.heading_structure_checks
+            + self.heading_transition_checks
+        )
+
+    def report(self, mode: str) -> dict:
+        return {
+            "mode": mode,
+            "files": self.files,
+            "files_passed": self.files_passed,
+            "elements_scanned": self.elements_scanned,
+            "role_checks": self.role_checks,
+            "direct_text_checks": self.direct_text_checks,
+            "contract_checks": self.contract_checks,
+            "inline_checks": self.inline_checks,
+            "heading_nodes": self.heading_nodes,
+            "heading_structure_checks": self.heading_structure_checks,
+            "heading_transition_checks": self.heading_transition_checks,
+            "role_counts": dict(sorted(self.role_counts.items())),
+            "checks_total": self.checks_total,
+            "checks_passed": max(0, self.checks_total - len(self.errors)),
+            "errors": self.errors,
+            "passed": not self.errors,
+        }
 
 
 def parse_args() -> argparse.Namespace:
@@ -48,6 +86,12 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("mode", choices=("fix", "verify"))
     parser.add_argument("--site", type=Path, required=True)
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        dest="json_output",
+        help="Print the complete machine-readable audit report.",
+    )
     parser.add_argument(
         "--contract",
         type=Path,
@@ -199,11 +243,17 @@ def strip_inline_typography(
 
 
 def heading_errors(
-    relative_path: Path, scopes: list[etree._Element]
+    relative_path: Path,
+    scopes: list[etree._Element],
+    audit: Audit | None = None,
 ) -> list[str]:
     errors: list[str] = []
     for scope in scopes:
         headings = scope.xpath(".//h1 | .//h2 | .//h3 | .//h4 | .//h5 | .//h6")
+        if audit:
+            audit.heading_nodes += len(headings)
+            audit.heading_structure_checks += 2 + len(headings)
+            audit.heading_transition_checks += max(0, len(headings) - 1)
         h1_headings = [heading for heading in headings if heading.tag == "h1"]
         if len(h1_headings) != 1:
             errors.append(
@@ -294,11 +344,14 @@ def verify_file(
         return
 
     for scope in scopes:
+        audit.contract_checks += 1
         if scope.get(CONTRACT_ATTRIBUTE) != contract["version"]:
             audit.errors.append(
                 f"{relative_path}: contract marker is missing or stale"
             )
         for element in scope.iter():
+            audit.elements_scanned += 1
+            audit.inline_checks += 1
             actual = element.get(ROLE_ATTRIBUTE)
             if actual and actual not in valid_roles:
                 audit.errors.append(
@@ -310,8 +363,16 @@ def verify_file(
                     audit.errors.append(
                         f"{relative_path}: inline typography on <{element.tag}>"
                     )
+            if (
+                isinstance(element.tag, str)
+                and not has_ignored_ancestor(element, scope)
+                and direct_text(element)
+            ):
+                audit.direct_text_checks += 1
 
     for element, expected in roles.items():
+        audit.role_checks += 1
+        audit.role_counts[expected] += 1
         actual = element.get(ROLE_ATTRIBUTE)
         if actual != expected:
             text = " ".join(element.text_content().split())[:72]
@@ -320,7 +381,7 @@ def verify_file(
                 f"found {actual!r}: {text}"
             )
 
-    audit.errors.extend(heading_errors(relative_path, scopes))
+    audit.errors.extend(heading_errors(relative_path, scopes, audit))
     if contract.get("reject_fallback"):
         audit.errors.extend(fallback_errors(relative_path, fallback_elements))
 
@@ -338,12 +399,18 @@ def main() -> int:
     for path in files:
         relative_path = path.relative_to(site)
         audit.files += 1
+        error_count = len(audit.errors)
         if args.mode == "fix":
             fix_file(path, relative_path, contract, audit)
         else:
             verify_file(path, relative_path, contract, audit)
+        if len(audit.errors) == error_count:
+            audit.files_passed += 1
 
     if audit.errors:
+        if args.json_output:
+            print(json.dumps(audit.report(args.mode), indent=2, sort_keys=True))
+            return 1
         for error in audit.errors:
             print(error, file=sys.stderr)
         print(
@@ -360,7 +427,15 @@ def main() -> int:
             f"{audit.stripped_inline_properties} inline declarations removed."
         )
     else:
-        print(f"Typography verify: {audit.files} files conform to the contract.")
+        if args.json_output:
+            print(json.dumps(audit.report(args.mode), indent=2, sort_keys=True))
+        else:
+            print(
+                f"Typography verify: {audit.files} files, "
+                f"{audit.role_checks} roles, "
+                f"{audit.heading_transition_checks} heading transitions, "
+                f"{audit.checks_total} checks passed."
+            )
     return 0
 
 

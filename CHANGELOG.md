@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.5
+
+- Classify update-category tags as shared labels rather than wrapper metadata.
+- Keep update dates on the metadata tier while removing local visual drift.
+- Assign compact item and supporting roles to mentorship and academic-contribution groups.
+
 ## 2.1.4
 
 - Use regular weight for inactive contextual navigation.

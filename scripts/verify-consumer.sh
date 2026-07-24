@@ -8,6 +8,9 @@ core_root="$site_root/assets/declare-core"
 
 test -f "$core_root/scss/core.scss"
 test -f "$core_root/js/site.js"
+test -f "$core_root/config/typography-contract.json"
+test -f "$core_root/scripts/typography_dom.py"
+test -f "$core_root/requirements.txt"
 test -f "$style_file"
 test -f "$layout_file"
 

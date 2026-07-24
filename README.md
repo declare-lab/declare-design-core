@@ -129,25 +129,45 @@ Change their public properties instead. This keeps upgrades predictable.
 
 ### Semantic type roles
 
-The core uses one type ladder everywhere. Choose a role by meaning, not by the
-container that happens to surround the text:
+The core uses one DOM-derived type ladder everywhere. Heading rank is the
+contract: every `h3` is a subsection title, for example, regardless of whether
+it appears in an FAQ, opening, card, or research panel. Prose roles follow
+semantic HTML: page copy is reading text, prose inside `article` is supporting
+text, and `time`, `figcaption`, tables, labels, controls, and statistics receive
+their corresponding roles.
 
 | Role | Token | Utility class | Default |
 | --- | --- | --- | --- |
 | Page title | `--type-page-title` | `.type-page-title` | 48px |
 | Section title | `--type-section-title` | `.type-section-title` | 28px |
-| Feature title | `--type-feature-title` | `.type-feature-title` | 22px |
-| Card title | `--type-card-title` | `.type-card-title` | 19px |
+| Subsection title (`h3`) | `--type-feature-title` | `.type-feature-title` | 22px |
+| Item title (`h4`) | `--type-card-title` | `.type-card-title` | 19px |
 | Reading text | `--type-body` | `.type-body` | 17px |
 | Supporting text | `--type-supporting` | `.type-supporting` | 16px |
 | Card/list text | `--type-small` | `.type-small` | 14px |
 | Metadata | `--type-meta` | `.type-meta` | 12px |
 | Label | `--type-label` | `.type-label` | 11px |
 
-Feature titles introduce a distinct subsection. Card titles name repeated
-objects. Reading text carries the main narrative; supporting text belongs to
-compact explanatory rows such as FAQs and service records. Reusable components
-must use these tokens or utility classes instead of new numeric font sizes.
+The single source of truth is
+`config/typography-contract.json`. `js/site.js` applies the contract in local
+and development views. Production builds must run the same contract through
+the deterministic Python fixer and verifier:
+
+```sh
+python -m pip install -r assets/declare-core/requirements.txt
+python assets/declare-core/scripts/typography_dom.py fix --site _site
+python assets/declare-core/scripts/typography_dom.py verify --site _site
+```
+
+The fixer assigns `data-type-role` from XPath rules and removes inline
+typography declarations. The verifier checks those assignments, rejects stale
+or unknown roles, rejects inline typography, and detects heading-level jumps.
+Standalone project systems such as NORA are excluded by the contract.
+
+Site-specific styles may compose layout, color accents, and domain
+visualizations. They do not own reading-hierarchy sizes or weights. To
+customize the hierarchy, change the public type tokens through
+`declare-customize`; do not add wrapper-specific heading rules.
 
 ## Components
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.0
+
+- Replace wrapper-specific typography with one hierarchy derived from semantic HTML.
+- Add a shared XPath contract consumed by both the browser and build pipeline.
+- Add a deterministic Python fixer/verifier for roles, inline typography, and heading order.
+- Exclude standalone project systems from the two-site typography audit.
+
 ## 1.8.1
 
 - Extend literal typography checks to standalone project HTML pages.

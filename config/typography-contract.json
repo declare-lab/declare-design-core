@@ -1,0 +1,75 @@
+{
+  "version": "2.0.0",
+  "scope_xpath": "//main[contains(concat(' ', normalize-space(@class), ' '), ' site-main ')]",
+  "excluded_paths": [
+    "assets/declare-core/**",
+    "nora/**",
+    "nora-1.5/**",
+    "nora.html",
+    "nora-1.5.html",
+    "nora-legacy.html",
+    "nora-1.5-legacy.html",
+    "google*.html"
+  ],
+  "inline_typography_properties": [
+    "font",
+    "font-family",
+    "font-size",
+    "font-style",
+    "font-variation-settings",
+    "font-weight",
+    "letter-spacing",
+    "line-height",
+    "text-transform"
+  ],
+  "roles": [
+    {
+      "name": "body",
+      "xpath": ".//p | .//li | .//blockquote | .//dd"
+    },
+    {
+      "name": "supporting",
+      "xpath": ".//article//p | .//article//li | .//article//blockquote | .//article//dd | .//details//p | .//details//li"
+    },
+    {
+      "name": "small",
+      "xpath": ".//table//td | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-authors ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-abstract ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card__affiliation ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card__interests ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' author-bio ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' author-location ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' work-note ')]"
+    },
+    {
+      "name": "meta",
+      "xpath": ".//time | .//figcaption | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-venue ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-count-display ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' people-section__count ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' project-team ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card__note ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' data-verification ')]"
+    },
+    {
+      "name": "label",
+      "xpath": ".//table//th | .//*[contains(concat(' ', normalize-space(@class), ' '), ' eyebrow ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' work-kicker ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' news-badge ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' declare-kicker ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' project-tag ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card__role ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-year-tag ')]"
+    },
+    {
+      "name": "control",
+      "xpath": ".//button | .//input | .//select | .//textarea | .//nav//a | .//a[contains(concat(' ', normalize-space(@class), ' '), ' btn ')] | .//a[contains(concat(' ', normalize-space(@class), ' '), ' btn-primary ')] | .//a[contains(concat(' ', normalize-space(@class), ' '), ' btn-secondary ')]"
+    },
+    {
+      "name": "stat",
+      "xpath": ".//*[contains(concat(' ', normalize-space(@class), ' '), ' stat-value ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' metric-value ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' collaboration-metrics ')]/strong | .//*[contains(concat(' ', normalize-space(@class), ' '), ' collab-inspector ')]/strong"
+    },
+    {
+      "name": "page-title",
+      "xpath": ".//h1"
+    },
+    {
+      "name": "section-title",
+      "xpath": ".//h2"
+    },
+    {
+      "name": "subsection-title",
+      "xpath": ".//h3"
+    },
+    {
+      "name": "item-title",
+      "xpath": ".//h4"
+    },
+    {
+      "name": "minor-title",
+      "xpath": ".//h5 | .//h6"
+    }
+  ]
+}

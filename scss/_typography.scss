@@ -1,298 +1,161 @@
-.hero-subtitle,
-.intro-panel p,
-.intro-aside p,
-.lab-copy p,
-.content-text .page-lead p,
-.content-text .declare-hero__subhead,
-.content-text .research-theme > div:first-child > p,
-.content-text .join-band p,
-.content-text .lab-overview__copy > p {
-  color: var(--text-secondary);
-  font-family: var(--font-serif);
-  font-size: var(--type-body);
-  font-weight: var(--weight-body);
-  line-height: var(--content-leading);
-}
+/*
+ * Semantic typography contract
+ *
+ * The HTML tree owns type hierarchy. Component wrappers never choose a
+ * different scale for the same heading level. The build-time verifier and the
+ * browser annotator add data-type-role attributes from the shared DOM contract;
+ * the structural selectors are a first-paint fallback.
+ */
 
-.section-lede,
-.content-text .section-note,
-.content-text .declare-section__header > p,
-.content-text .identity-summary p {
-  color: var(--text-secondary);
-  font-family: var(--font-serif);
-  font-size: var(--type-body);
-  font-weight: var(--weight-body);
-  line-height: 1.6;
-}
-
-.content-text h2,
-.content-text .people-section__header h2,
-.content-text .pub-year-heading,
-.content-text .side-layout__main > h2[id],
-.content-text .side-layout__main > .declare-intro h2,
-.content-text .side-layout__main > .declare-section > .declare-section__header h2,
-.content-text .side-layout__main > section[id] > h2:first-child,
-.content-text .side-layout__main > section[id] > .declare-section__header h2,
-.content-text .join-section > h2:first-child,
-.content-text .join-section > .declare-section__header h2,
-.content-text .join-band h2,
-.content-text .lab-note-hero ~ h2 {
-  color: var(--text);
-  font-family: var(--font-sans);
-  font-size: var(--type-section-title);
-  font-variation-settings: "wdth" var(--heading-width);
-  font-weight: var(--weight-section);
-  line-height: 1.22;
-}
-
-.selected-work-card h3,
-.content-text .representative-card h3,
-.content-text .hot-paper-list h3,
-.content-text .opportunity-grid h3,
-.content-text .people-grid--faculty .person-card h3,
-.content-text .people-layout .people-grid--faculty .person-card h3,
-.content-text > h3 {
-  color: var(--text);
-  font-family: var(--font-sans);
-  font-size: var(--type-feature-title);
-  font-variation-settings: "wdth" var(--heading-width);
-  font-weight: var(--weight-card);
-  line-height: 1.3;
-}
-
-.research-area-card h3,
-.publication-showcase h3,
-.pub-card h3,
-.award-grid h3,
-.service-list h3,
-.people-grid h3,
-.news-item h4,
-.content-text .project-card h3,
-.content-text .person-card h3,
-.content-text .note-card-link h3,
-.content-text .update-card__body h3,
-.content-text .funding-list h3,
-.content-text .faq-list h3,
-.content-text .collab-inspector h3,
-.content-text .opening-list h3,
-.content-text .pub-title,
-.content-text .funding-list--records h3,
-.content-text .lab-note-hero ~ h3,
-.content-text .people-layout .person-card h3 {
-  color: var(--text);
-  font-family: var(--font-sans);
-  font-size: var(--type-card-title);
-  font-variation-settings: "wdth" var(--heading-width);
-  font-weight: var(--weight-card);
-  line-height: 1.3;
-}
-
-.content-text h4 {
-  color: var(--text);
-  font-family: var(--font-sans);
-  font-size: var(--type-body);
-  font-weight: var(--weight-card);
-  letter-spacing: 0;
-}
-
-.research-area-card p,
-.selected-work-card p,
-.award-grid p,
-.pub-card p,
-.work-note,
-.news-item p,
-.people-grid > span,
-.profile-table td,
-.author-bio,
-.author-location,
-.author-links a,
-.content-text .project-card p,
-.content-text .person-card p,
-.content-text .representative-card p,
-.content-text .hot-paper-list p,
-.content-text .note-card-link p,
-.content-text .update-card__body p,
-.content-text .funding-list p,
-.content-text .opportunity-grid p,
-.content-text .opening-list p,
-.content-text .pub-authors,
-.content-text .pub-abstract,
-.content-text .research-theme > div:first-child > .clean-list,
-.content-text .collaboration-metrics p,
-.content-text .collab-inspector p,
-.content-text .people-layout .person-card__affiliation,
-.content-text .people-layout .person-card__interests,
-.content-text .people-layout .people-grid--faculty .person-card__interests,
-.content-text .people-layout .people-grid--alumni .person-card__interests {
-  color: var(--text-secondary);
-  font-family: var(--font-serif);
-  font-size: var(--type-small);
-  font-weight: var(--weight-body);
-  line-height: var(--card-leading);
-}
-
-.service-list p,
-.content-text .service-list p,
-.content-text .faq-list p {
-  color: var(--text-secondary);
-  font-family: var(--font-serif);
-  font-size: var(--type-supporting);
-  font-weight: var(--weight-body);
-  line-height: var(--content-leading);
-}
-
-.content-text .update-card__body li {
-  color: var(--text-secondary);
-  font-family: var(--font-serif);
-  font-size: var(--type-small);
-  font-weight: var(--weight-body);
-  line-height: var(--card-leading);
-}
-
-.content-text > p,
-.lab-copy p,
-.intro-panel p {
-  font-size: var(--type-body);
-}
-
-.work-links a,
-.content-text .representative-list strong {
-  color: var(--text);
-  font-family: var(--font-serif);
-  font-size: var(--type-small);
-  font-weight: var(--weight-emphasis);
-  line-height: var(--compact-leading);
-}
-
-.eyebrow,
-.work-links span,
-.pub-venue,
-.pub-count-display,
-.pub-year-tag,
-.content-text .project-card .project-team,
-.content-text .person-card .person-card__note,
-.content-text .people-layout .person-card .person-card__note,
-.content-text .team-portrait figcaption,
-.content-text .people-section__count,
-.content-text .update-card__meta time,
-.content-text .note-meta time,
-.content-text .data-verification,
-.content-text .representative-list a > span {
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-  font-size: var(--type-meta);
-  font-weight: var(--weight-meta);
-  line-height: 1.45;
-}
-
-.work-kicker,
-.news-badge,
-.content-text .declare-kicker,
-.content-text .project-tag,
-.content-text .person-card .person-card__role,
-.content-text .collaboration-metrics span,
-.content-text .collab-inspector > span,
-.content-text .funding-list span,
-.content-text .hot-paper-list > article > span,
-.content-text .note-card-link > span:first-of-type,
-.content-text .update-card__meta span,
-.content-text .note-meta span,
-.content-text h2[data-section-label]::before,
-.content-text .pub-year-heading::before {
-  font-family: var(--font-mono);
-  font-size: var(--type-label);
-  font-weight: var(--weight-label);
-  line-height: 1.35;
-}
-
-.content-text strong,
-.hero-subtitle strong,
-.work-note strong {
-  font-weight: var(--weight-emphasis);
-}
-
-.content-text .declare-hero h1,
-.site-main h1,
-.home-hero .hero-greeting-name,
-.page-header h1 {
-  font-size: var(--type-page-title);
-}
-
-.author-profile-content .author-name {
-  font-size: var(--type-feature-title);
-  font-weight: var(--weight-card);
-}
-
-.content-text .lab-note-hero h1 {
-  font-family: var(--font-sans);
-  font-size: var(--type-display);
-  font-weight: var(--weight-display);
-  line-height: 1.08;
-}
-
-.content-text .lab-note-hero p:not(.work-kicker) {
-  color: var(--text-secondary);
-  font-family: var(--font-serif);
-  font-size: var(--type-supporting);
-  font-weight: var(--weight-body);
-  line-height: var(--content-leading);
-}
-
-.content-text .lab-note-hero .work-kicker {
-  color: var(--accent);
-  font-family: var(--font-mono);
-  font-size: var(--type-label);
-  font-weight: var(--weight-label);
-  line-height: 1.35;
-}
-
-.content-text .people-layout .team-portrait figcaption {
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-  font-size: var(--type-meta);
-  font-weight: var(--weight-meta);
-  line-height: 1.45;
-}
-
+.declare-core .site-main h1,
+.declare-core .site-main [data-type-role="page-title"],
 .type-page-title {
-  font: var(--weight-display) var(--type-page-title) / 1.08 var(--font-sans);
+  color: var(--text) !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--type-page-title) !important;
+  font-variation-settings: "wdth" var(--heading-width) !important;
+  font-weight: var(--weight-display) !important;
+  letter-spacing: 0 !important;
+  line-height: 1.08 !important;
 }
 
+.declare-core .site-main h2,
+.declare-core .site-main [data-type-role="section-title"],
 .type-section-title {
-  font: var(--weight-section) var(--type-section-title) / 1.22 var(--font-sans);
+  color: var(--text) !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--type-section-title) !important;
+  font-variation-settings: "wdth" var(--heading-width) !important;
+  font-weight: var(--weight-section) !important;
+  letter-spacing: 0 !important;
+  line-height: 1.22 !important;
 }
 
+.declare-core .site-main h3,
+.declare-core .site-main [data-type-role="subsection-title"],
 .type-feature-title {
-  font: var(--weight-card) var(--type-feature-title) / 1.3 var(--font-sans);
+  color: var(--text) !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--type-feature-title) !important;
+  font-variation-settings: "wdth" var(--heading-width) !important;
+  font-weight: var(--weight-card) !important;
+  letter-spacing: 0 !important;
+  line-height: 1.3 !important;
 }
 
+.declare-core .site-main h4,
+.declare-core .site-main [data-type-role="item-title"],
 .type-card-title {
-  font: var(--weight-card) var(--type-card-title) / 1.3 var(--font-sans);
+  color: var(--text) !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--type-card-title) !important;
+  font-variation-settings: "wdth" var(--heading-width) !important;
+  font-weight: var(--weight-card) !important;
+  letter-spacing: 0 !important;
+  line-height: 1.3 !important;
 }
 
+.declare-core .site-main h5,
+.declare-core .site-main h6,
+.declare-core .site-main [data-type-role="minor-title"] {
+  color: var(--text) !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--type-body) !important;
+  font-variation-settings: "wdth" var(--heading-width) !important;
+  font-weight: var(--weight-card) !important;
+  letter-spacing: 0 !important;
+  line-height: 1.35 !important;
+}
+
+.declare-core .site-main p,
+.declare-core .site-main li,
+.declare-core .site-main blockquote,
+.declare-core .site-main dd,
+.declare-core .site-main [data-type-role="body"],
 .type-body {
-  font: var(--weight-body) var(--type-body) / var(--content-leading) var(--font-serif);
+  color: var(--text-secondary) !important;
+  font-family: var(--font-serif) !important;
+  font-size: var(--type-body) !important;
+  font-weight: var(--weight-body) !important;
+  letter-spacing: 0 !important;
+  line-height: var(--content-leading) !important;
 }
 
+.declare-core .site-main article p,
+.declare-core .site-main article li,
+.declare-core .site-main article blockquote,
+.declare-core .site-main article dd,
+.declare-core .site-main details p,
+.declare-core .site-main details li,
+.declare-core .site-main [data-type-role="supporting"],
 .type-supporting {
-  font: var(--weight-body) var(--type-supporting) / var(--content-leading) var(--font-serif);
+  color: var(--text-secondary) !important;
+  font-family: var(--font-serif) !important;
+  font-size: var(--type-supporting) !important;
+  font-weight: var(--weight-body) !important;
+  letter-spacing: 0 !important;
+  line-height: var(--content-leading) !important;
 }
 
+.declare-core .site-main table td,
+.declare-core .site-main [data-type-role="small"],
 .type-small {
-  font: var(--weight-body) var(--type-small) / var(--card-leading) var(--font-serif);
+  color: var(--text-secondary) !important;
+  font-family: var(--font-serif) !important;
+  font-size: var(--type-small) !important;
+  font-weight: var(--weight-body) !important;
+  letter-spacing: 0 !important;
+  line-height: var(--card-leading) !important;
 }
 
+.declare-core .site-main time,
+.declare-core .site-main figcaption,
+.declare-core .site-main [data-type-role="meta"],
 .type-meta {
-  font: var(--weight-meta) var(--type-meta) / 1.45 var(--font-mono);
+  color: var(--text-muted) !important;
+  font-family: var(--font-mono) !important;
+  font-size: var(--type-meta) !important;
+  font-weight: var(--weight-meta) !important;
+  letter-spacing: 0 !important;
+  line-height: 1.45 !important;
 }
 
+.declare-core .site-main table th,
+.declare-core .site-main [data-type-role="label"],
 .type-label {
-  font: var(--weight-label) var(--type-label) / 1.35 var(--font-mono);
+  font-family: var(--font-mono) !important;
+  font-size: var(--type-label) !important;
+  font-weight: var(--weight-label) !important;
+  letter-spacing: 0.06em !important;
+  line-height: 1.35 !important;
+  text-transform: uppercase !important;
+}
+
+.declare-core .site-main [data-type-role="control"] {
+  font-family: var(--font-sans) !important;
+  font-size: var(--type-control) !important;
+  font-weight: var(--weight-label) !important;
+  letter-spacing: 0 !important;
+  line-height: var(--compact-leading) !important;
+}
+
+.declare-core .site-main [data-type-role="stat"] {
+  color: var(--text) !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--type-stat) !important;
+  font-variation-settings: "wdth" var(--heading-width) !important;
+  font-weight: var(--weight-emphasis) !important;
+  letter-spacing: 0 !important;
+  line-height: 1 !important;
+}
+
+.declare-core .site-main strong {
+  font-weight: var(--weight-emphasis);
 }
 
 .content-text h2:not([data-section-label])::before,
 .content-text .side-layout__main > section[id] > h2:first-child:not([data-section-label])::before,
 .content-text .pub-year-heading:not([data-section-label])::before {
-  display: none;
   content: none;
+  display: none;
 }

@@ -9,6 +9,105 @@
   var header = document.querySelector(".site-header");
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   var coarsePointer = window.matchMedia("(pointer: coarse)");
+  var sharedScript = document.currentScript;
+
+  function evaluateXPath(xpath, context) {
+    var result = document.evaluate(
+      xpath,
+      context,
+      null,
+      XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+      null
+    );
+    var nodes = [];
+    var index;
+
+    for (index = 0; index < result.snapshotLength; index += 1) {
+      nodes.push(result.snapshotItem(index));
+    }
+    return nodes;
+  }
+
+  function hasDirectText(element) {
+    return Array.prototype.some.call(element.childNodes, function (node) {
+      return node.nodeType === Node.TEXT_NODE && node.nodeValue.trim();
+    });
+  }
+
+  function isIgnoredTypographyNode(element, scope) {
+    var ignored = element.closest("script, style, svg, template, noscript, title");
+    return ignored && scope.contains(ignored);
+  }
+
+  function fallbackTypographyRole(element, scope) {
+    var interactive = element.closest("button, input, select, textarea");
+    var link = element.closest("a");
+
+    if (interactive && scope.contains(interactive)) return "control";
+    if (link && scope.contains(link) && link.closest("nav")) return "control";
+    return "body";
+  }
+
+  function applyTypographyContract(contract) {
+    var scopes = evaluateXPath(contract.scope_xpath, document);
+
+    scopes.forEach(function (scope) {
+      scope.querySelectorAll("[data-type-role]").forEach(function (element) {
+        element.removeAttribute("data-type-role");
+      });
+
+      contract.roles.forEach(function (rule) {
+        evaluateXPath(rule.xpath, scope).forEach(function (element) {
+          if (element && element.nodeType === Node.ELEMENT_NODE) {
+            element.setAttribute("data-type-role", rule.name);
+          }
+        });
+      });
+
+      scope.querySelectorAll("*").forEach(function (element) {
+        if (
+          !hasDirectText(element) ||
+          isIgnoredTypographyNode(element, scope) ||
+          element.closest("[data-type-role]")
+        ) {
+          return;
+        }
+        element.setAttribute(
+          "data-type-role",
+          fallbackTypographyRole(element, scope)
+        );
+      });
+
+      scope.setAttribute("data-type-contract", contract.version);
+    });
+
+    document.dispatchEvent(
+      new CustomEvent("declare:typography-ready", {
+        detail: { version: contract.version }
+      })
+    );
+  }
+
+  function initializeTypographyContract() {
+    if (!sharedScript || !window.fetch) return;
+
+    var contractUrl = new URL(
+      "../config/typography-contract.json",
+      sharedScript.src
+    );
+    window
+      .fetch(contractUrl.toString())
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error("Unable to load typography contract");
+        }
+        return response.json();
+      })
+      .then(applyTypographyContract)
+      .catch(function () {
+        root.setAttribute("data-type-contract", "structural-fallback");
+      });
+  }
 
   function updateThemeControl() {
     if (!themeToggle) return;
@@ -430,6 +529,7 @@
   }
 
   initializeTheme();
+  initializeTypographyContract();
   initializePrimaryMenu();
   initializeSectionMenus();
 })();

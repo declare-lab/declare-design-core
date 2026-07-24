@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.4
+
+- Use regular weight for inactive contextual navigation.
+- Preserve semibold emphasis for the active section only.
+
 ## 2.1.3
 
 - Lower structural-fallback specificity so explicit semantic roles always win.

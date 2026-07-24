@@ -1,5 +1,5 @@
 {
-  "version": "2.1.3",
+  "version": "2.1.4",
   "scope_xpath": "//main[contains(concat(' ', normalize-space(@class), ' '), ' site-main ')]",
   "reject_fallback": true,
   "role_expectations": {
@@ -91,7 +91,7 @@
     },
     "navigation": {
       "size_token": "--type-context-nav",
-      "weight_token": "--weight-meta",
+      "weight_token": "--weight-body",
       "family_token": "--font-sans",
       "line_height_min": 1.2,
       "line_height_max": 1.5,

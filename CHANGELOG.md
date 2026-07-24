@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.1
+
+- Keep page-level narrative prose on the body tier.
+- Reserve supporting typography for repeated records, cards, FAQs, openings, and compact content groups.
+
 ## 2.1.0
 
 - Separate quiet navigation typography from primary action controls.

@@ -27,7 +27,17 @@
 
 .content-text h2,
 .content-text .people-section__header h2,
-.content-text .pub-year-heading {
+.content-text .pub-year-heading,
+.content-text .side-layout__main > h2[id],
+.content-text .side-layout__main > .declare-intro h2,
+.content-text .side-layout__main > .logo-story h2,
+.content-text .side-layout__main > .declare-section > .declare-section__header h2,
+.content-text .side-layout__main > section[id] > h2:first-child,
+.content-text .side-layout__main > section[id] > .declare-section__header h2,
+.content-text .join-section > h2:first-child,
+.content-text .join-section > .declare-section__header h2,
+.content-text .join-band h2,
+.content-text .lab-note-hero ~ h2 {
   color: var(--text);
   font-family: var(--font-sans);
   font-size: var(--type-section-title);
@@ -42,6 +52,7 @@
 .content-text .empty-state h3,
 .content-text .opportunity-grid h3,
 .content-text .people-grid--faculty .person-card h3,
+.content-text .people-layout .people-grid--faculty .person-card h3,
 .content-text > h3,
 .join-banner h3 {
   color: var(--text);
@@ -71,7 +82,10 @@
 .content-text .collaboration-notes h3,
 .content-text .updates-board__aside h3,
 .content-text .opening-list h3,
-.content-text .pub-title {
+.content-text .pub-title,
+.content-text .funding-list--records h3,
+.content-text .lab-note-hero ~ h3,
+.content-text .people-layout .person-card h3 {
   color: var(--text);
   font-family: var(--font-sans);
   font-size: var(--type-card-title);
@@ -114,7 +128,11 @@
 .content-text .pub-authors,
 .content-text .pub-abstract,
 .content-text .research-theme > div:first-child > .clean-list,
-.content-text .collab-inspector p {
+.content-text .collab-inspector p,
+.content-text .people-layout .person-card__affiliation,
+.content-text .people-layout .person-card__interests,
+.content-text .people-layout .people-grid--faculty .person-card__interests,
+.content-text .people-layout .people-grid--alumni .person-card__interests {
   color: var(--text-secondary);
   font-family: var(--font-serif);
   font-size: var(--type-small);
@@ -144,6 +162,7 @@
 .pub-year-tag,
 .content-text .project-team,
 .content-text .person-card__note,
+.content-text .people-layout .person-card__note,
 .content-text .team-portrait figcaption,
 .content-text .people-section__count,
 .content-text .update-card__meta time,

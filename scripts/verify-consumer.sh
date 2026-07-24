@@ -15,6 +15,7 @@ import_count="$(grep -c '@import "core";' "$style_file" || true)"
 test "$import_count" -eq 1
 
 grep -q "/assets/declare-core/js/site.js" "$layout_file"
+grep -q 'class="declare-core"' "$layout_file"
 
 if test -e "$site_root/assets/js/section-navigation.js"; then
   echo "Legacy section-navigation.js still exists in $site_root" >&2

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.2
+
+- Enforce semantic type roles against legacy high-specificity component rules.
+- Require the explicit `declare-core` document inheritance contract.
+
 ## 1.0.1
 
 - Preserve the established 1.65 baseline leading outside content regions.

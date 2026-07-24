@@ -5,9 +5,10 @@ Shared visual and interaction primitives for:
 - [DeCLaRe Lab](https://declare-lab.github.io)
 - [Soujanya Poria](https://soujanyaporia.github.io)
 
-The core owns design tokens, base typography, buttons and controls, site chrome,
-theme behavior, and in-page section navigation. Each consumer keeps its own
-content layouts and domain-specific components.
+The core owns design tokens, base typography, buttons and controls, page
+headers, publication records, site chrome, theme behavior, and in-page section
+navigation. Each consumer keeps its own content layouts and domain-specific
+components.
 
 ## Consumer setup
 
@@ -44,3 +45,6 @@ the same published core revision.
 
 If an object has the same purpose on both sites, it belongs here. A deliberate
 site-specific exception should stay in that site's stylesheet and explain why.
+Shared tokens and shared component selectors are guarded by
+`scripts/verify-consumer.sh`, so local stylesheets cannot silently take
+ownership back.

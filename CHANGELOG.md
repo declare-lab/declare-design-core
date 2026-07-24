@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.4.0
+
+- Make global design tokens and base element rules core-only.
+- Centralize inner-page metadata strips, title spacing, and divider treatment.
+- Reject consumer redefinitions of shared tokens and page headers.
+- Remove obsolete personal-site component styles from the lab consumer.
+
 ## 1.3.0
 
 - Add one shared publication archive component family.

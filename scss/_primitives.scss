@@ -88,8 +88,44 @@
 }
 
 .page-meta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 1.25rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--text);
+  color: var(--text-secondary);
   font-family: var(--font-mono);
   font-size: var(--type-meta);
   font-weight: var(--weight-meta);
   line-height: 1.4;
+}
+
+.page-meta-strip span::before {
+  color: var(--accent);
+  content: "\25B8  ";
+}
+
+.page-header {
+  margin: 0 0 var(--section-rule-space);
+}
+
+.page-header::before {
+  display: none;
+  content: none;
+}
+
+.page-header h1 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.page-header h1::after {
+  display: none;
+}
+
+.page-header h1:empty,
+.page-header:has(h1:empty) {
+  display: none;
 }

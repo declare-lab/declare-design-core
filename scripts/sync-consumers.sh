@@ -15,7 +15,11 @@ for site_name in declare-lab.github.io soujanyaporia.github.io; do
   submodule_root="$site_root/assets/declare-core"
 
   test -d "$site_root/.git"
-  git -C "$site_root" submodule update --init assets/declare-core
+  if git -C "$site_root" ls-files --error-unmatch assets/declare-core >/dev/null 2>&1; then
+    git -C "$site_root" submodule update --init assets/declare-core
+  else
+    test -d "$submodule_root"
+  fi
   git -C "$submodule_root" fetch origin main
   git -C "$submodule_root" switch --detach "$core_sha"
   "$submodule_root/scripts/verify-consumer.sh" "$site_root"

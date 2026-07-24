@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.5
+
+- Allow the sync helper to update initialized consumers before their first
+  parent-repository commit.
+
 ## 1.0.4
 
 - Remove selectors absent from the combined generated output of both sites.

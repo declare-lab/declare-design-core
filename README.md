@@ -254,6 +254,27 @@ available.
 </time>
 ```
 
+For an activity feed, use the shared connected timeline. The timeline modifier
+removes the calendar box and keeps the date as quiet metadata beside the dot.
+
+```html
+<div class="timeline-list">
+  <article class="timeline-item">
+    <div class="timeline-item__marker">
+      <time class="date-marker date-marker--timeline" datetime="2026-05">
+        <span class="date-marker__primary">May</span>
+        <span class="date-marker__secondary">2026</span>
+      </time>
+      <span class="record-badge">Media</span>
+    </div>
+    <div class="timeline-item__content">
+      <h3>Update title</h3>
+      <p>Concise update text.</p>
+    </div>
+  </article>
+</div>
+```
+
 ### Density rules
 
 Whitespace has one owner at each boundary:

@@ -250,6 +250,129 @@
   line-height: 1;
 }
 
+/*
+ * Chronological feed. The connector is owned by the list, while the date and
+ * category remain ordinary semantic content inside each item.
+ */
+.declare-core .timeline-list {
+  display: grid;
+  gap: 0;
+}
+
+.declare-core .timeline-list > .timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 4.25rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  min-width: 0;
+  margin: 0;
+  padding: 0.85rem 0 1rem 1.45rem;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transition: background-color var(--transition);
+}
+
+.declare-core .timeline-list > .timeline-item:hover {
+  padding-left: 1.45rem;
+  border-color: var(--border);
+  background: color-mix(in srgb, var(--accent-light) 30%, transparent);
+  box-shadow: none;
+  transform: none;
+}
+
+.declare-core .timeline-list > .timeline-item::before {
+  position: absolute;
+  z-index: 1;
+  top: 1.18rem;
+  left: 0.12rem;
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--bg-card);
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+  content: "";
+}
+
+.declare-core .timeline-list > .timeline-item::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(0.12rem + 4px);
+  border-left: 1px dashed var(--border);
+  content: "";
+}
+
+.declare-core .timeline-list > .timeline-item:first-child::after {
+  top: 1.45rem;
+}
+
+.declare-core .timeline-list > .timeline-item:last-child::after {
+  bottom: calc(100% - 1.45rem);
+}
+
+.declare-core .timeline-item > .timeline-item__marker {
+  display: grid;
+  gap: 0.42rem;
+  align-content: start;
+  justify-items: start;
+  min-width: 0;
+}
+
+.declare-core .timeline-item__content {
+  min-width: 0;
+}
+
+.declare-core .timeline-item__content > h3 {
+  margin: 0 0 0.28rem;
+}
+
+.declare-core .timeline-item__content > p:last-child {
+  margin-bottom: 0;
+}
+
+.declare-core .date-marker.date-marker--timeline {
+  min-width: 0;
+  min-height: 0;
+  justify-items: start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+}
+
+.declare-core .record-badge {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 1.55rem;
+  align-items: center;
+  padding: 0.2rem 0.45rem;
+  border: 0;
+  border-radius: 0;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: var(--type-label);
+  font-weight: var(--weight-label);
+  line-height: 1;
+}
+
+@media (max-width: 480px) {
+  .declare-core .timeline-list > .timeline-item {
+    grid-template-columns: 3.8rem minmax(0, 1fr);
+    gap: 0.75rem;
+    padding-left: 1.25rem;
+  }
+
+  .declare-core .timeline-list > .timeline-item:hover {
+    padding-left: 1.25rem;
+  }
+}
+
 .page-header {
   margin: 0 0 var(--page-header-gap);
 }

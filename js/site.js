@@ -44,7 +44,7 @@
     var link = element.closest("a");
 
     if (interactive && scope.contains(interactive)) return "control";
-    if (link && scope.contains(link) && link.closest("nav")) return "control";
+    if (link && scope.contains(link)) return "control";
     return "body";
   }
 

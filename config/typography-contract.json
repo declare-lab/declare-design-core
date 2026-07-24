@@ -33,23 +33,23 @@
     },
     {
       "name": "small",
-      "xpath": ".//table//td | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-authors ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-abstract ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card__affiliation ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card__interests ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' author-bio ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' author-location ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' work-note ')]"
+      "xpath": ".//table//td | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-authors ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-abstract ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card__affiliation ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card__interests ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' author-bio ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' author-location ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' work-note ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' representative-list ')]//strong | .//*[contains(concat(' ', normalize-space(@class), ' '), ' compact-list-grid ')]/*"
     },
     {
       "name": "meta",
-      "xpath": ".//time | .//figcaption | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-venue ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-count-display ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' people-section__count ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' project-team ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card__note ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' data-verification ')]"
+      "xpath": ".//time | .//figcaption | .//article/span | .//*[contains(concat(' ', normalize-space(@class), ' '), ' page-meta-strip ')]/span | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-venue ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-count-display ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-citation-badge ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-hot-star ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' people-section__count ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' project-team ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card__note ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' data-verification ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' contribution-meta ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' update-card__meta ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' note-meta ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' representative-list ')]//span | .//*[contains(concat(' ', normalize-space(@class), ' '), ' award-grid ')]//span"
     },
     {
       "name": "label",
-      "xpath": ".//table//th | .//*[contains(concat(' ', normalize-space(@class), ' '), ' eyebrow ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' work-kicker ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' news-badge ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' declare-kicker ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' project-tag ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card__role ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-year-tag ')]"
+      "xpath": ".//table//th | .//*[contains(concat(' ', normalize-space(@class), ' '), ' eyebrow ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' work-kicker ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' news-badge ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' declare-kicker ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' project-tag ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card__role ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-year-tag ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' section-menu__label ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' contribution-divider ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' identity-summary ')]/span | .//*[contains(concat(' ', normalize-space(@class), ' '), ' collab-inspector ')]/span | .//*[contains(concat(' ', normalize-space(@class), ' '), ' name-list ')]/span | .//*[contains(concat(' ', normalize-space(@class), ' '), ' lab-note-share ')]/span | .//*[contains(concat(' ', normalize-space(@class), ' '), ' research-area-card ')]/span"
     },
     {
       "name": "control",
-      "xpath": ".//button | .//input | .//select | .//textarea | .//nav//a | .//a[contains(concat(' ', normalize-space(@class), ' '), ' btn ')] | .//a[contains(concat(' ', normalize-space(@class), ' '), ' btn-primary ')] | .//a[contains(concat(' ', normalize-space(@class), ' '), ' btn-secondary ')]"
+      "xpath": ".//button | .//input | .//select | .//textarea | .//nav//a | .//a[not(ancestor::p) and not(ancestor::h1) and not(ancestor::h2) and not(ancestor::h3) and not(ancestor::h4) and not(ancestor::h5) and not(ancestor::h6)] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-cat-badge ')]"
     },
     {
       "name": "stat",
-      "xpath": ".//*[contains(concat(' ', normalize-space(@class), ' '), ' stat-value ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' metric-value ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' collaboration-metrics ')]/strong | .//*[contains(concat(' ', normalize-space(@class), ' '), ' collab-inspector ')]/strong"
+      "xpath": ".//*[contains(concat(' ', normalize-space(@class), ' '), ' stat-value ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' metric-value ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' collaboration-metrics ')]//strong | .//*[contains(concat(' ', normalize-space(@class), ' '), ' collab-inspector ')]//strong"
     },
     {
       "name": "page-title",
@@ -61,11 +61,11 @@
     },
     {
       "name": "subsection-title",
-      "xpath": ".//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' author-name ')]"
+      "xpath": ".//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' author-name ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-avatar ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' lab-wordmark ')]"
     },
     {
       "name": "item-title",
-      "xpath": ".//h4"
+      "xpath": ".//h4 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' award-grid ')]//strong"
     },
     {
       "name": "minor-title",

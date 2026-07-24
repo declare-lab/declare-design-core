@@ -119,11 +119,7 @@ def fallback_role(element: etree._Element, scope: etree._Element) -> str:
         if tag in {"button", "input", "select", "textarea"}:
             return "control"
         if tag == "a":
-            parent = current.getparent()
-            while parent is not None and parent is not scope:
-                if isinstance(parent.tag, str) and parent.tag.lower() == "nav":
-                    return "control"
-                parent = parent.getparent()
+            return "control"
         current = current.getparent()
     return "body"
 

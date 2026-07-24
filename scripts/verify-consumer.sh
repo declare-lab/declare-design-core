@@ -15,6 +15,13 @@ test -f "$core_root/requirements.txt"
 test -f "$style_file"
 test -f "$layout_file"
 
+if ! "$python_bin" -c "import lxml" >/dev/null 2>&1; then
+  echo "Missing Python dependency: lxml." >&2
+  echo "Install the shared verifier requirements first:" >&2
+  echo "  $python_bin -m pip install -r $core_root/requirements.txt" >&2
+  exit 1
+fi
+
 import_count="$(grep -c '@import "core";' "$style_file" || true)"
 test "$import_count" -eq 1
 

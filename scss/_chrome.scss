@@ -22,6 +22,63 @@
   padding-left: var(--chrome-inline);
 }
 
+.site-title {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: var(--weight-display);
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-title:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.site-title > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.site-logo {
+  display: block;
+  width: auto;
+  height: 61px;
+  max-width: none;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.site-title.site-logo-title {
+  flex: 0 1 auto;
+}
+
+.site-logo-title .site-logo {
+  width: 138px;
+  height: auto;
+}
+
+.site-logo--dark,
+.theme-logo-dark {
+  display: none !important;
+}
+
+[data-theme="dark"] .site-logo--light,
+[data-theme="dark"] .theme-logo-light {
+  display: none !important;
+}
+
+[data-theme="dark"] .site-logo--dark,
+[data-theme="dark"] .theme-logo-dark {
+  display: block !important;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -183,6 +240,17 @@
   margin-bottom: 0.35rem;
 }
 
+.footer-inner a,
+.footer-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.footer-inner a:hover,
+.footer-links a:hover {
+  color: var(--accent);
+}
+
 @supports (padding: env(safe-area-inset-top)) {
   .site-header {
     padding-top: env(safe-area-inset-top);
@@ -203,6 +271,26 @@
     gap: 0.75rem;
     padding-right: 1rem;
     padding-left: 1rem;
+  }
+
+  .site-title {
+    flex: 1 1 auto;
+    gap: 0.55rem;
+    font-size: 1.08rem;
+  }
+
+  .site-logo {
+    height: 50px;
+  }
+
+  .site-title.site-logo-title {
+    flex: 1 1 auto;
+  }
+
+  .site-logo-title .site-logo {
+    width: auto;
+    max-width: min(210px, calc(100vw - 88px));
+    height: 50px;
   }
 
   .site-main {
@@ -361,6 +449,13 @@
     pointer-events: auto;
     touch-action: none;
     overscroll-behavior: contain;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-logo,
+  .site-logo-title .site-logo {
+    height: 46px;
   }
 }
 

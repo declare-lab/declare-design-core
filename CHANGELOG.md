@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0
+
+- Move site titles, logo variants, and theme-aware logo switching into core.
+- Centralize footer link states and responsive masthead logo dimensions.
+- Reject consumer stylesheet definitions of shared site-chrome selectors.
+
 ## 1.1.0
 
 - Introduce one inherited section-menu component with rail and inline variants.

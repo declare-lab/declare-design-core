@@ -37,6 +37,13 @@ for consumer_style in "$style_file" "$site_root/_sass/"*.scss; do
     echo "Shared section-menu styling has reappeared in $consumer_style" >&2
     exit 1
   fi
+
+  if grep -Eq \
+    '\.(site-header|header-inner|site-title|site-logo-title|site-logo|site-logo--light|site-logo--dark|theme-logo-light|theme-logo-dark|nav-links|nav-icon|nav-external|menu-toggle|nav-scrim|menu-icon-open|menu-icon-close|theme-toggle|theme-icon|icon-sun|icon-moon|theme-toggle-label|theme-toggle-value|site-main|site-footer|footer-inner|footer-links|menu-open)([[:space:]:>,+~.{#]|$)' \
+    "$consumer_style"; then
+    echo "Shared site-chrome styling has reappeared in $consumer_style" >&2
+    exit 1
+  fi
 done
 
 echo "Shared design core is wired correctly in $site_root"

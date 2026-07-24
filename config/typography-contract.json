@@ -1,5 +1,5 @@
 {
-  "version": "2.3.0",
+  "version": "2.3.1",
   "scope_xpath": "//main[contains(concat(' ', normalize-space(@class), ' '), ' site-main ')]",
   "reject_fallback": true,
   "role_expectations": {
@@ -162,7 +162,7 @@
     },
     {
       "name": "label",
-      "xpath": ".//table//th | .//*[contains(concat(' ', normalize-space(@class), ' '), ' eyebrow ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' work-kicker ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' news-badge ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' declare-kicker ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' project-tag ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card__role ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-year-tag ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' section-menu__label ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' contribution-divider ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' identity-summary ')]/span | .//*[contains(concat(' ', normalize-space(@class), ' '), ' collab-inspector ')]/span | .//*[contains(concat(' ', normalize-space(@class), ' '), ' name-list ')]/span | .//*[contains(concat(' ', normalize-space(@class), ' '), ' lab-note-share ')]/span | .//*[contains(concat(' ', normalize-space(@class), ' '), ' research-area-card ')]/span | .//*[contains(concat(' ', normalize-space(@class), ' '), ' update-card__meta ')]/span"
+      "xpath": ".//table//th | .//*[contains(concat(' ', normalize-space(@class), ' '), ' eyebrow ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' work-kicker ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' news-badge ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' record-badge ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' declare-kicker ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' project-tag ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card__role ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-year-tag ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' section-menu__label ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' contribution-divider ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' identity-summary ')]/span | .//*[contains(concat(' ', normalize-space(@class), ' '), ' collab-inspector ')]/span | .//*[contains(concat(' ', normalize-space(@class), ' '), ' name-list ')]/span | .//*[contains(concat(' ', normalize-space(@class), ' '), ' lab-note-share ')]/span | .//*[contains(concat(' ', normalize-space(@class), ' '), ' research-area-card ')]/span | .//*[contains(concat(' ', normalize-space(@class), ' '), ' update-card__meta ')]/span"
     },
     {
       "name": "control",

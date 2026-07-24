@@ -96,6 +96,22 @@
   justify-content: flex-start;
 }
 
+@media (min-width: 1200px) {
+  .site-layout--personal .page-lead--wide {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+  }
+
+  .site-layout--personal .page-lead--wide .page-lead__actions {
+    justify-content: flex-end;
+  }
+}
+
+.declare-core .page-lead + .site-content .page-rail-layout__main > h2:first-child,
+.declare-core .page-lead + .site-content > .content-text > h2:first-child {
+  margin-top: 0;
+}
+
 @media (max-width: 720px) {
   .declare-core .page-lead__actions {
     width: 100%;

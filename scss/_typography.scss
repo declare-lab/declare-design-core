@@ -183,23 +183,6 @@
   line-height: 1.35;
 }
 
-.home-section-nav a,
-.toc-list a,
-.toc-level-3 a,
-.content-text .section-nav a,
-.content-text .pub-year-nav a {
-  font-size: var(--type-context-nav);
-  font-weight: var(--weight-meta);
-  line-height: var(--compact-leading);
-}
-
-.home-section-nav a.is-active,
-.toc-list a.is-active,
-.content-text .section-nav a.is-current,
-.content-text .pub-year-nav a.is-current {
-  font-weight: var(--weight-emphasis);
-}
-
 .content-text strong,
 .hero-subtitle strong,
 .work-note strong {
@@ -216,10 +199,6 @@
 .author-profile-content .author-name {
   font-size: var(--type-feature-title);
   font-weight: var(--weight-card);
-}
-
-.toc-sticky .toc-title {
-  font-size: var(--type-label);
 }
 
 .content-text h2:not([data-section-label])::before,

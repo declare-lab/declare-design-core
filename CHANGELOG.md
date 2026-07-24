@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0
+
+- Introduce one inherited section-menu component with rail and inline variants.
+- Centralize sticky, active, hover, focus, and mobile overflow behavior.
+- Prevent consumer stylesheets from redefining shared section-menu classes.
+- Preserve the first mobile item border by removing edge-clipping masks.
+
 ## 1.0.6
 
 - Correct the consumer update instructions to reference the shared sync helper.

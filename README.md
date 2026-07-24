@@ -24,6 +24,18 @@ Load the shared interaction script near the end of the page:
 <script src="/assets/declare-core/js/site.js"></script>
 ```
 
+Use the shared structural classes for in-page navigation:
+
+```html
+<nav class="section-menu section-menu--rail" data-section-menu>
+  <span class="section-menu__label">Sections</span>
+  <div class="section-menu__items" data-section-menu-scroll>...</div>
+</nav>
+```
+
+Use `section-menu--inline` for an in-flow horizontal menu. Consumer stylesheets
+must not redefine section-menu appearance or interaction states.
+
 Each parent repository pins a core commit through its submodule entry. From this
 repository, run `scripts/sync-consumers.sh` to advance both local websites to
 the same published core revision.

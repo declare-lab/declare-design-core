@@ -29,4 +29,14 @@ if grep -Eq \
   exit 1
 fi
 
+for consumer_style in "$style_file" "$site_root/_sass/"*.scss; do
+  test -f "$consumer_style" || continue
+  if grep -Eq \
+    '\.(section-nav|pub-year-nav|home-section-nav|toc-nav|toc-title|toc-list|toc-level-3|toc-sticky)([[:space:]:>,+~.{#]|$)' \
+    "$consumer_style"; then
+    echo "Shared section-menu styling has reappeared in $consumer_style" >&2
+    exit 1
+  fi
+done
+
 echo "Shared design core is wired correctly in $site_root"

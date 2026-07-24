@@ -77,7 +77,6 @@
   font-family: var(--font-serif) !important;
   font-size: var(--type-body) !important;
   font-weight: var(--weight-body) !important;
-  hyphens: auto;
   letter-spacing: 0 !important;
   line-height: var(--content-leading) !important;
   text-align: var(--prose-align) !important;
@@ -115,7 +114,6 @@
   font-family: var(--font-serif) !important;
   font-size: var(--type-supporting) !important;
   font-weight: var(--weight-body) !important;
-  hyphens: auto;
   letter-spacing: 0 !important;
   line-height: var(--content-leading) !important;
   text-align: var(--prose-align) !important;
@@ -130,12 +128,10 @@
   font-family: var(--font-serif) !important;
   font-size: var(--type-small) !important;
   font-weight: var(--weight-body) !important;
-  hyphens: auto;
   letter-spacing: 0 !important;
   line-height: var(--card-leading) !important;
-  text-align: var(--prose-align) !important;
-  text-align-last: var(--prose-last-line-align) !important;
-  text-justify: inter-word;
+  text-align: left !important;
+  text-align-last: auto !important;
 }
 
 .declare-core .site-main time,

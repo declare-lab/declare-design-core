@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.3
+
+- Detect horizontal menus by layout rather than only by overflow.
+- Apply the correct sticky-menu offset even when every item already fits.
+
 ## 1.2.2
 
 - Reserve anchor offset ownership for the shared section-menu component.

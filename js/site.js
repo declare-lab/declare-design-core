@@ -107,7 +107,17 @@
 
     function isHorizontal(menu) {
       var scroller = getScroller(menu);
+      var style = window.getComputedStyle(scroller);
       return (
+        menu.classList.contains("section-menu--inline") ||
+        (style.display === "flex" && style.flexDirection !== "column")
+      );
+    }
+
+    function isHorizontallyScrollable(menu) {
+      var scroller = getScroller(menu);
+      return (
+        isHorizontal(menu) &&
         scroller.clientWidth > 0 &&
         scroller.scrollWidth > scroller.clientWidth + 2
       );
@@ -143,7 +153,7 @@
 
     function revealCurrentLink(menu, link) {
       var scroller = getScroller(menu);
-      if (!link || !isHorizontal(menu)) return;
+      if (!link || !isHorizontallyScrollable(menu)) return;
 
       var scrollerRect = scroller.getBoundingClientRect();
       var linkRect = link.getBoundingClientRect();

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1
+
+- Keep anchored section headings clear of sticky inline section menus.
+
 ## 1.2.0
 
 - Move site titles, logo variants, and theme-aware logo switching into core.

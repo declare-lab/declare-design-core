@@ -187,8 +187,23 @@ def heading_errors(
 ) -> list[str]:
     errors: list[str] = []
     for scope in scopes:
+        headings = scope.xpath(".//h1 | .//h2 | .//h3 | .//h4 | .//h5 | .//h6")
+        h1_headings = [heading for heading in headings if heading.tag == "h1"]
+        if len(h1_headings) != 1:
+            errors.append(
+                f"{relative_path}: expected exactly one h1, found {len(h1_headings)}"
+            )
+        if headings and headings[0].tag != "h1":
+            text = " ".join(headings[0].text_content().split())[:72]
+            errors.append(
+                f"{relative_path}: first heading is {headings[0].tag}, not h1: {text}"
+            )
+        for heading in headings:
+            if not " ".join(heading.text_content().split()):
+                errors.append(f"{relative_path}: empty <{heading.tag}> heading")
+
         previous = 0
-        for heading in scope.xpath(".//h1 | .//h2 | .//h3 | .//h4 | .//h5 | .//h6"):
+        for heading in headings:
             level = int(heading.tag[1])
             if previous and level > previous + 1:
                 text = " ".join(heading.text_content().split())[:72]

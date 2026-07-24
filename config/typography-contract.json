@@ -61,7 +61,7 @@
     },
     {
       "name": "subsection-title",
-      "xpath": ".//h3"
+      "xpath": ".//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' author-name ')]"
     },
     {
       "name": "item-title",

@@ -98,7 +98,6 @@
 .research-area-card p,
 .selected-work-card p,
 .award-grid p,
-.service-list p,
 .pub-card p,
 .work-note,
 .news-item p,
@@ -125,6 +124,24 @@
 .content-text .people-layout .person-card__interests,
 .content-text .people-layout .people-grid--faculty .person-card__interests,
 .content-text .people-layout .people-grid--alumni .person-card__interests {
+  color: var(--text-secondary);
+  font-family: var(--font-serif);
+  font-size: var(--type-small);
+  font-weight: var(--weight-body);
+  line-height: var(--card-leading);
+}
+
+.service-list p,
+.content-text .service-list p,
+.content-text .faq-list p {
+  color: var(--text-secondary);
+  font-family: var(--font-serif);
+  font-size: var(--type-supporting);
+  font-weight: var(--weight-body);
+  line-height: var(--content-leading);
+}
+
+.content-text .update-card__body li {
   color: var(--text-secondary);
   font-family: var(--font-serif);
   font-size: var(--type-small);
@@ -204,6 +221,73 @@
 .author-profile-content .author-name {
   font-size: var(--type-feature-title);
   font-weight: var(--weight-card);
+}
+
+.content-text .lab-note-hero h1 {
+  font-family: var(--font-sans);
+  font-size: var(--type-display);
+  font-weight: var(--weight-display);
+  line-height: 1.08;
+}
+
+.content-text .lab-note-hero p:not(.work-kicker) {
+  color: var(--text-secondary);
+  font-family: var(--font-serif);
+  font-size: var(--type-supporting);
+  font-weight: var(--weight-body);
+  line-height: var(--content-leading);
+}
+
+.content-text .lab-note-hero .work-kicker {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: var(--type-label);
+  font-weight: var(--weight-label);
+  line-height: 1.35;
+}
+
+.content-text .people-layout .team-portrait figcaption {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--type-meta);
+  font-weight: var(--weight-meta);
+  line-height: 1.45;
+}
+
+.type-page-title {
+  font: var(--weight-display) var(--type-page-title) / 1.08 var(--font-sans);
+}
+
+.type-section-title {
+  font: var(--weight-section) var(--type-section-title) / 1.22 var(--font-sans);
+}
+
+.type-feature-title {
+  font: var(--weight-card) var(--type-feature-title) / 1.3 var(--font-sans);
+}
+
+.type-card-title {
+  font: var(--weight-card) var(--type-card-title) / 1.3 var(--font-sans);
+}
+
+.type-body {
+  font: var(--weight-body) var(--type-body) / var(--content-leading) var(--font-serif);
+}
+
+.type-supporting {
+  font: var(--weight-body) var(--type-supporting) / var(--content-leading) var(--font-serif);
+}
+
+.type-small {
+  font: var(--weight-body) var(--type-small) / var(--card-leading) var(--font-serif);
+}
+
+.type-meta {
+  font: var(--weight-meta) var(--type-meta) / 1.45 var(--font-mono);
+}
+
+.type-label {
+  font: var(--weight-label) var(--type-label) / 1.35 var(--font-mono);
 }
 
 .content-text h2:not([data-section-label])::before,

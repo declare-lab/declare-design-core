@@ -113,7 +113,7 @@ This is the supported argument surface:
 | --- | --- |
 | Brand | `$accent`, `$accent-hover`, `$accent-light`, `$accent-contrast` and their `$dark-*` counterparts |
 | Surfaces | `$background`, `$card-background`, `$soft-background`, `$text`, `$text-secondary`, `$border` and their `$dark-*` counterparts |
-| Type | `$font-serif`, `$font-sans`, `$font-mono`, `$body-size`, `$section-title-size`, `$card-title-size`, `$stat-size`, `$content-leading` |
+| Type | `$font-serif`, `$font-sans`, `$font-mono`, `$display-size`, `$page-title-size`, `$section-title-size`, `$feature-title-size`, `$card-title-size`, `$body-size`, `$supporting-size`, `$small-size`, `$control-size`, `$meta-size`, `$label-size`, `$stat-size`, `$content-leading` |
 | Shape | `$radius` |
 | Layout | `$max-width`, `$layout-max-width`, `$sidebar-width`, `$shell-gap` |
 | Rhythm | `$section-space` |
@@ -126,6 +126,28 @@ when it exposes the value you need; direct properties are the escape hatch.
 Do not redefine shared selectors such as `.site-header`, `.section-menu`,
 `.site-shell`, `.btn-primary`, `.pub-card`, `.page-header`, or `.faq-list`.
 Change their public properties instead. This keeps upgrades predictable.
+
+### Semantic type roles
+
+The core uses one type ladder everywhere. Choose a role by meaning, not by the
+container that happens to surround the text:
+
+| Role | Token | Utility class | Default |
+| --- | --- | --- | --- |
+| Page title | `--type-page-title` | `.type-page-title` | 48px |
+| Section title | `--type-section-title` | `.type-section-title` | 28px |
+| Feature title | `--type-feature-title` | `.type-feature-title` | 22px |
+| Card title | `--type-card-title` | `.type-card-title` | 19px |
+| Reading text | `--type-body` | `.type-body` | 17px |
+| Supporting text | `--type-supporting` | `.type-supporting` | 16px |
+| Card/list text | `--type-small` | `.type-small` | 14px |
+| Metadata | `--type-meta` | `.type-meta` | 12px |
+| Label | `--type-label` | `.type-label` | 11px |
+
+Feature titles introduce a distinct subsection. Card titles name repeated
+objects. Reading text carries the main narrative; supporting text belongs to
+compact explanatory rows such as FAQs and service records. Reusable components
+must use these tokens or utility classes instead of new numeric font sizes.
 
 ## Components
 

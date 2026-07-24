@@ -112,6 +112,13 @@ for consumer_style in "$style_file" "$site_root/_sass/"*.scss; do
     echo "Shared anchor-offset styling has reappeared in $consumer_style" >&2
     exit 1
   fi
+
+  if grep -Eq \
+    'font-size:[[:space:]]*[0-9]+([.][0-9]+)?(px|rem)[[:space:]]*;|font-weight:[[:space:]]*[0-9]{3}[[:space:]]*;' \
+    "$consumer_style"; then
+    echo "A literal font size or weight has reappeared in $consumer_style; use a shared type token" >&2
+    exit 1
+  fi
 done
 
 echo "Shared design core is wired correctly in $site_root"

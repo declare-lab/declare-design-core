@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.8.0
+
+- Define and document one semantic type ladder from display titles through labels.
+- Add utility classes and customization arguments for every public type role.
+- Normalize service rows, update-card lists, lab-note heroes, and people captions.
+- Reject consumer CSS that introduces literal pixel/rem font sizes or numeric weights.
+
 ## 1.7.1
 
 - Extend customization arguments to light and dark surfaces, text, borders, and complete accent palettes.

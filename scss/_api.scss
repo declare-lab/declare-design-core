@@ -28,9 +28,17 @@
   $font-serif: null,
   $font-sans: null,
   $font-mono: null,
+  $display-size: null,
+  $page-title-size: null,
   $body-size: null,
   $section-title-size: null,
+  $feature-title-size: null,
   $card-title-size: null,
+  $supporting-size: null,
+  $small-size: null,
+  $control-size: null,
+  $meta-size: null,
+  $label-size: null,
   $stat-size: null,
   $content-leading: null,
   $radius: null,
@@ -90,14 +98,38 @@
     @if $font-mono != null {
       --font-mono: #{$font-mono};
     }
+    @if $display-size != null {
+      --type-display: #{$display-size};
+    }
+    @if $page-title-size != null {
+      --type-page-title: #{$page-title-size};
+    }
     @if $body-size != null {
       --type-body: #{$body-size};
     }
     @if $section-title-size != null {
       --type-section-title: #{$section-title-size};
     }
+    @if $feature-title-size != null {
+      --type-feature-title: #{$feature-title-size};
+    }
     @if $card-title-size != null {
       --type-card-title: #{$card-title-size};
+    }
+    @if $supporting-size != null {
+      --type-supporting: #{$supporting-size};
+    }
+    @if $small-size != null {
+      --type-small: #{$small-size};
+    }
+    @if $control-size != null {
+      --type-control: #{$control-size};
+    }
+    @if $meta-size != null {
+      --type-meta: #{$meta-size};
+    }
+    @if $label-size != null {
+      --type-label: #{$label-size};
     }
     @if $stat-size != null {
       --type-stat: #{$stat-size};

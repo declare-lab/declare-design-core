@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.0
+
+- Add a shared right-rail page composition for contents and publication-year navigation.
+- Make rail placement independent of DOM source order and stack it consistently on smaller screens.
+- Keep long desktop rail labels inside their boundary while preserving horizontal mobile navigation.
+- Centralize muted, parenthesized publication-category counts and sticky archive controls.
+- Guard the canonical shared layout classes against consumer redefinition.
+
 ## 1.4.1
 
 - Give the shared page composition classes one inherited width-safety baseline.

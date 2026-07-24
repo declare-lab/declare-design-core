@@ -120,6 +120,26 @@
   cursor: pointer;
 }
 
+.declare-core .pub-cat-btn {
+  gap: 0.4rem;
+}
+
+.declare-core .pub-cat-count,
+.declare-core .pub-cat-btn > span {
+  color: var(--text-muted);
+  font-weight: var(--weight-meta);
+}
+
+.declare-core .pub-cat-count::before,
+.declare-core .pub-cat-btn > span::before {
+  content: "(";
+}
+
+.declare-core .pub-cat-count::after,
+.declare-core .pub-cat-btn > span::after {
+  content: ")";
+}
+
 .declare-core .pub-filter:hover,
 .declare-core .pub-filter.active,
 .declare-core .pub-cat-btn:hover,
@@ -131,6 +151,13 @@
   background: var(--accent);
   color: var(--accent-contrast);
   text-decoration: none;
+}
+
+.declare-core .pub-cat-btn:hover .pub-cat-count,
+.declare-core .pub-cat-btn.active .pub-cat-count,
+.declare-core .pub-cat-btn:hover > span,
+.declare-core .pub-cat-btn.active > span {
+  color: color-mix(in srgb, var(--accent-contrast) 74%, transparent);
 }
 
 .declare-core .pub-link-primary {

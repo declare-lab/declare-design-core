@@ -6,9 +6,9 @@ Shared visual and interaction primitives for:
 - [Soujanya Poria](https://soujanyaporia.github.io)
 
 The core owns design tokens, base typography, buttons and controls, page
-headers, publication records, site chrome, theme behavior, and in-page section
-navigation. Each consumer keeps its own content layouts and domain-specific
-components.
+headers, publication records, site chrome, theme behavior, in-page section
+navigation, and the shared content-plus-right-rail page composition. Each
+consumer keeps only identity-specific and domain-specific layouts.
 
 ## Consumer setup
 
@@ -36,6 +36,19 @@ Use the shared structural classes for in-page navigation:
 
 Use `section-menu--inline` for an in-flow horizontal menu. Consumer stylesheets
 must not redefine section-menu appearance or interaction states.
+
+For a content page with a right-hand section rail, use the shared composition:
+
+```html
+<div class="page-rail-layout">
+  <main class="page-rail-layout__main">...</main>
+  <nav class="section-menu section-menu--rail" data-section-menu>...</nav>
+</div>
+```
+
+The core also maps the lab's established `.side-layout` and `.pub-layout`
+classes to this geometry. On smaller screens, the rail becomes the horizontal
+sticky section menu above the main content.
 
 Each parent repository pins a core commit through its submodule entry. From this
 repository, run `scripts/sync-consumers.sh` to advance both local websites to

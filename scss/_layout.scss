@@ -1,0 +1,47 @@
+/*
+ * Shared content + section-rail composition.
+ *
+ * The personal site uses .page-rail-layout directly. The lab's established
+ * .side-layout and .pub-layout names are compatibility aliases for the same
+ * geometry.
+ */
+
+.declare-core .page-rail-layout,
+.declare-core .content-text .side-layout,
+.declare-core .content-text .pub-layout {
+  --page-rail-width: 200px;
+  display: grid;
+  grid-template-areas: "main rail";
+  grid-template-columns: minmax(0, 1fr) var(--page-rail-width);
+  gap: 2rem;
+  align-items: start;
+}
+
+.declare-core .content-text .pub-layout {
+  --page-rail-width: 148px;
+  gap: 1.5rem;
+}
+
+.declare-core .page-rail-layout__main,
+.declare-core .content-text .side-layout__main,
+.declare-core .content-text .pub-layout__main {
+  grid-area: main;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.declare-core .page-rail-layout > .section-menu,
+.declare-core .content-text .side-layout > .section-menu,
+.declare-core .content-text .pub-layout > .section-menu {
+  grid-area: rail;
+}
+
+@media (max-width: 1020px) {
+  .declare-core .page-rail-layout,
+  .declare-core .content-text .side-layout,
+  .declare-core .content-text .pub-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

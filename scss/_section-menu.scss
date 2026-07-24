@@ -1,0 +1,28 @@
+[data-section-menu] a {
+  touch-action: manipulation;
+}
+
+[data-section-menu] a.is-current,
+[data-section-menu] a.is-active {
+  font-weight: var(--weight-emphasis);
+}
+
+[id] {
+  scroll-margin-top: calc(var(--chrome-height) + 2.5rem);
+}
+
+@media (hover: none), (pointer: coarse) {
+  [data-section-menu] a:hover:not(.is-current):not(.is-active) {
+    border-color: transparent;
+    background: transparent;
+    color: var(--text-secondary);
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+@media (max-width: 720px) {
+  [id] {
+    scroll-margin-top: calc(68px + 4.5rem);
+  }
+}

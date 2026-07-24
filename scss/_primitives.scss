@@ -1,0 +1,101 @@
+.content-text {
+  color: var(--text);
+  font-family: var(--font-serif);
+  font-size: var(--type-body);
+  font-weight: var(--weight-body);
+  line-height: var(--content-leading);
+}
+
+.btn,
+.btn-primary,
+.btn-secondary,
+.declare-button,
+.lab-link,
+.lab-link-secondary,
+.pub-filter,
+.content-text .declare-actions .btn-primary,
+.content-text .declare-actions .btn-secondary,
+.content-text .hero-actions .btn-primary,
+.content-text .hero-actions .btn-secondary {
+  display: inline-flex;
+  min-height: var(--control-height);
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.65rem 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  font-family: var(--font-sans);
+  font-size: var(--type-control);
+  font-weight: var(--weight-card);
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition), background-color var(--transition);
+}
+
+.btn-primary,
+.declare-button,
+.lab-link {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.btn-primary:hover,
+.declare-button:hover,
+.lab-link:hover {
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
+  color: var(--accent-contrast);
+  text-decoration: none;
+}
+
+.btn-secondary,
+.lab-link-secondary {
+  background: var(--bg-card);
+  color: var(--text);
+}
+
+.btn-secondary:hover,
+.lab-link-secondary:hover {
+  border-color: var(--accent);
+  background: var(--accent-light);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.project-links a,
+.publication-item__links a,
+.pub-links a,
+.pub-abstract-toggle,
+.pub-cat-btn,
+.pub-cat-badge {
+  min-height: var(--compact-control-height);
+  font-family: var(--font-sans);
+  font-size: var(--type-meta);
+  font-weight: var(--weight-card);
+  line-height: 1.2;
+}
+
+.hero-actions a > i,
+.home-section-nav a > i,
+.intro-aside a > i,
+.lab-actions a > i,
+.declare-actions a > i,
+.project-links a > i,
+.publication-item__links a > i,
+.pub-links a > i {
+  width: 1em;
+  flex: 0 0 1em;
+  font-size: 0.9rem;
+  line-height: 1;
+  text-align: center;
+}
+
+.page-meta-strip {
+  font-family: var(--font-mono);
+  font-size: var(--type-meta);
+  font-weight: var(--weight-meta);
+  line-height: 1.4;
+}

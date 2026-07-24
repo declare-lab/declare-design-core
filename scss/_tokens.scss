@@ -1,0 +1,155 @@
+:root {
+  /* Palette */
+  --ink: #172029;
+  --ink-soft: #46525e;
+  --paper: #f3f5f4;
+  --paper-2: #e8eceb;
+  --paper-card: #fcfdfc;
+  --rule: #c9d1d0;
+  --rule-strong: #172029;
+
+  --accent: #1f3fe0;
+  --accent-hover: #1732b9;
+  --accent-light: #e4e9fb;
+  --accent-contrast: #fcfdfc;
+  --accent-2: #b3372b;
+  --accent-2-light: #f2dfdc;
+  --accent-3: #1f3fe0;
+  --accent-3-light: #e4e9fb;
+
+  /* Semantic aliases */
+  --text: var(--ink);
+  --text-secondary: var(--ink-soft);
+  --text-muted: #6f7b84;
+  --bg: var(--paper);
+  --bg-page: var(--paper);
+  --bg-card: var(--paper-card);
+  --bg-soft: var(--paper-2);
+  --border: var(--rule);
+  --border-hover: #929e9d;
+  --surface-panel: var(--paper-card);
+  --surface-subtle: var(--paper-2);
+
+  /* Shape and motion */
+  --radius: 0;
+  --radius-lg: 0;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --transition: 200ms cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* Typography */
+  --font-serif: "Spectral", Georgia, serif;
+  --font-sans: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font: var(--font-serif);
+  --font-display: var(--font-sans);
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --heading-width: 100;
+  --report-heading-width: 100;
+
+  --type-display: 3.25rem;
+  --type-page-title: 3rem;
+  --type-section-title: 1.75rem;
+  --type-feature-title: 1.375rem;
+  --type-card-title: 1.1875rem;
+  --type-body: 1.0625rem;
+  --type-supporting: 1rem;
+  --type-small: 0.875rem;
+  --type-control: 0.8125rem;
+  --type-meta: 0.75rem;
+  --type-label: 0.6875rem;
+  --type-context-nav: 0.8125rem;
+  --type-navigation: 0.875rem;
+
+  --content-leading: 1.68;
+  --card-leading: 1.55;
+  --compact-leading: 1.35;
+  --weight-body: 400;
+  --weight-meta: 500;
+  --weight-emphasis: 600;
+  --weight-label: 600;
+  --weight-card: 650;
+  --weight-section: 660;
+  --weight-display: 700;
+  --display-weight: var(--weight-display);
+  --section-weight: var(--weight-section);
+  --card-title-weight: var(--weight-card);
+  --report-display-weight: var(--weight-display);
+  --report-section-weight: var(--weight-section);
+  --report-card-title-weight: var(--weight-card);
+
+  /* Layout and controls */
+  --max-width: 1240px;
+  --chrome-height: 72px;
+  --chrome-inline: 1.5rem;
+  --control-height: 42px;
+  --compact-control-height: 34px;
+  --theme-toggle-size: 40px;
+  --footer-type: var(--type-meta);
+  --section-space: 3rem;
+  --section-rule-space: 2.5rem;
+  --section-nav-offset: 1.25rem;
+  --panel-padding-block: 1.4rem;
+  --panel-padding-inline: 1.5rem;
+  --card-padding-block: 1.1rem;
+  --card-padding-inline: 1.2rem;
+  --layout-gap: 1.25rem;
+  --card-gap: 0.85rem;
+  --card-border: 1px solid var(--rule);
+  --featured-border: 1px solid var(--ink);
+}
+
+[data-theme="dark"] {
+  --ink: #eef1f0;
+  --ink-soft: #b6c0c3;
+  --paper: #11171d;
+  --paper-2: #1b242c;
+  --paper-card: #151d24;
+  --rule: #46525e;
+  --rule-strong: #eef1f0;
+
+  --accent: #8fa3f5;
+  --accent-hover: #b4c0fb;
+  --accent-light: #253157;
+  --accent-contrast: #11171d;
+  --accent-2: #ef8b81;
+  --accent-2-light: #4c2928;
+  --accent-3: #8fa3f5;
+  --accent-3-light: #253157;
+
+  --text: var(--ink);
+  --text-secondary: var(--ink-soft);
+  --text-muted: #8a979e;
+  --bg: var(--paper);
+  --bg-page: var(--paper);
+  --bg-card: var(--paper-card);
+  --bg-soft: var(--paper-2);
+  --border: var(--rule);
+  --border-hover: #6f7b84;
+  --surface-panel: var(--paper-card);
+  --surface-subtle: var(--paper-2);
+}
+
+@media (max-width: 960px) {
+  :root {
+    --type-display: 3.15rem;
+    --type-page-title: 2.8rem;
+  }
+}
+
+@media (max-width: 720px) {
+  :root {
+    --type-display: 2.45rem;
+    --type-page-title: 2.3rem;
+    --type-section-title: 1.5rem;
+    --section-space: 1.75rem;
+    --section-rule-space: 1.75rem;
+    --section-nav-offset: 0.9rem;
+    --panel-padding-block: 1rem;
+    --panel-padding-inline: 1rem;
+    --card-padding-block: 1rem;
+    --card-padding-inline: 1rem;
+    --layout-gap: 0.85rem;
+    --card-gap: 0.75rem;
+  }
+}

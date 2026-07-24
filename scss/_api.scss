@@ -1,0 +1,86 @@
+/*
+ * Public consumer API.
+ *
+ * Include this mixin after @import "core". Every argument is optional; omitted
+ * values retain the design-core defaults.
+ */
+@mixin declare-customize(
+  $accent: null,
+  $accent-hover: null,
+  $dark-accent: null,
+  $dark-accent-hover: null,
+  $font-serif: null,
+  $font-sans: null,
+  $font-mono: null,
+  $body-size: null,
+  $section-title-size: null,
+  $card-title-size: null,
+  $content-leading: null,
+  $radius: null,
+  $max-width: null,
+  $layout-max-width: null,
+  $sidebar-width: null,
+  $shell-gap: null,
+  $section-space: null
+) {
+  :root {
+    @if $accent != null {
+      --accent: #{$accent};
+    }
+    @if $accent-hover != null {
+      --accent-hover: #{$accent-hover};
+    }
+    @if $font-serif != null {
+      --font-serif: #{$font-serif};
+    }
+    @if $font-sans != null {
+      --font-sans: #{$font-sans};
+    }
+    @if $font-mono != null {
+      --font-mono: #{$font-mono};
+    }
+    @if $body-size != null {
+      --type-body: #{$body-size};
+    }
+    @if $section-title-size != null {
+      --type-section-title: #{$section-title-size};
+    }
+    @if $card-title-size != null {
+      --type-card-title: #{$card-title-size};
+    }
+    @if $content-leading != null {
+      --content-leading: #{$content-leading};
+    }
+    @if $radius != null {
+      --radius: #{$radius};
+      --radius-lg: #{$radius};
+    }
+    @if $max-width != null {
+      --max-width: #{$max-width};
+    }
+    @if $layout-max-width != null {
+      --site-layout-max-width: #{$layout-max-width};
+    }
+    @if $sidebar-width != null {
+      --site-sidebar-width: #{$sidebar-width};
+    }
+    @if $shell-gap != null {
+      --site-shell-gap: #{$shell-gap};
+    }
+    @if $section-space != null {
+      --section-space: #{$section-space};
+      --section-rule-space: #{$section-space};
+    }
+  }
+
+  @if $dark-accent != null or $dark-accent-hover != null {
+    [data-theme="dark"] {
+      @if $dark-accent != null {
+        --accent: #{$dark-accent};
+      }
+      @if $dark-accent-hover != null {
+        --accent-hover: #{$dark-accent-hover};
+      }
+    }
+  }
+}

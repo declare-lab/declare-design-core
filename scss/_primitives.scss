@@ -6,6 +6,80 @@
   line-height: var(--content-leading);
 }
 
+.content-text > p,
+.content-text > ul,
+.content-text > ol,
+.content-text > blockquote {
+  max-width: var(--content-measure);
+}
+
+.content-text h2:first-child {
+  margin-top: 0;
+}
+
+.content-text h2[data-section-label] {
+  display: flex;
+  align-items: center;
+  gap: var(--section-heading-gap);
+}
+
+.content-text h2[data-section-label]::before {
+  display: inline-flex;
+  width: auto;
+  min-width: 0;
+  height: var(--section-label-height);
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: var(--section-label-padding);
+  border-radius: 0;
+  background: var(--section-label-background);
+  color: var(--section-label-text);
+  content: attr(data-section-label);
+  font-family: var(--font-mono);
+  font-size: var(--type-label);
+  font-weight: var(--weight-label);
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hero-actions a {
+  gap: 0.5rem;
+}
+
+.compact-list-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--card-gap);
+  margin: 1rem 0 1.6rem;
+}
+
+.compact-list-grid > * {
+  padding: 0.75rem 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-serif);
+  font-size: var(--type-small);
+  font-weight: var(--weight-body);
+  line-height: var(--card-leading);
+}
+
+@media (max-width: 960px) {
+  .compact-list-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .page-wrapper,
 .page-content,
 .page-body {
@@ -135,6 +209,88 @@
 .page-header h1:empty,
 .page-header:has(h1:empty) {
   display: none;
+}
+
+.content-text :not(pre) > code {
+  padding: 1px 5px;
+  border: 0;
+  border-radius: 0;
+  background: var(--surface-subtle);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+.content-text pre {
+  margin: 1.5rem 0;
+  padding: 1.2rem 1.35rem;
+  overflow: auto;
+  border: 1px solid var(--text);
+  border-radius: 0;
+  background: var(--code-background);
+  color: var(--code-text);
+  font-family: var(--font-mono);
+  font-size: var(--type-small);
+  line-height: 1.65;
+}
+
+.content-text pre code {
+  padding: 0;
+  background: transparent;
+  color: inherit;
+}
+
+.content-text blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.2rem;
+  border: 0;
+  border-left: 3px solid var(--accent);
+  border-radius: 0;
+  background: var(--accent-light);
+  color: var(--text-secondary);
+  font-family: var(--font-serif);
+  font-size: var(--type-body);
+  font-style: normal;
+}
+
+.content-text blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.content-text table:not(.profile-table) {
+  width: 100%;
+  margin: 1rem 0;
+  border-collapse: collapse;
+  font-family: var(--font-serif);
+  font-size: var(--type-small);
+}
+
+.content-text table:not(.profile-table) th,
+.content-text table:not(.profile-table) td {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+.content-text table:not(.profile-table) th {
+  background: var(--surface-subtle);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: var(--type-label);
+  font-weight: var(--weight-label);
+}
+
+.content-text hr {
+  height: 2px;
+  margin: 2.5rem 0;
+  border: 0;
+  background: var(--text);
+}
+
+@media (max-width: 720px) {
+  .content-text {
+    overflow-wrap: anywhere;
+  }
 }
 
 /* FAQ answers are primary reading content, not card metadata. */

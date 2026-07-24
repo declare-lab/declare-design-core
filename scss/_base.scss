@@ -25,6 +25,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body.site-layout,
+body.site-layout * {
+  letter-spacing: 0 !important;
+}
+
 a {
   color: var(--accent);
   text-decoration: none;

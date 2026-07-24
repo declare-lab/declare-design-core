@@ -97,6 +97,14 @@
   --card-gap: 0.85rem;
   --card-border: 1px solid var(--rule);
   --featured-border: 1px solid var(--ink);
+  --content-measure: 76ch;
+  --section-heading-gap: 0.875rem;
+  --section-label-height: 26px;
+  --section-label-padding: 0 10px;
+  --section-label-background: var(--accent);
+  --section-label-text: var(--accent-contrast);
+  --code-background: #172029;
+  --code-text: #eef1f0;
 }
 
 [data-theme="dark"] {
@@ -128,6 +136,10 @@
   --border-hover: #6f7b84;
   --surface-panel: var(--paper-card);
   --surface-subtle: var(--paper-2);
+  --section-label-background: var(--accent);
+  --section-label-text: var(--accent-contrast);
+  --code-background: #080c10;
+  --code-text: #eef1f0;
 }
 
 @media (max-width: 960px) {

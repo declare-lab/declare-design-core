@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.7.0
+
+- Add the public `declare-customize` mixin for brand, typography, shape, layout, and rhythm arguments.
+- Document layout selection, consumer setup, supported customization, ownership, and upgrades.
+- Preserve clicked section-menu targets when multiple sections share a horizontal row.
+- Ensure inline menus reach their docked state before scroll-spy selection resumes.
+- Centralize section-label chips, compact list grids, technical content formatting, and mobile content wrapping.
+- Strengthen consumer verification against local copies of shared content and token rules.
+
 ## 1.6.0
 
 - Add selectable lab and personal site shells with documented customization variables.

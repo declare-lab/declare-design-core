@@ -16,7 +16,7 @@ test "$import_count" -eq 1
 
 grep -q "/assets/declare-core/js/site.js" "$layout_file"
 grep -q 'class="declare-core"' "$layout_file"
-grep -Eq 'class="site-layout site-layout--(lab|personal)"' "$layout_file"
+grep -Eq 'class="site-layout site-layout--(lab|personal)(["{[:space:]])' "$layout_file"
 
 single_layout="$site_root/_layouts/single.html"
 test -f "$single_layout"
@@ -95,7 +95,14 @@ for consumer_style in "$style_file" "$site_root/_sass/"*.scss; do
   fi
 
   if grep -Eq \
-    -- '--(accent|accent-hover|accent-light|accent-contrast|accent-2|accent-2-light|accent-3|accent-3-light|ink|ink-soft|paper|paper-2|paper-card|rule|rule-strong|text|text-secondary|text-muted|bg|bg-page|bg-card|bg-soft|border|border-hover|radius|radius-lg|shadow-sm|shadow-md|shadow-lg|transition|font|font-serif|font-sans|font-display|font-mono|heading-width|type-display|type-page-title|type-section-title|type-feature-title|type-card-title|type-body|type-supporting|type-small|type-control|type-meta|type-label|type-context-nav|type-navigation|content-leading|card-leading|compact-leading|weight-body|weight-meta|weight-emphasis|weight-label|weight-card|weight-section|weight-display|display-weight|section-weight|card-title-weight|max-width|chrome-height|control-height|compact-control-height|theme-toggle-size|footer-type|section-space|section-rule-space|section-nav-offset|panel-padding-block|panel-padding-inline|card-padding-block|card-padding-inline|layout-gap|card-gap|card-border|featured-border)[[:space:]]*:' \
+    '\.content-text[[:space:]]+(blockquote|pre|table|th|td|:not\(pre\)[[:space:]]*>[[:space:]]*code)([[:space:]:>,+~.{#]|$)|^[[:space:]]*\.content-text[[:space:]]*\{|\bcode[[:space:]]*,[[:space:]]*\.content-text[[:space:]]+code|\bblockquote[[:space:]]*,[[:space:]]*\.content-text[[:space:]]+blockquote|\bh2\[data-section-label\]' \
+    "$consumer_style"; then
+    echo "Shared content-formatting styling has reappeared in $consumer_style" >&2
+    exit 1
+  fi
+
+  if grep -Eq \
+    -- '--(accent|accent-hover|accent-light|accent-contrast|accent-2|accent-2-light|accent-3|accent-3-light|ink|ink-soft|paper|paper-2|paper-card|rule|rule-strong|text|text-secondary|text-muted|bg|bg-page|bg-card|bg-soft|border|border-hover|radius|radius-lg|shadow-sm|shadow-md|shadow-lg|transition|font|font-serif|font-sans|font-display|font-mono|heading-width|type-display|type-page-title|type-section-title|type-feature-title|type-card-title|type-body|type-supporting|type-small|type-control|type-meta|type-label|type-context-nav|type-navigation|content-leading|content-measure|card-leading|compact-leading|weight-body|weight-meta|weight-emphasis|weight-label|weight-card|weight-section|weight-display|display-weight|section-weight|card-title-weight|max-width|chrome-height|control-height|compact-control-height|theme-toggle-size|footer-type|section-space|section-rule-space|section-nav-offset|section-heading-gap|section-label-height|section-label-padding|section-label-background|section-label-text|code-background|code-text|panel-padding-block|panel-padding-inline|card-padding-block|card-padding-inline|layout-gap|card-gap|card-border|featured-border)[[:space:]]*:' \
     "$consumer_style"; then
     echo "A shared design token has reappeared in $consumer_style" >&2
     exit 1

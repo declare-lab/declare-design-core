@@ -127,10 +127,14 @@
       return header ? header.getBoundingClientRect().bottom : 0;
     }
 
+    function getStickyLine(menu) {
+      var computedTop = Number.parseFloat(window.getComputedStyle(menu).top) || 0;
+      return Math.max(getHeaderBottom() + 18, computedTop + 1);
+    }
+
     function updateDockedState(menu, sections) {
       var rect = menu.getBoundingClientRect();
-      var computedTop = parseFloat(window.getComputedStyle(menu).top) || 0;
-      var stickyLine = Math.max(getHeaderBottom() + 18, computedTop + 1);
+      var stickyLine = getStickyLine(menu);
       var docked = rect.top <= stickyLine;
 
       if (menu.hasAttribute("data-section-menu-bounded") && sections.length) {
@@ -221,9 +225,23 @@
       var docked = updateDockedState(menu, sections);
       var readingLine = getReadingLine(menu, docked);
       var current = pairs[0].link;
+      var currentTop = Number.NEGATIVE_INFINITY;
+      var hash = window.location.hash;
 
       pairs.forEach(function (pair) {
-        if (pair.section.getBoundingClientRect().top <= readingLine + 2) {
+        var sectionTop = pair.section.getBoundingClientRect().top;
+        if (sectionTop > readingLine + 2) return;
+
+        if (sectionTop > currentTop + 4) {
+          current = pair.link;
+          currentTop = sectionTop;
+          return;
+        }
+
+        if (
+          Math.abs(sectionTop - currentTop) <= 4 &&
+          pair.link.getAttribute("href") === hash
+        ) {
           current = pair.link;
         }
       });
@@ -282,6 +300,8 @@
 
     function getTargetTop(menu, section) {
       var targetOffset = getHeaderBottom() + 24;
+      var targetTop;
+
       if (isHorizontal(menu)) {
         targetOffset = Math.max(
           targetOffset,
@@ -289,10 +309,25 @@
         );
       }
 
-      return Math.max(
+      targetTop = Math.max(
         0,
         window.scrollY + section.getBoundingClientRect().top - targetOffset
       );
+
+      if (
+        isHorizontal(menu) &&
+        menu.getBoundingClientRect().top > getStickyLine(menu)
+      ) {
+        targetTop = Math.max(
+          targetTop,
+          window.scrollY +
+            menu.getBoundingClientRect().top -
+            getStickyLine(menu) +
+            1
+        );
+      }
+
+      return targetTop;
     }
 
     function prepareMenuForNavigation(menu) {

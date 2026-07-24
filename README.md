@@ -10,12 +10,26 @@ headers, publication records, site chrome, theme behavior, in-page section
 navigation, and the shared content-plus-right-rail page composition. Each
 consumer keeps only identity-specific and domain-specific layouts.
 
-## Consumer setup
+## Quick start
 
-Add this repository as `assets/declare-core`, add `scss` to Jekyll's Sass load
-paths, and import the core after the site's local stylesheet:
+Add this repository as a submodule:
+
+```sh
+git submodule add https://github.com/declare-lab/declare-design-core.git assets/declare-core
+```
+
+Expose the core Sass directory to Jekyll:
+
+```yml
+sass:
+  load_paths:
+    - assets/declare-core/scss
+```
+
+Import the core after any identity-specific component stylesheet:
 
 ```scss
+@import "my-site-components";
 @import "core";
 ```
 
@@ -37,6 +51,19 @@ or:
 <body class="site-layout site-layout--personal">
 ```
 
+That single class selects the page geometry. The `lab` layout is a wide
+institutional canvas; the `personal` layout adds an author rail.
+
+Page-specific modules can add a semantic body class without changing the
+selected shell:
+
+```html
+<body class="site-layout site-layout--lab project-demo-page">
+```
+
+Use that only to scope a genuinely page-specific component, never to recreate
+shared chrome or typography.
+
 Use the canonical shell structure in the page layout:
 
 ```html
@@ -48,10 +75,52 @@ Use the canonical shell structure in the page layout:
 </div>
 ```
 
-The lab shell provides a wide institutional canvas. The personal shell adds an
-author rail. Consumers may customize `--site-layout-max-width`,
-`--site-shell-gap`, `--site-content-gap`, `--site-sidebar-width`, and
-`--site-sidebar-top`; they must not recreate the shell selectors.
+## Customization
+
+For ordinary changes, call the public mixin after importing the core. Every
+argument is optional:
+
+```scss
+@import "my-site-components";
+@import "core";
+
+@include declare-customize(
+  $accent: #006b5f,
+  $accent-hover: #005248,
+  $dark-accent: #73d8ca,
+  $dark-accent-hover: #9ce8de,
+  $font-serif: ("Source Serif 4", Georgia, serif),
+  $font-sans: ("Inter", sans-serif),
+  $body-size: 1.05rem,
+  $section-title-size: 1.8rem,
+  $radius: 4px,
+  $layout-max-width: 1280px,
+  $sidebar-width: 300px,
+  $shell-gap: 2.5rem,
+  $section-space: 3.25rem
+);
+```
+
+This is the supported argument surface:
+
+| Concern | Arguments |
+| --- | --- |
+| Brand | `$accent`, `$accent-hover`, `$dark-accent`, `$dark-accent-hover` |
+| Type | `$font-serif`, `$font-sans`, `$font-mono`, `$body-size`, `$section-title-size`, `$card-title-size`, `$content-leading` |
+| Shape | `$radius` |
+| Layout | `$max-width`, `$layout-max-width`, `$sidebar-width`, `$shell-gap` |
+| Rhythm | `$section-space` |
+
+Advanced consumers can override public CSS properties after the core import.
+Useful layout properties include `--site-content-gap`, `--site-sidebar-top`,
+`--chrome-height`, `--control-height`, and `--content-measure`. Prefer the mixin
+when it exposes the value you need; direct properties are the escape hatch.
+
+Do not redefine shared selectors such as `.site-header`, `.section-menu`,
+`.site-shell`, `.btn-primary`, `.pub-card`, `.page-header`, or `.faq-list`.
+Change their public properties instead. This keeps upgrades predictable.
+
+## Components
 
 Use the shared structural classes for in-page navigation:
 
@@ -78,14 +147,46 @@ The core also maps the lab's established `.side-layout` and `.pub-layout`
 classes to this geometry. On smaller screens, the rail becomes the horizontal
 sticky section menu above the main content.
 
+Section headings can opt into the shared label treatment:
+
+```html
+<h2 id="methods" data-section-label="02">Methods</h2>
+```
+
+FAQ content uses the shared ruled-list pattern:
+
+```html
+<div class="faq-list">
+  <article>
+    <h3>Who can apply?</h3>
+    <p>...</p>
+  </article>
+</div>
+```
+
+## What remains local
+
+Keep CSS local only when the object belongs to one site's identity or domain,
+for example an author profile, a lab collaboration graph, a research map, or a
+project-specific interactive demo. Typography, site chrome, buttons, records,
+section navigation, content formatting, and common page geometry belong to the
+core.
+
+As a practical test: if another academic or lab website could use the object
+without changing its meaning, it probably belongs in the core.
+
+## Updating
+
 Each parent repository pins a core commit through its submodule entry. From this
 repository, run `scripts/sync-consumers.sh` to advance both local websites to
 the same published core revision.
 
-## Ownership rule
+Run the contract verifier after changing either consumer:
 
-If an object has the same purpose on both sites, it belongs here. A deliberate
-site-specific exception should stay in that site's stylesheet and explain why.
-Shared tokens and shared component selectors are guarded by
-`scripts/verify-consumer.sh`, so local stylesheets cannot silently take
-ownership back.
+```sh
+./scripts/verify-consumer.sh /path/to/consumer
+```
+
+The verifier rejects local copies of shared selectors and design tokens. A
+deliberate site-specific exception should use its own component class and
+explain why it is local.

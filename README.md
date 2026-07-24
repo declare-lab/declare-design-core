@@ -137,6 +137,9 @@ Do not redefine shared selectors such as `.site-header`, `.section-menu`,
 `.site-shell`, `.btn-primary`, `.pub-card`, `.page-header`, or `.faq-list`.
 Change their public properties instead. This keeps upgrades predictable.
 
+Use `.btn--compact` alongside a button class when a dense toolbar must keep
+short labels on one line.
+
 ### Semantic type roles
 
 The core uses one DOM-derived type ladder everywhere. Heading rank supplies the

@@ -161,6 +161,13 @@
   text-decoration: none;
 }
 
+.btn--compact {
+  gap: 0.45rem;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+  white-space: nowrap;
+}
+
 .project-links a,
 .project-links span,
 .content-text .note-card-link .project-links span,

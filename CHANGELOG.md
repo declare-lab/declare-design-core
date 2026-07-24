@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.2
+
+- Reserve anchor offset ownership for the shared section-menu component.
+- Reject consumer `scroll-margin-top` declarations that can hide headings.
+
 ## 1.2.1
 
 - Keep anchored section headings clear of sticky inline section menus.

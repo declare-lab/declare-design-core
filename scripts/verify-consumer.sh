@@ -44,6 +44,11 @@ for consumer_style in "$style_file" "$site_root/_sass/"*.scss; do
     echo "Shared site-chrome styling has reappeared in $consumer_style" >&2
     exit 1
   fi
+
+  if grep -Eq '(^|[;{[:space:]])scroll-margin-top[[:space:]]*:' "$consumer_style"; then
+    echo "Shared anchor-offset styling has reappeared in $consumer_style" >&2
+    exit 1
+  fi
 done
 
 echo "Shared design core is wired correctly in $site_root"

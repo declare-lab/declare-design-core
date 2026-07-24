@@ -103,6 +103,8 @@ argument is optional:
   $layout-max-width: 1280px,
   $sidebar-width: 300px,
   $shell-gap: 2.5rem,
+  $rail-width: 180px,
+  $rail-gap: 1.5rem,
   $page-space-top: 2rem,
   $page-header-gap: 1.25rem,
   $page-lead-gap: 1.5rem,
@@ -121,7 +123,7 @@ This is the supported argument surface:
 | Surfaces | `$background`, `$card-background`, `$soft-background`, `$text`, `$text-secondary`, `$border` and their `$dark-*` counterparts |
 | Type | `$font-serif`, `$font-sans`, `$font-mono`, `$display-size`, `$page-title-size`, `$section-title-size`, `$feature-title-size`, `$card-title-size`, `$body-size`, `$supporting-size`, `$small-size`, `$control-size`, `$meta-size`, `$label-size`, `$stat-size`, `$content-leading` |
 | Shape | `$radius` |
-| Layout | `$max-width`, `$layout-max-width`, `$sidebar-width`, `$shell-gap`, `$content-measure` |
+| Layout | `$max-width`, `$layout-max-width`, `$sidebar-width`, `$shell-gap`, `$rail-width`, `$rail-gap`, `$publication-rail-width`, `$publication-rail-gap`, `$content-measure` |
 | Page rhythm | `$page-space-top`, `$page-space-bottom`, `$page-header-gap`, `$page-meta-gap`, `$page-lead-gap`, `$page-lead-padding` |
 | Section rhythm | `$section-space`, `$section-rule-space`, `$section-boundary-before`, `$section-boundary-after`, `$layout-gap`, `$card-gap` |
 | Object density | `$panel-padding-block`, `$panel-padding-inline`, `$card-padding-block`, `$card-padding-inline` |
@@ -235,6 +237,19 @@ On personal layouts with both an author rail and a contents rail, place the
 lead above the content/rail split and add `page-lead--wide`. It uses the full
 article width for prose and actions on wide screens, then stacks before either
 column becomes cramped.
+
+### Date markers
+
+Use a date marker at the start of a chronological record. The primary line can
+hold a month, venue, or year; add the secondary line when a separate year is
+available.
+
+```html
+<time class="date-marker" datetime="2026-05">
+  <span class="date-marker__primary">May</span>
+  <span class="date-marker__secondary">2026</span>
+</time>
+```
 
 ### Density rules
 

@@ -46,6 +46,10 @@
   $layout-max-width: null,
   $sidebar-width: null,
   $shell-gap: null,
+  $rail-width: null,
+  $rail-gap: null,
+  $publication-rail-width: null,
+  $publication-rail-gap: null,
   $section-space: null,
   $section-rule-space: null,
   $section-boundary-before: null,
@@ -168,6 +172,18 @@
     }
     @if $shell-gap != null {
       --layout-shell-gap: #{$shell-gap};
+    }
+    @if $rail-width != null {
+      --layout-rail-width: #{$rail-width};
+    }
+    @if $rail-gap != null {
+      --layout-rail-gap: #{$rail-gap};
+    }
+    @if $publication-rail-width != null {
+      --layout-publication-rail-width: #{$publication-rail-width};
+    }
+    @if $publication-rail-gap != null {
+      --layout-publication-rail-gap: #{$publication-rail-gap};
     }
     @if $section-space != null {
       --section-space: #{$section-space};

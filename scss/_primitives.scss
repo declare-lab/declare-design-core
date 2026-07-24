@@ -207,6 +207,42 @@
   content: "\25B8  ";
 }
 
+/*
+ * Compact calendar marker for chronological feeds. Consumers provide one
+ * primary line (month, venue, or year) and an optional secondary year.
+ */
+.date-marker {
+  display: inline-grid;
+  min-width: 4.25rem;
+  min-height: 3.6rem;
+  align-content: center;
+  justify-items: center;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent);
+  border-radius: 0;
+  background: var(--surface-subtle);
+  color: var(--text);
+  font-family: var(--font-mono);
+  line-height: 1;
+  text-align: center;
+}
+
+.date-marker__primary {
+  max-width: 8rem;
+  font-size: var(--type-control);
+  font-weight: var(--weight-heading);
+  line-height: 1.1;
+}
+
+.date-marker__secondary {
+  margin-top: 0.28rem;
+  color: var(--text-secondary);
+  font-size: var(--type-meta);
+  font-weight: var(--weight-meta);
+  line-height: 1;
+}
+
 .page-header {
   margin: 0 0 var(--page-header-gap);
 }

@@ -87,17 +87,17 @@
 .declare-core .page-rail-layout,
 .declare-core .content-text .side-layout,
 .declare-core .content-text .pub-layout {
-  --page-rail-width: 200px;
+  --page-rail-width: var(--layout-rail-width, 200px);
   display: grid;
   grid-template-areas: "main rail";
   grid-template-columns: minmax(0, 1fr) var(--page-rail-width);
-  gap: 2rem;
+  gap: var(--layout-rail-gap, 2rem);
   align-items: start;
 }
 
 .declare-core .content-text .pub-layout {
-  --page-rail-width: 148px;
-  gap: 1.5rem;
+  --page-rail-width: var(--layout-publication-rail-width, 148px);
+  gap: var(--layout-publication-rail-gap, 1.5rem);
 }
 
 .declare-core .page-rail-layout__main,

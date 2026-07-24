@@ -1,5 +1,5 @@
 {
-  "version": "2.1.5",
+  "version": "2.2.0",
   "scope_xpath": "//main[contains(concat(' ', normalize-space(@class), ' '), ' site-main ')]",
   "reject_fallback": true,
   "role_expectations": {
@@ -104,6 +104,22 @@
       "color_token": "--text",
       "line_height_min": 0.95,
       "line_height_max": 1.1
+    },
+    "hero-intro": {
+      "size_token": "--type-body",
+      "weight_token": "--weight-emphasis",
+      "family_token": "--font-serif",
+      "color_token": "--text-secondary",
+      "line_height_min": 1.3,
+      "line_height_max": 1.5
+    },
+    "hero-native": {
+      "size_token": "--type-feature-title",
+      "weight_token": "--weight-meta",
+      "family_token": "--font-bengali",
+      "color_token": "--text-secondary",
+      "line_height_min": 1.2,
+      "line_height_max": 1.5
     }
   },
   "excluded_paths": [
@@ -134,7 +150,7 @@
     },
     {
       "name": "supporting",
-      "xpath": ".//details//p | .//details//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' faq-list ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' faq-list ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' opening-list ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' opening-list ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' opportunity-grid ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' opportunity-grid ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' project-card ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' project-card ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' representative-card ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' representative-card ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' hot-paper-list ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' hot-paper-list ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' note-card-link ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' note-card-link ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' update-card ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' update-card ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' funding-list ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' funding-list ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' news-item ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' news-item ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' contribution-row ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' contribution-row ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' service-list ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' service-list ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' research-area-card ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' research-area-card ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' award-grid ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' award-grid ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' mentorship-grid ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' mentorship-grid ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' academic-contribution-grid ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' academic-contribution-grid ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' lab-note-hero ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' lab-note-hero ')]//li"
+      "xpath": ".//details//p | .//details//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' faq-list ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' faq-list ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' opening-list ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' opening-list ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' opportunity-grid ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' opportunity-grid ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' project-card ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' project-card ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' representative-card ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' representative-card ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' hot-paper-list ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' hot-paper-list ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' note-card-link ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' note-card-link ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' update-card ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' update-card ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' funding-list ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' funding-list ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' news-item ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' news-item ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' contribution-row ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' contribution-row ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' service-list ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' service-list ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' research-area-card ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' research-area-card ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' award-grid ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' award-grid ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' mentorship-grid ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' mentorship-grid ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' academic-contribution-grid ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' academic-contribution-grid ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' activity-list ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' activity-list ')]//li | .//*[contains(concat(' ', normalize-space(@class), ' '), ' lab-note-hero ')]//p | .//*[contains(concat(' ', normalize-space(@class), ' '), ' lab-note-hero ')]//li"
     },
     {
       "name": "small",
@@ -161,6 +177,14 @@
       "xpath": ".//*[contains(concat(' ', normalize-space(@class), ' '), ' stat-value ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' metric-value ')] | .//*[contains(concat(' ', normalize-space(@class), ' '), ' collaboration-metrics ')]//strong | .//*[contains(concat(' ', normalize-space(@class), ' '), ' collab-inspector ')]//strong"
     },
     {
+      "name": "hero-intro",
+      "xpath": ".//*[contains(concat(' ', normalize-space(@class), ' '), ' hero-greeting-intro ')]"
+    },
+    {
+      "name": "hero-native",
+      "xpath": ".//*[contains(concat(' ', normalize-space(@class), ' '), ' hero-native-name ')]"
+    },
+    {
       "name": "page-title",
       "xpath": ".//h1"
     },
@@ -174,7 +198,7 @@
     },
     {
       "name": "item-title",
-      "xpath": ".//h4 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' award-grid ')]//strong | .//*[contains(concat(' ', normalize-space(@class), ' '), ' news-item ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-card ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' project-card ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' representative-card ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' hot-paper-list ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' note-card-link ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' update-card ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' funding-list ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' research-area-card ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' contribution-row ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' mentorship-grid ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' academic-contribution-grid ')]//h3"
+      "xpath": ".//h4 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' award-grid ')]//strong | .//*[contains(concat(' ', normalize-space(@class), ' '), ' news-item ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' pub-card ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' project-card ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' person-card ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' representative-card ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' hot-paper-list ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' note-card-link ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' update-card ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' funding-list ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' research-area-card ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' contribution-row ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' mentorship-grid ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' academic-contribution-grid ')]//h3 | .//*[contains(concat(' ', normalize-space(@class), ' '), ' activity-list ')]//h3"
     },
     {
       "name": "minor-title",

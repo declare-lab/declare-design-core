@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.2.0
+
+- Enforce single ownership of typography by rejecting all consumer declarations.
+- Add a deterministic style-ownership auditor and mechanical cleanup mode.
+- Promote multilingual personal-hero text to explicit shared semantic roles.
+- Add compact semantic roles for academic-activity records.
+
 ## 2.1.5
 
 - Classify update-category tags as shared labels rather than wrapper metadata.

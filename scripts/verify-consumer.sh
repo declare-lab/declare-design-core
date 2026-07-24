@@ -2,6 +2,7 @@
 set -eu
 
 site_root="${1:-.}"
+python_bin="${PYTHON:-python3}"
 style_file="$site_root/assets/css/style.scss"
 layout_file="$site_root/_layouts/default.html"
 core_root="$site_root/assets/declare-core"
@@ -123,6 +124,9 @@ for consumer_style in "$style_file" "$site_root/_sass/"*.scss; do
     exit 1
   fi
 done
+
+"$python_bin" "$core_root/scripts/style_ownership.py" audit \
+  --site-root "$site_root"
 
 for typography_source in "$site_root"/*.html; do
   test -f "$typography_source" || continue

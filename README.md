@@ -129,12 +129,12 @@ Change their public properties instead. This keeps upgrades predictable.
 
 ### Semantic type roles
 
-The core uses one DOM-derived type ladder everywhere. Heading rank is the
-contract: every `h3` is a subsection title, for example, regardless of whether
-it appears in an FAQ, opening, card, or research panel. Prose roles follow
-semantic HTML: page copy is reading text, prose inside `article` is supporting
-text, and `time`, `figcaption`, tables, labels, controls, and statistics receive
-their corresponding roles.
+The core uses one DOM-derived type ladder everywhere. Heading rank supplies the
+default role, while repeated semantic records such as publications, projects,
+updates, activities, and people use the compact item-title tier. Prose roles
+follow semantic HTML: page copy is reading text, prose inside compact records is
+supporting text, and `time`, `figcaption`, tables, labels, controls, and
+statistics receive their corresponding roles.
 
 | Role | Token | Utility class | Default |
 | --- | --- | --- | --- |
@@ -173,9 +173,22 @@ computed-style regression checks possible across themes and responsive
 viewports rather than limiting validation to source markup.
 
 Site-specific styles may compose layout, color accents, and domain
-visualizations. They do not own reading-hierarchy sizes or weights. To
-customize the hierarchy, change the public type tokens through
+visualizations. They do not own any typography property, including family,
+size, weight, line height, letter spacing, variation settings, style, or text
+transform. To customize the hierarchy, change the public type tokens through
 `declare-customize`; do not add wrapper-specific heading rules.
+
+The ownership auditor enforces that boundary:
+
+```sh
+python assets/declare-core/scripts/style_ownership.py audit \
+  --site-root . --built-site _site
+```
+
+`fix` mode mechanically removes typography declarations from consumer SCSS.
+The audit also rejects non-data-driven inline styles and embedded style blocks
+in generated main-site pages. Inline custom properties are permitted for
+content data such as per-person image positioning.
 
 ## Components
 
@@ -244,6 +257,7 @@ Run the contract verifier after changing either consumer:
 ./scripts/verify-consumer.sh /path/to/consumer
 ```
 
-The verifier rejects local copies of shared selectors and design tokens. A
-deliberate site-specific exception should use its own component class and
-explain why it is local.
+The verifier rejects local copies of shared selectors and design tokens, plus
+all local typography declarations. A deliberate site-specific layout exception
+should use its own component class and explain why it is local; typography
+exceptions must be modeled as a semantic core role.

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.0
+
+- Add one shared publication archive component family.
+- Centralize publication search, filters, records, metadata, links, and abstracts.
+- Keep archive composition and year-rail placement site-specific.
+- Enforce single ownership for shared primary and secondary controls.
+
 ## 1.2.4
 
 - Position anchored content from the rendered bottom of a sticky inline menu.

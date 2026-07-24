@@ -45,6 +45,20 @@ for consumer_style in "$style_file" "$site_root/_sass/"*.scss; do
     exit 1
   fi
 
+  if grep -Eq \
+    '\.(btn|btn-primary|btn-secondary|lab-link|lab-link-secondary)([[:space:]:>,+~.{#]|$)' \
+    "$consumer_style"; then
+    echo "Shared control styling has reappeared in $consumer_style" >&2
+    exit 1
+  fi
+
+  if grep -Eq \
+    '\.(pub-toolbar|pub-toolbar__row|pub-search|pub-filter-row|pub-filter|pub-count-display|pub-cat-row|pub-cat-btn|pub-cat-count|pub-year-heading|pub-card|pub-card__top|pub-title-line|pub-title|pub-hot-star|pub-authors|pub-meta|pub-venue|pub-year-tag|pub-citation-badge|pub-award|pub-links|pub-abstract-toggle|pub-link-primary|pub-cats|pub-cat-badge|pub-abstract)([[:space:]:>,+~.{#]|$)' \
+    "$consumer_style"; then
+    echo "Shared publication styling has reappeared in $consumer_style" >&2
+    exit 1
+  fi
+
   if grep -Eq '(^|[;{[:space:]])scroll-margin-top[[:space:]]*:' "$consumer_style"; then
     echo "Shared anchor-offset styling has reappeared in $consumer_style" >&2
     exit 1

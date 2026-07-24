@@ -24,9 +24,9 @@ Load the shared interaction script near the end of the page:
 <script src="/assets/declare-core/js/site.js"></script>
 ```
 
-The parent repository pins a core commit through its submodule entry. Run the
-consumer's `scripts/update-design-core.sh` to advance both local websites to the
-same published core revision.
+Each parent repository pins a core commit through its submodule entry. From this
+repository, run `scripts/sync-consumers.sh` to advance both local websites to
+the same published core revision.
 
 ## Ownership rule
 

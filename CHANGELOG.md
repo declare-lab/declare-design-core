@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.6
+
+- Correct the consumer update instructions to reference the shared sync helper.
+
 ## 1.0.5
 
 - Allow the sync helper to update initialized consumers before their first

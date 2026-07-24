@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.3
+
+- Normalize nested lab call-to-action controls to the shared control scale.
+- Reject reintroduced duplicate shared-contract blocks in consumer CSS.
+
 ## 1.0.2
 
 - Enforce semantic type roles against legacy high-specificity component rules.

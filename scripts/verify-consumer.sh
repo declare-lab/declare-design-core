@@ -22,4 +22,11 @@ if test -e "$site_root/assets/js/section-navigation.js"; then
   exit 1
 fi
 
+if grep -Eq \
+  "Shared DeCLaRe / Soujanya interface contract|Shared typography contract|Final enforcement for the shared two-site interface contract" \
+  "$style_file" "$site_root/_sass/"*.scss 2>/dev/null; then
+  echo "A migrated shared-contract block has reappeared in $site_root" >&2
+  exit 1
+fi
+
 echo "Shared design core is wired correctly in $site_root"

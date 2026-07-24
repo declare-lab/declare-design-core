@@ -154,7 +154,7 @@
     },
     {
       "name": "navigation",
-      "xpath": ".//nav//a"
+      "xpath": ".//nav//a | .//*[contains(concat(' ', normalize-space(@class), ' '), ' section-menu ')]//a"
     },
     {
       "name": "stat",

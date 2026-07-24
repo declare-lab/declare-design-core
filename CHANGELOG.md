@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.2
+
+- Remove the legacy article-wide supporting-text fallback.
+- Align structural CSS fallbacks with the compact-content DOM roles.
+
 ## 2.1.1
 
 - Keep page-level narrative prose on the body tier.

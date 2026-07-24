@@ -81,10 +81,27 @@
   line-height: var(--content-leading) !important;
 }
 
-.declare-core .site-main article p,
-.declare-core .site-main article li,
-.declare-core .site-main article blockquote,
-.declare-core .site-main article dd,
+.declare-core
+  .site-main
+  :is(
+    .faq-list,
+    .opening-list,
+    .opportunity-grid,
+    .project-card,
+    .person-card,
+    .representative-card,
+    .hot-paper-list,
+    .note-card-link,
+    .update-card,
+    .funding-list,
+    .news-item,
+    .contribution-row,
+    .service-list,
+    .research-area-card,
+    .award-grid,
+    .lab-note-hero
+  )
+  :is(p, li, blockquote, dd),
 .declare-core .site-main details p,
 .declare-core .site-main details li,
 .declare-core .site-main [data-type-role="supporting"],

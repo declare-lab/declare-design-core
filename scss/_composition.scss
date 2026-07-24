@@ -1,0 +1,89 @@
+/*
+ * Reusable page compositions
+ *
+ * These classes own the rhythm between a page title and its first section.
+ * Consumers may choose a composition and tune its public variables through
+ * declare-customize; they should not recreate the same geometry locally.
+ */
+
+.declare-core .page-lead {
+  width: 100%;
+  max-width: none;
+  margin: 0 0 var(--page-lead-gap);
+  padding: 0 0 var(--page-lead-padding);
+  border: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.declare-core .page-lead > :first-child {
+  margin-top: 0;
+}
+
+.declare-core .page-lead > :last-child {
+  margin-bottom: 0;
+}
+
+.declare-core .page-lead p,
+.declare-core .page-lead__copy {
+  max-width: 72ch;
+  margin: 0;
+}
+
+.declare-core .page-lead--compact {
+  display: block;
+}
+
+.declare-core .page-lead--split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--page-lead-gap);
+  align-items: end;
+}
+
+.declare-core .page-lead__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.declare-core .section-intro {
+  display: grid;
+  gap: var(--section-intro-gap);
+  margin-bottom: var(--section-intro-gap);
+}
+
+.declare-core .section-intro > :first-child,
+.declare-core .section-intro > :last-child {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.declare-core .section-intro--split {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+}
+
+.declare-core .page-lead + h2,
+.declare-core .page-lead + .side-layout .side-layout__main > h2:first-child,
+.declare-core .page-lead + .page-rail-layout .page-rail-layout__main > h2:first-child {
+  margin-top: 0;
+}
+
+@media (max-width: 1020px) {
+  .declare-core .page-lead--split,
+  .declare-core .section-intro--split {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .declare-core .page-lead__actions {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 720px) {
+  .declare-core .page-lead__actions {
+    width: 100%;
+  }
+}

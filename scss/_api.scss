@@ -46,7 +46,23 @@
   $layout-max-width: null,
   $sidebar-width: null,
   $shell-gap: null,
-  $section-space: null
+  $section-space: null,
+  $section-rule-space: null,
+  $section-boundary-before: null,
+  $section-boundary-after: null,
+  $page-space-top: null,
+  $page-space-bottom: null,
+  $page-header-gap: null,
+  $page-meta-gap: null,
+  $page-lead-gap: null,
+  $page-lead-padding: null,
+  $panel-padding-block: null,
+  $panel-padding-inline: null,
+  $card-padding-block: null,
+  $card-padding-inline: null,
+  $layout-gap: null,
+  $card-gap: null,
+  $content-measure: null
 ) {
   :root {
     @if $accent != null {
@@ -155,7 +171,54 @@
     }
     @if $section-space != null {
       --section-space: #{$section-space};
-      --section-rule-space: #{$section-space};
+    }
+    @if $section-rule-space != null {
+      --section-rule-space: #{$section-rule-space};
+    }
+    @if $section-boundary-before != null {
+      --section-boundary-before: #{$section-boundary-before};
+    }
+    @if $section-boundary-after != null {
+      --section-boundary-after: #{$section-boundary-after};
+    }
+    @if $page-space-top != null {
+      --page-space-top: #{$page-space-top};
+    }
+    @if $page-space-bottom != null {
+      --page-space-bottom: #{$page-space-bottom};
+    }
+    @if $page-header-gap != null {
+      --page-header-gap: #{$page-header-gap};
+    }
+    @if $page-meta-gap != null {
+      --page-meta-gap: #{$page-meta-gap};
+    }
+    @if $page-lead-gap != null {
+      --page-lead-gap: #{$page-lead-gap};
+    }
+    @if $page-lead-padding != null {
+      --page-lead-padding: #{$page-lead-padding};
+    }
+    @if $panel-padding-block != null {
+      --panel-padding-block: #{$panel-padding-block};
+    }
+    @if $panel-padding-inline != null {
+      --panel-padding-inline: #{$panel-padding-inline};
+    }
+    @if $card-padding-block != null {
+      --card-padding-block: #{$card-padding-block};
+    }
+    @if $card-padding-inline != null {
+      --card-padding-inline: #{$card-padding-inline};
+    }
+    @if $layout-gap != null {
+      --layout-gap: #{$layout-gap};
+    }
+    @if $card-gap != null {
+      --card-gap: #{$card-gap};
+    }
+    @if $content-measure != null {
+      --content-measure: #{$content-measure};
     }
   }
 

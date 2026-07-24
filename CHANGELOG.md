@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.3.0
+
+- Added reusable compact and split page-lead compositions.
+- Added a public density API for page insets, title-to-lead spacing, section
+  boundaries, object padding, layout gaps, and content measure.
+- Reduced duplicated whitespace in the default desktop and mobile rhythm.
+
 ## 2.2.2
 
 - Audit active page sources for inline style attributes and JavaScript style

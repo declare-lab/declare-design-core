@@ -192,7 +192,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem 1.25rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--page-meta-gap);
   padding-bottom: 1rem;
   border-bottom: 2px solid var(--text);
   color: var(--text-secondary);
@@ -208,7 +208,7 @@
 }
 
 .page-header {
-  margin: 0 0 var(--section-rule-space);
+  margin: 0 0 var(--page-header-gap);
 }
 
 .page-header::before {

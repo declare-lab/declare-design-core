@@ -103,7 +103,13 @@ argument is optional:
   $layout-max-width: 1280px,
   $sidebar-width: 300px,
   $shell-gap: 2.5rem,
-  $section-space: 3.25rem
+  $page-space-top: 2rem,
+  $page-header-gap: 1.25rem,
+  $page-lead-gap: 1.5rem,
+  $section-space: 2.25rem,
+  $section-boundary-before: 1.75rem,
+  $section-boundary-after: 1.75rem,
+  $card-padding-block: 0.95rem
 );
 ```
 
@@ -115,8 +121,10 @@ This is the supported argument surface:
 | Surfaces | `$background`, `$card-background`, `$soft-background`, `$text`, `$text-secondary`, `$border` and their `$dark-*` counterparts |
 | Type | `$font-serif`, `$font-sans`, `$font-mono`, `$display-size`, `$page-title-size`, `$section-title-size`, `$feature-title-size`, `$card-title-size`, `$body-size`, `$supporting-size`, `$small-size`, `$control-size`, `$meta-size`, `$label-size`, `$stat-size`, `$content-leading` |
 | Shape | `$radius` |
-| Layout | `$max-width`, `$layout-max-width`, `$sidebar-width`, `$shell-gap` |
-| Rhythm | `$section-space` |
+| Layout | `$max-width`, `$layout-max-width`, `$sidebar-width`, `$shell-gap`, `$content-measure` |
+| Page rhythm | `$page-space-top`, `$page-space-bottom`, `$page-header-gap`, `$page-meta-gap`, `$page-lead-gap`, `$page-lead-padding` |
+| Section rhythm | `$section-space`, `$section-rule-space`, `$section-boundary-before`, `$section-boundary-after`, `$layout-gap`, `$card-gap` |
+| Object density | `$panel-padding-block`, `$panel-padding-inline`, `$card-padding-block`, `$card-padding-inline` |
 
 Advanced consumers can override public CSS properties after the core import.
 Useful layout properties include `--site-content-gap`, `--site-sidebar-top`,
@@ -194,6 +202,49 @@ Inline custom properties are permitted for content data such as per-person
 image positioning.
 
 ## Components
+
+### Page leads
+
+Use one shared lead directly after the page header. It owns the divider and the
+space before the first section, preventing a page header, introduction, and
+first heading from each adding their own gap.
+
+```html
+<section class="page-lead page-lead--compact">
+  <p>One concise orientation paragraph.</p>
+</section>
+```
+
+For editorial pages with actions:
+
+```html
+<section class="page-lead page-lead--split">
+  <p class="page-lead__copy">A short authored introduction.</p>
+  <div class="page-lead__actions">
+    <a class="btn btn-primary" href="/research/">Research</a>
+    <a class="btn btn-secondary" href="/publications/">Publications</a>
+  </div>
+</section>
+```
+
+The lead becomes a single column at narrower widths. Tune it through the
+`$page-lead-*` mixin arguments; do not recreate its margin, padding, or divider
+in a consumer stylesheet.
+
+### Density rules
+
+Whitespace has one owner at each boundary:
+
+- `--page-space-*` controls the canvas inside the header and footer.
+- `--page-header-gap` separates the page title from the page lead.
+- `--page-lead-*` separates orientation copy from the first section.
+- `--section-boundary-before` and `--section-boundary-after` place air on the
+  two sides of a section rule.
+- panel and card padding tokens control internal object density.
+
+Local components may consume these properties, but should not introduce a
+second page-level rhythm. This is the core maintenance rule behind the compact
+layout profile.
 
 Use the shared structural classes for in-page navigation:
 

@@ -1,5 +1,5 @@
 {
-  "version": "2.2.2",
+  "version": "2.3.0",
   "scope_xpath": "//main[contains(concat(' ', normalize-space(@class), ' '), ' site-main ')]",
   "reject_fallback": true,
   "role_expectations": {

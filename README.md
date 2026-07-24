@@ -161,7 +161,8 @@ python assets/declare-core/scripts/typography_dom.py verify --site _site
 
 The fixer assigns `data-type-role` from XPath rules and removes inline
 typography declarations. The verifier checks those assignments, rejects stale
-or unknown roles, rejects inline typography, and detects heading-level jumps.
+or unknown roles, rejects unclassified text and inline typography, requires one
+non-empty root `h1`, and detects heading-level jumps.
 Standalone project systems such as NORA are excluded by the contract.
 
 Site-specific styles may compose layout, color accents, and domain

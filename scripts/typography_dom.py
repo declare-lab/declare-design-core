@@ -126,9 +126,14 @@ def fallback_role(element: etree._Element, scope: etree._Element) -> str:
 
 def expected_roles(
     document: etree._ElementTree, contract: dict
-) -> tuple[list[etree._Element], dict[etree._Element, str]]:
+) -> tuple[
+    list[etree._Element],
+    dict[etree._Element, str],
+    list[etree._Element],
+]:
     scopes = document.xpath(contract["scope_xpath"])
     roles: dict[etree._Element, str] = {}
+    fallback_elements: list[etree._Element] = []
 
     for scope in scopes:
         for rule in contract["roles"]:
@@ -143,8 +148,23 @@ def expected_roles(
                 continue
             if not has_role_ancestor(element, scope, roles):
                 roles[element] = fallback_role(element, scope)
+                fallback_elements.append(element)
 
-    return scopes, roles
+    return scopes, roles, fallback_elements
+
+
+def fallback_errors(
+    relative_path: Path, elements: list[etree._Element]
+) -> list[str]:
+    errors: list[str] = []
+    for element in elements:
+        text = " ".join(element.text_content().split())[:72]
+        class_name = element.get("class")
+        selector_hint = f".{class_name.split()[0]}" if class_name else element.tag
+        errors.append(
+            f"{relative_path}: unclassified text at {selector_hint}: {text}"
+        )
+    return errors
 
 
 def strip_inline_typography(
@@ -230,7 +250,7 @@ def fix_file(
     path: Path, relative_path: Path, contract: dict, audit: Audit
 ) -> None:
     document = parse_document(path)
-    scopes, roles = expected_roles(document, contract)
+    scopes, roles, fallback_elements = expected_roles(document, contract)
     forbidden = set(contract["inline_typography_properties"])
     changed = False
 
@@ -257,13 +277,15 @@ def fix_file(
         audit.changed_files += 1
 
     audit.errors.extend(heading_errors(relative_path, scopes))
+    if contract.get("reject_fallback"):
+        audit.errors.extend(fallback_errors(relative_path, fallback_elements))
 
 
 def verify_file(
     path: Path, relative_path: Path, contract: dict, audit: Audit
 ) -> None:
     document = parse_document(path)
-    scopes, roles = expected_roles(document, contract)
+    scopes, roles, fallback_elements = expected_roles(document, contract)
     valid_roles = {rule["name"] for rule in contract["roles"]}
     forbidden = set(contract["inline_typography_properties"])
 
@@ -299,6 +321,8 @@ def verify_file(
             )
 
     audit.errors.extend(heading_errors(relative_path, scopes))
+    if contract.get("reject_fallback"):
+        audit.errors.extend(fallback_errors(relative_path, fallback_elements))
 
 
 def main() -> int:

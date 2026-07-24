@@ -1,6 +1,7 @@
 {
   "version": "2.0.0",
   "scope_xpath": "//main[contains(concat(' ', normalize-space(@class), ' '), ' site-main ')]",
+  "reject_fallback": true,
   "excluded_paths": [
     "assets/declare-core/**",
     "nora/**",

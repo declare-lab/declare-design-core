@@ -188,9 +188,10 @@ python assets/declare-core/scripts/style_ownership.py audit \
 
 `fix` mode mechanically removes typography declarations from consumer SCSS.
 The audit rejects consumer typography, literal colors, `!important`,
-non-data-driven inline styles, and embedded style blocks in generated main-site
-pages. Inline custom properties are permitted for content data such as
-per-person image positioning.
+non-data-driven inline styles, JavaScript style writes, and embedded style
+blocks. It checks both active page sources and generated main-site pages.
+Inline custom properties are permitted for content data such as per-person
+image positioning.
 
 ## Components
 

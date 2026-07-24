@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.2.2
+
+- Audit active page sources for inline style attributes and JavaScript style
+  writes before those declarations can reach the rendered DOM.
+- Continue to permit custom-property-only inline content data, such as
+  per-person portrait positioning.
+
 ## 2.2.1
 
 - Centralize shared color constants used by both sites.

@@ -33,6 +33,11 @@ LITERAL_TYPE = re.compile(
 LITERAL_COLOR = re.compile(
     r"(?<![-\w])(?:#[0-9a-fA-F]{3,8}\b|rgba?\([^)]*\)|hsla?\([^)]*\))"
 )
+STYLE_ATTRIBUTE = re.compile(r"\bstyle\s*=\s*([\"'])(.*?)\1", re.DOTALL)
+DYNAMIC_STYLE_WRITE = re.compile(
+    r"\.style(?:\.|\[)|"
+    r"(?:setAttribute|removeAttribute)\(\s*[\"']style[\"']"
+)
 
 
 @dataclass
@@ -56,6 +61,11 @@ class Report:
     literal_color_lines: int = 0
     important_lines: int = 0
     built_html_files: int = 0
+    source_content_files: int = 0
+    source_inline_style_attributes: int = 0
+    source_custom_property_only_styles: int = 0
+    source_inline_style_violations: int = 0
+    source_dynamic_style_writes: int = 0
     inline_style_attributes: int = 0
     custom_property_only_styles: int = 0
     inline_style_violations: int = 0
@@ -70,6 +80,8 @@ class Report:
             and self.literal_typography_lines == 0
             and self.literal_color_lines == 0
             and self.important_lines == 0
+            and self.source_inline_style_violations == 0
+            and self.source_dynamic_style_writes == 0
             and self.inline_style_violations == 0
             and self.embedded_style_blocks == 0
         )
@@ -151,6 +163,42 @@ def excluded(relative_path: Path, patterns: list[str]) -> bool:
     return any(fnmatch.fnmatch(value, pattern) for pattern in patterns)
 
 
+def source_content_paths(site_root: Path) -> list[Path]:
+    paths: list[Path] = []
+    for name in ("index.md", "index.html"):
+        path = site_root / name
+        if path.is_file():
+            paths.append(path)
+    for directory in ("_pages", "_posts"):
+        root = site_root / directory
+        if root.is_dir():
+            paths.extend(sorted(root.rglob("*.md")))
+            paths.extend(sorted(root.rglob("*.html")))
+    return paths
+
+
+def scan_source_content(site_root: Path, report: Report) -> None:
+    for path in source_content_paths(site_root):
+        report.source_content_files += 1
+        content = path.read_text(encoding="utf-8")
+
+        for match in STYLE_ATTRIBUTE.finditer(content):
+            report.source_inline_style_attributes += 1
+            declarations = [
+                part.strip()
+                for part in match.group(2).split(";")
+                if part.strip()
+            ]
+            if declarations and all(part.startswith("--") for part in declarations):
+                report.source_custom_property_only_styles += 1
+            else:
+                report.source_inline_style_violations += 1
+
+        report.source_dynamic_style_writes += len(
+            DYNAMIC_STYLE_WRITE.findall(content)
+        )
+
+
 def audit_built_site(site_root: Path, built_site: Path, report: Report) -> None:
     contract_path = (
         site_root / "assets/declare-core/config/typography-contract.json"
@@ -206,6 +254,7 @@ def main() -> int:
     args = parser().parse_args()
     site_root = args.site_root.resolve()
     report = Report(mode=args.mode, site_root=str(site_root))
+    scan_source_content(site_root, report)
     scan_or_fix_styles(site_root, report, fix=args.mode == "fix")
 
     if args.mode == "fix":
@@ -227,6 +276,9 @@ def main() -> int:
             f"{report.typography_declarations} local typography declarations, "
             f"{report.literal_color_lines} literal color lines, "
             f"{report.important_lines} !important lines, "
+            f"{report.source_inline_style_violations} source inline-style "
+            f"violations, {report.source_dynamic_style_writes} dynamic style "
+            f"writes, "
             f"{report.inline_style_violations} inline-style violations, "
             f"{report.embedded_style_blocks} embedded style blocks."
         )

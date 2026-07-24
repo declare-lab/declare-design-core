@@ -243,6 +243,16 @@ Whitespace has one owner at each boundary:
 - `--page-space-*` controls the canvas inside the header and footer.
 - `--page-header-gap` separates the page title from the page lead.
 - `--page-lead-*` separates orientation copy from the first section.
+
+`$layout-max-width` controls the content canvas without forcing the navigation
+chrome to use the same width. This is the preferred way to create generous
+outer margins on an academic site. `$content-measure` independently limits
+reading text; grids, publication controls, and other structured interfaces may
+continue to use the full canvas.
+
+The mixin writes public `--layout-*` configuration tokens. Layout profiles
+derive their internal `--site-*` values from those tokens so profile defaults
+remain overridable without consumer selectors.
 - `--section-boundary-before` and `--section-boundary-after` place air on the
   two sides of a section rule.
 - panel and card padding tokens control internal object density.

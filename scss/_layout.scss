@@ -10,20 +10,20 @@
  */
 
 .site-layout {
-  --site-layout-max-width: var(--max-width);
-  --site-shell-gap: 2.75rem;
+  --site-layout-max-width: var(--layout-max-width, var(--max-width));
+  --site-shell-gap: var(--layout-shell-gap, 2.75rem);
   --site-content-gap: 2rem;
   --site-sidebar-width: 0px;
   --site-sidebar-top: calc(var(--chrome-height) + 1.75rem);
 }
 
 .site-layout--lab {
-  --site-shell-gap: 2.75rem;
+  --site-shell-gap: var(--layout-shell-gap, 2.75rem);
 }
 
 .site-layout--personal {
-  --site-shell-gap: 2.5rem;
-  --site-sidebar-width: 290px;
+  --site-shell-gap: var(--layout-shell-gap, 2.5rem);
+  --site-sidebar-width: var(--layout-sidebar-width, 290px);
 }
 
 .declare-core .site-layout .site-main {

@@ -161,13 +161,13 @@
       --max-width: #{$max-width};
     }
     @if $layout-max-width != null {
-      --site-layout-max-width: #{$layout-max-width};
+      --layout-max-width: #{$layout-max-width};
     }
     @if $sidebar-width != null {
-      --site-sidebar-width: #{$sidebar-width};
+      --layout-sidebar-width: #{$sidebar-width};
     }
     @if $shell-gap != null {
-      --site-shell-gap: #{$shell-gap};
+      --layout-shell-gap: #{$shell-gap};
     }
     @if $section-space != null {
       --section-space: #{$section-space};

@@ -25,7 +25,7 @@
 
 .declare-core .page-lead p,
 .declare-core .page-lead__copy {
-  max-width: 72ch;
+  max-width: var(--content-measure);
   margin: 0;
 }
 

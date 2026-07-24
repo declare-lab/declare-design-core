@@ -82,6 +82,20 @@
   }
 }
 
+/*
+ * Personal pages reserve a permanent author rail and often a contents rail.
+ * Their readable column is therefore intentionally stacked even on a wide
+ * viewport; forcing actions beside the prose makes the prose needlessly tall.
+ */
+.site-layout--personal .page-lead--split {
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+.site-layout--personal .page-lead__actions {
+  justify-content: flex-start;
+}
+
 @media (max-width: 720px) {
   .declare-core .page-lead__actions {
     width: 100%;

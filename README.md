@@ -265,9 +265,9 @@ removes the calendar box and keeps the date as quiet metadata beside the dot.
         <span class="date-marker__primary">May</span>
         <span class="date-marker__secondary">2026</span>
       </time>
-      <span class="record-badge">Media</span>
     </div>
     <div class="timeline-item__content">
+      <span class="record-badge">Media</span>
       <h3>Update title</h3>
       <p>Concise update text.</p>
     </div>

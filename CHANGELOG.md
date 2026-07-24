@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.4
+
+- Remove selectors absent from the combined generated output of both sites.
+
 ## 1.0.3
 
 - Normalize nested lab call-to-action controls to the shared control scale.

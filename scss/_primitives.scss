@@ -9,15 +9,11 @@
 .btn,
 .btn-primary,
 .btn-secondary,
-.declare-button,
 .lab-link,
 .lab-link-secondary,
 .pub-filter,
 .content-text .btn-primary,
 .content-text .btn-secondary,
-.content-text .declare-button,
-.content-text .declare-actions .btn-primary,
-.content-text .declare-actions .btn-secondary,
 .content-text .hero-actions .btn-primary,
 .content-text .hero-actions .btn-secondary {
   display: inline-flex;
@@ -38,7 +34,6 @@
 }
 
 .btn-primary,
-.declare-button,
 .lab-link {
   border-color: var(--accent);
   background: var(--accent);
@@ -46,7 +41,6 @@
 }
 
 .btn-primary:hover,
-.declare-button:hover,
 .lab-link:hover {
   border-color: var(--accent-hover);
   background: var(--accent-hover);
@@ -69,7 +63,6 @@
 }
 
 .project-links a,
-.publication-item__links a,
 .pub-links a,
 .pub-abstract-toggle,
 .pub-cat-btn,
@@ -85,9 +78,7 @@
 .home-section-nav a > i,
 .intro-aside a > i,
 .lab-actions a > i,
-.declare-actions a > i,
 .project-links a > i,
-.publication-item__links a > i,
 .pub-links a > i {
   width: 1em;
   flex: 0 0 1em;

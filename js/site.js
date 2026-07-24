@@ -271,10 +271,13 @@
     }
 
     function getTargetTop(menu, section) {
-      var horizontalOffset = isHorizontal(menu)
-        ? menu.getBoundingClientRect().height + 18
-        : 24;
-      var targetOffset = getHeaderBottom() + horizontalOffset;
+      var targetOffset = getHeaderBottom() + 24;
+      if (isHorizontal(menu)) {
+        targetOffset = Math.max(
+          targetOffset,
+          menu.getBoundingClientRect().bottom + 18
+        );
+      }
 
       return Math.max(
         0,

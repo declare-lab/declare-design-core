@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.4
+
+- Position anchored content from the rendered bottom of a sticky inline menu.
+
 ## 1.2.3
 
 - Detect horizontal menus by layout rather than only by overflow.

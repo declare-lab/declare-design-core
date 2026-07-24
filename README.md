@@ -231,6 +231,11 @@ The lead becomes a single column at narrower widths. Tune it through the
 `$page-lead-*` mixin arguments; do not recreate its margin, padding, or divider
 in a consumer stylesheet.
 
+On personal layouts with both an author rail and a contents rail, place the
+lead above the content/rail split and add `page-lead--wide`. It uses the full
+article width for prose and actions on wide screens, then stacks before either
+column becomes cramped.
+
 ### Density rules
 
 Whitespace has one owner at each boundary:

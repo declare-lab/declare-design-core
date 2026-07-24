@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.8.1
+
+- Extend literal typography checks to standalone project HTML pages.
+
 ## 1.8.0
 
 - Define and document one semantic type ladder from display titles through labels.

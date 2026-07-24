@@ -121,4 +121,14 @@ for consumer_style in "$style_file" "$site_root/_sass/"*.scss; do
   fi
 done
 
+for typography_source in "$site_root"/*.html; do
+  test -f "$typography_source" || continue
+  if grep -Eq \
+    'font-size:[[:space:]]*[0-9]+([.][0-9]+)?(px|rem)[[:space:]]*;|font-weight:[[:space:]]*[0-9]{3}[[:space:]]*;' \
+    "$typography_source"; then
+    echo "A literal font size or weight has reappeared in $typography_source; use a shared type token" >&2
+    exit 1
+  fi
+done
+
 echo "Shared design core is wired correctly in $site_root"

@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.6.0
+
+- Add selectable lab and personal site shells with documented customization variables.
+- Centralize wrapper columns, author-sidebar geometry, responsive stacking, and print behavior.
+- Correct inline and mobile submenu targeting by measuring the menu's docked position.
+- Center both footer text and footer links.
+- Promote FAQ answers to supporting-text size and centralize the FAQ row pattern.
+- Reject consumer redefinitions of shared shell and FAQ selectors.
+
 ## 1.5.0
 
 - Add a shared right-rail page composition for contents and publication-year navigation.

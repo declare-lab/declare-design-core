@@ -1,9 +1,87 @@
 /*
- * Shared content + section-rail composition.
+ * Selectable site shells and shared content + section-rail composition.
  *
+ * A consumer selects one shell on <body>:
+ *   .site-layout--lab       wide institutional content
+ *   .site-layout--personal  author sidebar + editorial content
+ *
+ * The variables are the supported customization surface. Page styles should
+ * not recreate shell geometry.
+ */
+
+.site-layout {
+  --site-layout-max-width: var(--max-width);
+  --site-shell-gap: 2.75rem;
+  --site-content-gap: 2rem;
+  --site-sidebar-width: 0px;
+  --site-sidebar-top: calc(var(--chrome-height) + 1.75rem);
+}
+
+.site-layout--lab {
+  --site-shell-gap: 2.75rem;
+}
+
+.site-layout--personal {
+  --site-shell-gap: 2.5rem;
+  --site-sidebar-width: 290px;
+}
+
+.declare-core .site-layout .site-main {
+  max-width: var(--site-layout-max-width);
+}
+
+.declare-core .site-shell {
+  display: grid;
+  grid-template-areas: "content";
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--site-shell-gap);
+  align-items: start;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.declare-core .site-layout--personal .site-shell.has-sidebar {
+  grid-template-areas: "sidebar content";
+  grid-template-columns:
+    minmax(0, var(--site-sidebar-width))
+    minmax(0, 1fr);
+}
+
+.declare-core .site-shell__sidebar {
+  grid-area: sidebar;
+  position: sticky;
+  top: var(--site-sidebar-top);
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.declare-core .site-shell__content {
+  grid-area: content;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.declare-core .site-content {
+  display: flex;
+  gap: var(--site-content-gap);
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.declare-core .site-content > .content-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/*
  * The personal site uses .page-rail-layout directly. The lab's established
  * .side-layout and .pub-layout names are compatibility aliases for the same
- * geometry.
+ * right-rail geometry.
  */
 
 .declare-core .page-rail-layout,
@@ -43,5 +121,46 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+  }
+}
+
+@media (max-width: 960px) {
+  .site-layout {
+    --site-shell-gap: 1.8rem;
+  }
+
+  .declare-core .site-shell,
+  .declare-core .site-layout--personal .site-shell.has-sidebar {
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .declare-core .site-shell__sidebar {
+    position: static;
+    width: 100%;
+  }
+
+  .declare-core .site-content {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 720px) {
+  .site-layout {
+    --site-shell-gap: 1.45rem;
+    --site-content-gap: 1rem;
+  }
+}
+
+@media print {
+  .declare-core .site-shell,
+  .declare-core .site-layout--personal .site-shell.has-sidebar {
+    display: block;
+  }
+
+  .declare-core .site-shell__sidebar {
+    position: static;
   }
 }

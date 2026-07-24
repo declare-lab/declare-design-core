@@ -136,3 +136,34 @@
 .page-header:has(h1:empty) {
   display: none;
 }
+
+/* FAQ answers are primary reading content, not card metadata. */
+.faq-list {
+  display: grid;
+  gap: 0;
+  border-bottom: 0;
+}
+
+.faq-list article,
+[data-theme="dark"] .faq-list article {
+  min-height: 0;
+  padding: 1.05rem 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.faq-list h3 {
+  margin: 0 0 0.35rem;
+}
+
+.content-text .faq-list p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-family: var(--font-serif);
+  font-size: var(--type-supporting);
+  font-weight: var(--weight-body);
+  line-height: 1.65;
+}

@@ -234,10 +234,18 @@
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 1.5rem var(--chrome-inline);
+  text-align: center;
 }
 
 .footer-inner p {
   margin-bottom: 0.35rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 1rem;
 }
 
 .footer-inner a,

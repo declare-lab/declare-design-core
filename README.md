@@ -25,6 +25,34 @@ Load the shared interaction script near the end of the page:
 <script src="/assets/declare-core/js/site.js"></script>
 ```
 
+Select one reusable site shell on the document body:
+
+```html
+<body class="site-layout site-layout--lab">
+```
+
+or:
+
+```html
+<body class="site-layout site-layout--personal">
+```
+
+Use the canonical shell structure in the page layout:
+
+```html
+<div class="page-wrapper site-shell has-sidebar">
+  <aside class="sidebar site-shell__sidebar">...</aside>
+  <article class="page-content site-shell__content">
+    <div class="page-body site-content">...</div>
+  </article>
+</div>
+```
+
+The lab shell provides a wide institutional canvas. The personal shell adds an
+author rail. Consumers may customize `--site-layout-max-width`,
+`--site-shell-gap`, `--site-content-gap`, `--site-sidebar-width`, and
+`--site-sidebar-top`; they must not recreate the shell selectors.
+
 Use the shared structural classes for in-page navigation:
 
 ```html

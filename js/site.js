@@ -151,6 +151,16 @@
       return Math.round(line);
     }
 
+    function getDockedMenuBottom(menu) {
+      var rect = menu.getBoundingClientRect();
+      var computedTop = parseFloat(window.getComputedStyle(menu).top);
+      var stickyTop = Number.isFinite(computedTop)
+        ? computedTop
+        : getHeaderBottom() + 16;
+
+      return stickyTop + rect.height;
+    }
+
     function revealCurrentLink(menu, link) {
       var scroller = getScroller(menu);
       if (!link || !isHorizontallyScrollable(menu)) return;
@@ -275,7 +285,7 @@
       if (isHorizontal(menu)) {
         targetOffset = Math.max(
           targetOffset,
-          menu.getBoundingClientRect().bottom + 18
+          getDockedMenuBottom(menu) + 18
         );
       }
 

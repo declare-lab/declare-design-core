@@ -16,6 +16,13 @@ test "$import_count" -eq 1
 
 grep -q "/assets/declare-core/js/site.js" "$layout_file"
 grep -q 'class="declare-core"' "$layout_file"
+grep -Eq 'class="site-layout site-layout--(lab|personal)"' "$layout_file"
+
+single_layout="$site_root/_layouts/single.html"
+test -f "$single_layout"
+grep -q 'site-shell' "$single_layout"
+grep -q 'site-shell__content' "$single_layout"
+grep -q 'site-content' "$single_layout"
 
 if test -e "$site_root/assets/js/section-navigation.js"; then
   echo "Legacy section-navigation.js still exists in $site_root" >&2
@@ -67,9 +74,23 @@ for consumer_style in "$style_file" "$site_root/_sass/"*.scss; do
   fi
 
   if grep -Eq \
-    '\.(page-rail-layout|page-rail-layout__main)([[:space:]:>,+~.{#]|$)' \
+    '\.(site-layout|site-layout--lab|site-layout--personal|site-shell|site-shell__sidebar|site-shell__content|site-content|page-rail-layout|page-rail-layout__main)([[:space:]:>,+~.{#]|$)' \
     "$consumer_style"; then
-    echo "Shared page-rail layout styling has reappeared in $consumer_style" >&2
+    echo "Shared layout styling has reappeared in $consumer_style" >&2
+    exit 1
+  fi
+
+  if grep -Eq \
+    '^[[:space:]]*\.(page-wrapper|page-content|page-body|sidebar)[[:space:]]*([,{]|$)|^[[:space:]]*\.page-wrapper[[:space:]]+\.page-content|^[[:space:]]*\.page-body[[:space:]]+\.content-text' \
+    "$consumer_style"; then
+    echo "Legacy page-shell geometry has reappeared in $consumer_style" >&2
+    exit 1
+  fi
+
+  if grep -Eq \
+    '\.faq-list([[:space:]:>,+~.{#]|$)' \
+    "$consumer_style"; then
+    echo "Shared FAQ styling has reappeared in $consumer_style" >&2
     exit 1
   fi
 

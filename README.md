@@ -121,7 +121,7 @@ This is the supported argument surface:
 | --- | --- |
 | Brand | `$accent`, `$accent-hover`, `$accent-light`, `$accent-contrast` and their `$dark-*` counterparts |
 | Surfaces | `$background`, `$card-background`, `$soft-background`, `$text`, `$text-secondary`, `$border` and their `$dark-*` counterparts |
-| Type | `$font-serif`, `$font-sans`, `$font-mono`, `$display-size`, `$page-title-size`, `$section-title-size`, `$feature-title-size`, `$card-title-size`, `$body-size`, `$supporting-size`, `$small-size`, `$control-size`, `$meta-size`, `$label-size`, `$stat-size`, `$content-leading` |
+| Type | `$font-serif`, `$font-sans`, `$font-mono`, `$display-size`, `$page-title-size`, `$section-title-size`, `$feature-title-size`, `$card-title-size`, `$body-size`, `$supporting-size`, `$small-size`, `$control-size`, `$meta-size`, `$label-size`, `$stat-size`, `$content-leading`, `$prose-align`, `$prose-last-line-align` |
 | Shape | `$radius` |
 | Layout | `$max-width`, `$layout-max-width`, `$sidebar-width`, `$shell-gap`, `$rail-width`, `$rail-gap`, `$publication-rail-width`, `$publication-rail-gap`, `$content-measure` |
 | Page rhythm | `$page-space-top`, `$page-space-bottom`, `$page-header-gap`, `$page-meta-gap`, `$page-lead-gap`, `$page-lead-padding` |

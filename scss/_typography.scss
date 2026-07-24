@@ -77,8 +77,12 @@
   font-family: var(--font-serif) !important;
   font-size: var(--type-body) !important;
   font-weight: var(--weight-body) !important;
+  hyphens: auto;
   letter-spacing: 0 !important;
   line-height: var(--content-leading) !important;
+  text-align: var(--prose-align) !important;
+  text-align-last: var(--prose-last-line-align) !important;
+  text-justify: inter-word;
 }
 
 .declare-core
@@ -111,8 +115,12 @@
   font-family: var(--font-serif) !important;
   font-size: var(--type-supporting) !important;
   font-weight: var(--weight-body) !important;
+  hyphens: auto;
   letter-spacing: 0 !important;
   line-height: var(--content-leading) !important;
+  text-align: var(--prose-align) !important;
+  text-align-last: var(--prose-last-line-align) !important;
+  text-justify: inter-word;
 }
 
 .declare-core .site-main table td,
@@ -122,8 +130,12 @@
   font-family: var(--font-serif) !important;
   font-size: var(--type-small) !important;
   font-weight: var(--weight-body) !important;
+  hyphens: auto;
   letter-spacing: 0 !important;
   line-height: var(--card-leading) !important;
+  text-align: var(--prose-align) !important;
+  text-align-last: var(--prose-last-line-align) !important;
+  text-justify: inter-word;
 }
 
 .declare-core .site-main time,

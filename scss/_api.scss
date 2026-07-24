@@ -41,6 +41,8 @@
   $label-size: null,
   $stat-size: null,
   $content-leading: null,
+  $prose-align: null,
+  $prose-last-line-align: null,
   $radius: null,
   $max-width: null,
   $layout-max-width: null,
@@ -156,6 +158,12 @@
     }
     @if $content-leading != null {
       --content-leading: #{$content-leading};
+    }
+    @if $prose-align != null {
+      --prose-align: #{$prose-align};
+    }
+    @if $prose-last-line-align != null {
+      --prose-last-line-align: #{$prose-last-line-align};
     }
     @if $radius != null {
       --radius: #{$radius};

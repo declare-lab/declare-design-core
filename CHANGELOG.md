@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.3
+
+- Lower structural-fallback specificity so explicit semantic roles always win.
+
 ## 2.1.2
 
 - Remove the legacy article-wide supporting-text fallback.

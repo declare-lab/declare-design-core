@@ -83,7 +83,7 @@
 
 .declare-core
   .site-main
-  :is(
+  :where(
     .faq-list,
     .opening-list,
     .opportunity-grid,
@@ -101,7 +101,7 @@
     .award-grid,
     .lab-note-hero
   )
-  :is(p, li, blockquote, dd),
+  :where(p, li, blockquote, dd),
 .declare-core .site-main details p,
 .declare-core .site-main details li,
 .declare-core .site-main [data-type-role="supporting"],

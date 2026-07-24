@@ -87,12 +87,18 @@ argument is optional:
 @include declare-customize(
   $accent: #006b5f,
   $accent-hover: #005248,
+  $accent-light: #dcefeb,
   $dark-accent: #73d8ca,
   $dark-accent-hover: #9ce8de,
+  $dark-accent-light: #153f3a,
+  $background: #f4f6f5,
+  $card-background: #ffffff,
+  $text: #15201e,
   $font-serif: ("Source Serif 4", Georgia, serif),
   $font-sans: ("Inter", sans-serif),
   $body-size: 1.05rem,
   $section-title-size: 1.8rem,
+  $stat-size: 2.2rem,
   $radius: 4px,
   $layout-max-width: 1280px,
   $sidebar-width: 300px,
@@ -105,8 +111,9 @@ This is the supported argument surface:
 
 | Concern | Arguments |
 | --- | --- |
-| Brand | `$accent`, `$accent-hover`, `$dark-accent`, `$dark-accent-hover` |
-| Type | `$font-serif`, `$font-sans`, `$font-mono`, `$body-size`, `$section-title-size`, `$card-title-size`, `$content-leading` |
+| Brand | `$accent`, `$accent-hover`, `$accent-light`, `$accent-contrast` and their `$dark-*` counterparts |
+| Surfaces | `$background`, `$card-background`, `$soft-background`, `$text`, `$text-secondary`, `$border` and their `$dark-*` counterparts |
+| Type | `$font-serif`, `$font-sans`, `$font-mono`, `$body-size`, `$section-title-size`, `$card-title-size`, `$stat-size`, `$content-leading` |
 | Shape | `$radius` |
 | Layout | `$max-width`, `$layout-max-width`, `$sidebar-width`, `$shell-gap` |
 | Rhythm | `$section-space` |

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.7.1
+
+- Extend customization arguments to light and dark surfaces, text, borders, and complete accent palettes.
+- Strengthen metadata typography selectors so semantic roles beat generic card-paragraph rules.
+- Add shared statistic sizing and compact-control coverage for note links.
+
 ## 1.7.0
 
 - Add the public `declare-customize` mixin for brand, typography, shape, layout, and rhythm arguments.

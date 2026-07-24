@@ -7,14 +7,31 @@
 @mixin declare-customize(
   $accent: null,
   $accent-hover: null,
+  $accent-light: null,
+  $accent-contrast: null,
   $dark-accent: null,
   $dark-accent-hover: null,
+  $dark-accent-light: null,
+  $dark-accent-contrast: null,
+  $background: null,
+  $card-background: null,
+  $soft-background: null,
+  $text: null,
+  $text-secondary: null,
+  $border: null,
+  $dark-background: null,
+  $dark-card-background: null,
+  $dark-soft-background: null,
+  $dark-text: null,
+  $dark-text-secondary: null,
+  $dark-border: null,
   $font-serif: null,
   $font-sans: null,
   $font-mono: null,
   $body-size: null,
   $section-title-size: null,
   $card-title-size: null,
+  $stat-size: null,
   $content-leading: null,
   $radius: null,
   $max-width: null,
@@ -29,6 +46,40 @@
     }
     @if $accent-hover != null {
       --accent-hover: #{$accent-hover};
+    }
+    @if $accent-light != null {
+      --accent-light: #{$accent-light};
+    }
+    @if $accent-contrast != null {
+      --accent-contrast: #{$accent-contrast};
+    }
+    @if $background != null {
+      --paper: #{$background};
+      --bg: #{$background};
+      --bg-page: #{$background};
+    }
+    @if $card-background != null {
+      --paper-card: #{$card-background};
+      --bg-card: #{$card-background};
+      --surface-panel: #{$card-background};
+    }
+    @if $soft-background != null {
+      --paper-2: #{$soft-background};
+      --bg-soft: #{$soft-background};
+      --surface-subtle: #{$soft-background};
+    }
+    @if $text != null {
+      --ink: #{$text};
+      --text: #{$text};
+      --rule-strong: #{$text};
+    }
+    @if $text-secondary != null {
+      --ink-soft: #{$text-secondary};
+      --text-secondary: #{$text-secondary};
+    }
+    @if $border != null {
+      --rule: #{$border};
+      --border: #{$border};
     }
     @if $font-serif != null {
       --font-serif: #{$font-serif};
@@ -47,6 +98,9 @@
     }
     @if $card-title-size != null {
       --type-card-title: #{$card-title-size};
+    }
+    @if $stat-size != null {
+      --type-stat: #{$stat-size};
     }
     @if $content-leading != null {
       --content-leading: #{$content-leading};
@@ -73,13 +127,47 @@
     }
   }
 
-  @if $dark-accent != null or $dark-accent-hover != null {
+  @if $dark-accent != null or $dark-accent-hover != null or $dark-accent-light != null or $dark-accent-contrast != null or $dark-background != null or $dark-card-background != null or $dark-soft-background != null or $dark-text != null or $dark-text-secondary != null or $dark-border != null {
     [data-theme="dark"] {
       @if $dark-accent != null {
         --accent: #{$dark-accent};
       }
       @if $dark-accent-hover != null {
         --accent-hover: #{$dark-accent-hover};
+      }
+      @if $dark-accent-light != null {
+        --accent-light: #{$dark-accent-light};
+      }
+      @if $dark-accent-contrast != null {
+        --accent-contrast: #{$dark-accent-contrast};
+      }
+      @if $dark-background != null {
+        --paper: #{$dark-background};
+        --bg: #{$dark-background};
+        --bg-page: #{$dark-background};
+      }
+      @if $dark-card-background != null {
+        --paper-card: #{$dark-card-background};
+        --bg-card: #{$dark-card-background};
+        --surface-panel: #{$dark-card-background};
+      }
+      @if $dark-soft-background != null {
+        --paper-2: #{$dark-soft-background};
+        --bg-soft: #{$dark-soft-background};
+        --surface-subtle: #{$dark-soft-background};
+      }
+      @if $dark-text != null {
+        --ink: #{$dark-text};
+        --text: #{$dark-text};
+        --rule-strong: #{$dark-text};
+      }
+      @if $dark-text-secondary != null {
+        --ink-soft: #{$dark-text-secondary};
+        --text-secondary: #{$dark-text-secondary};
+      }
+      @if $dark-border != null {
+        --rule: #{$dark-border};
+        --border: #{$dark-border};
       }
     }
   }

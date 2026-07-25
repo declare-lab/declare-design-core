@@ -23,9 +23,14 @@
   margin-bottom: 0;
 }
 
+/* A page lead is display copy -- one or two sentences introducing the page --
+ * not sustained body prose, so it fills its column. Capping it at
+ * --content-measure left dead space to the right of every line once a lead ran
+ * past a single line: 260px of it in an 804px column. The measure still governs
+ * body prose, where it earns its keep. */
 .declare-core .page-lead p,
 .declare-core .page-lead__copy {
-  max-width: var(--content-measure);
+  max-width: none;
   margin: 0;
 }
 

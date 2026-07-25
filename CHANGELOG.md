@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.3.2
+
+- Page leads fill their column. `.page-lead p` and `.page-lead__copy` no longer
+  cap at `--content-measure`; a lead is one or two sentences of display copy, and
+  the cap left dead space to the right of every line once a lead wrapped (260px
+  in an 804px column). The measure continues to govern body prose.
+
 ## 2.5.0
 
 - Changed the unified default family from Archivo to Spectral for a more

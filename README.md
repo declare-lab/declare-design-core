@@ -129,7 +129,8 @@ prose. Compact metadata remains left-aligned so short affiliations, dates, and
 profile details do not acquire exaggerated word spacing in narrow components.
 Use `data-prose-align="left"` or `data-prose-align="center"` on concise copy
 that should retain its semantic type role without inheriting the site's
-longer-form prose alignment.
+longer-form prose alignment. Add `data-prose-align-mobile="left"` when the
+same copy should use a left reading edge below the 720px mobile breakpoint.
 | Shape | `$radius` |
 | Layout | `$max-width`, `$layout-max-width`, `$sidebar-width`, `$stacked-sidebar-width`, `$shell-gap`, `$rail-width`, `$rail-gap`, `$publication-rail-width`, `$publication-rail-gap`, `$content-measure` |
 | Page rhythm | `$page-space-top`, `$page-space-bottom`, `$page-header-gap`, `$page-meta-gap`, `$page-lead-gap`, `$page-lead-padding` |

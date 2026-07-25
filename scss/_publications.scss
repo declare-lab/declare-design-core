@@ -124,6 +124,10 @@
   gap: 0.4rem;
 }
 
+.declare-core .pub-filter {
+  min-height: var(--control-height);
+}
+
 .declare-core .pub-cat-count,
 .declare-core .pub-cat-btn > span {
   color: var(--text-muted);

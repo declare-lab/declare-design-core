@@ -24,6 +24,7 @@
 .site-layout--personal {
   --site-shell-gap: var(--layout-shell-gap, 2.5rem);
   --site-sidebar-width: var(--layout-sidebar-width, 290px);
+  --site-stacked-sidebar-width: var(--layout-stacked-sidebar-width, 720px);
 }
 
 .declare-core .site-layout .site-main {
@@ -139,6 +140,11 @@
   .declare-core .site-shell__sidebar {
     position: static;
     width: 100%;
+  }
+
+  .declare-core .site-layout--personal .site-shell__sidebar {
+    max-width: min(100%, var(--site-stacked-sidebar-width));
+    margin-inline: auto;
   }
 
   .declare-core .site-content {

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.3.3
+
+- Publication topic badges always start their own row. `.pub-meta` is a wrapping
+  flex row, so a card with a single badge sat beside the links while a card with
+  several wrapped below them, leaving badges at different left edges from card to
+  card.
+
 ## 2.3.2
 
 - Page leads fill their column. `.page-lead p` and `.page-lead__copy` no longer

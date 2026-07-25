@@ -300,7 +300,12 @@
   color: var(--accent-2);
 }
 
+/* Topic badges always begin their own row. .pub-meta is a wrapping flex row, so
+ * a card with one badge left it narrow enough to sit beside the links while a
+ * card with several wrapped to the next line -- the badges started at a
+ * different x depending on how many there were. */
 .declare-core .pub-cats {
+  flex-basis: 100%;
   margin-top: 0.6rem;
 }
 

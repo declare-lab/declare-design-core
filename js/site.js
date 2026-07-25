@@ -805,7 +805,16 @@
       });
 
       if (watched.length) {
-        var availabilityObserver = new window.MutationObserver(requestMenuUpdate);
+        /*
+         * Availability is DOM state, not animation state, so it is applied
+         * synchronously. requestAnimationFrame does not run while the tab is
+         * hidden, and a menu must not keep offering links to sections that were
+         * filtered away in the background.
+         */
+        var availabilityObserver = new window.MutationObserver(function () {
+          menus.forEach(syncLinkAvailability);
+          requestMenuUpdate();
+        });
         watched.forEach(function (section) {
           availabilityObserver.observe(section, {
             attributes: true,

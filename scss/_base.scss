@@ -17,12 +17,19 @@ body {
   overflow-x: clip;
   color: var(--text);
   background: var(--bg-page);
-  font-family: var(--font-serif);
+  font-family: var(--font-family);
   font-size: 17px;
   font-weight: var(--weight-body);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
 }
 
 body.site-layout,
@@ -72,7 +79,6 @@ h4,
 h5,
 h6 {
   color: var(--text);
-  font-family: var(--font-sans);
   font-variation-settings: "wdth" var(--heading-width);
   letter-spacing: 0;
 }

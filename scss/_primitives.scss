@@ -1,6 +1,5 @@
 .content-text {
   color: var(--text);
-  font-family: var(--font-serif);
   font-size: var(--type-body);
   font-weight: var(--weight-body);
   line-height: var(--content-leading);
@@ -36,7 +35,6 @@
   background: var(--section-label-background);
   color: var(--section-label-text);
   content: attr(data-section-label);
-  font-family: var(--font-mono);
   font-size: var(--type-label);
   font-weight: var(--weight-label);
   letter-spacing: 0;
@@ -68,7 +66,6 @@
   border-radius: 0;
   background: transparent;
   color: var(--text-secondary);
-  font-family: var(--font-serif);
   font-size: var(--type-small);
   font-weight: var(--weight-body);
   line-height: var(--card-leading);
@@ -123,7 +120,6 @@
   padding: 0.65rem 0.95rem;
   border: 1px solid var(--border);
   border-radius: 0;
-  font-family: var(--font-sans);
   font-size: var(--type-control);
   font-weight: var(--weight-card);
   line-height: 1.2;
@@ -176,7 +172,6 @@
 .pub-cat-btn,
 .pub-cat-badge {
   min-height: var(--compact-control-height);
-  font-family: var(--font-sans);
   font-size: var(--type-meta);
   font-weight: var(--weight-card);
   line-height: 1.2;
@@ -203,7 +198,6 @@
   padding-bottom: 1rem;
   border-bottom: var(--rule-heavy);
   color: var(--text-secondary);
-  font-family: var(--font-mono);
   font-size: var(--type-meta);
   font-weight: var(--weight-meta);
   line-height: 1.4;
@@ -230,7 +224,6 @@
   border-radius: 0;
   background: var(--surface-subtle);
   color: var(--text);
-  font-family: var(--font-mono);
   line-height: 1;
   text-align: center;
 }
@@ -359,7 +352,6 @@
   border-radius: 0;
   background: var(--accent-light);
   color: var(--accent);
-  font-family: var(--font-mono);
   font-size: var(--type-label);
   font-weight: var(--weight-label);
   line-height: 1;
@@ -407,7 +399,6 @@
   border-radius: 0;
   background: var(--surface-subtle);
   color: var(--text);
-  font-family: var(--font-mono);
   font-size: 0.875em;
 }
 
@@ -419,7 +410,6 @@
   border-radius: 0;
   background: var(--code-background);
   color: var(--code-text);
-  font-family: var(--font-mono);
   font-size: var(--type-small);
   line-height: 1.65;
 }
@@ -438,7 +428,6 @@
   border-radius: 0;
   background: var(--accent-light);
   color: var(--text-secondary);
-  font-family: var(--font-serif);
   font-size: var(--type-body);
   font-style: normal;
 }
@@ -451,7 +440,6 @@
   width: 100%;
   margin: 1rem 0;
   border-collapse: collapse;
-  font-family: var(--font-serif);
   font-size: var(--type-small);
 }
 
@@ -465,7 +453,6 @@
 .content-text table:not(.profile-table) th {
   background: var(--surface-subtle);
   color: var(--text-secondary);
-  font-family: var(--font-mono);
   font-size: var(--type-label);
   font-weight: var(--weight-label);
 }
@@ -508,7 +495,6 @@
 .content-text .faq-list p {
   margin: 0;
   color: var(--text-secondary);
-  font-family: var(--font-serif);
   font-size: var(--type-supporting);
   font-weight: var(--weight-body);
   line-height: 1.65;

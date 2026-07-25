@@ -94,8 +94,7 @@ argument is optional:
   $background: #f4f6f5,
   $card-background: #ffffff,
   $text: #15201e,
-  $font-serif: ("Source Serif 4", Georgia, serif),
-  $font-sans: ("Inter", sans-serif),
+  $font-family: ("Inter", sans-serif),
   $body-size: 1.05rem,
   $section-title-size: 1.8rem,
   $stat-size: 2.2rem,
@@ -122,7 +121,13 @@ This is the supported argument surface:
 | --- | --- |
 | Brand | `$accent`, `$accent-hover`, `$accent-light`, `$accent-contrast` and their `$dark-*` counterparts |
 | Surfaces | `$background`, `$card-background`, `$soft-background`, `$text`, `$text-secondary`, `$border` and their `$dark-*` counterparts |
-| Type | `$font-serif`, `$font-sans`, `$font-mono`, `$display-size`, `$page-title-size`, `$section-title-size`, `$feature-title-size`, `$card-title-size`, `$body-size`, `$supporting-size`, `$small-size`, `$control-size`, `$meta-size`, `$label-size`, `$stat-size`, `$content-leading`, `$prose-align`, `$prose-last-line-align` |
+| Type | `$font-family`, `$display-size`, `$page-title-size`, `$section-title-size`, `$feature-title-size`, `$card-title-size`, `$body-size`, `$supporting-size`, `$small-size`, `$control-size`, `$meta-size`, `$label-size`, `$stat-size`, `$content-leading`, `$prose-align`, `$prose-last-line-align` |
+
+The core deliberately exposes one font family for every semantic role. Page
+titles, prose, metadata, navigation, controls, publications, and code samples
+all inherit `--font-family`; consumers cannot assign separate display, serif,
+or monospace families. A reusable site can replace the family once through
+`$font-family`.
 
 `$prose-align` and `$prose-last-line-align` apply to body and supporting
 prose. Compact metadata remains left-aligned so short affiliations, dates, and

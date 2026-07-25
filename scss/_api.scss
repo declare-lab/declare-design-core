@@ -25,9 +25,7 @@
   $dark-text: null,
   $dark-text-secondary: null,
   $dark-border: null,
-  $font-serif: null,
-  $font-sans: null,
-  $font-mono: null,
+  $font-family: null,
   $display-size: null,
   $page-title-size: null,
   $body-size: null,
@@ -112,14 +110,8 @@
       --rule: #{$border};
       --border: #{$border};
     }
-    @if $font-serif != null {
-      --font-serif: #{$font-serif};
-    }
-    @if $font-sans != null {
-      --font-sans: #{$font-sans};
-    }
-    @if $font-mono != null {
-      --font-mono: #{$font-mono};
+    @if $font-family != null {
+      --font-family: #{$font-family};
     }
     @if $display-size != null {
       --type-display: #{$display-size};

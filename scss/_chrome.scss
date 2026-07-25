@@ -28,7 +28,6 @@
   align-items: center;
   gap: 0.65rem;
   color: var(--text);
-  font-family: var(--font-sans);
   font-size: 1.1rem;
   font-weight: var(--weight-display);
   line-height: 1;
@@ -94,7 +93,6 @@
   padding: 0.5rem 0.75rem;
   border-radius: 0;
   color: var(--text-secondary);
-  font-family: var(--font-sans);
   font-size: var(--type-navigation);
   font-weight: var(--weight-emphasis);
   letter-spacing: 0;
@@ -224,7 +222,6 @@
 .footer-inner,
 .footer-links {
   color: var(--text-secondary);
-  font-family: var(--font-mono);
   font-size: var(--footer-type);
   font-weight: var(--weight-meta);
   line-height: 1.6;

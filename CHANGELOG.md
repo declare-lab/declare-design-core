@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.4.0
+
+- Replaced the serif, sans-serif, monospace, display, and Bengali family tokens
+  with one public `--font-family` token.
+- Made every semantic type role inherit the same Archivo family, including
+  prose, metadata, navigation, controls, publications, and code.
+- Replaced the three family customization arguments with `$font-family`.
+- Added consumer checks that reject legacy family tokens and multiple web-font
+  imports.
+
 ## 2.3.1
 
 - Added `--rule-heavy` token (`2px solid var(--rule-strong)`) for the heavy ink

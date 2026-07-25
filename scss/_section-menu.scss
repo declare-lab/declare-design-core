@@ -12,7 +12,6 @@
 .declare-core .section-menu {
   box-sizing: border-box;
   color: var(--text-secondary);
-  font-family: var(--font-sans);
   font-size: var(--type-context-nav);
   line-height: var(--compact-leading);
 }
@@ -33,7 +32,6 @@
   border-radius: 0;
   color: var(--text-secondary);
   background: transparent;
-  font-family: var(--font-sans);
   font-size: inherit;
   font-weight: var(--weight-body);
   line-height: var(--compact-leading);
@@ -79,7 +77,6 @@
   display: block;
   margin: 0 0 0.55rem 0.7rem;
   color: var(--text-muted);
-  font-family: var(--font-mono);
   font-size: var(--type-label);
   font-weight: var(--weight-label);
   line-height: 1.35;

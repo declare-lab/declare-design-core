@@ -366,12 +366,10 @@
   }
 
   function initializeTheme() {
+    // The theme itself is resolved by an inline script in <head>, before first
+    // paint, so there is no flash and no light-by-default for visitors whose
+    // system is set to dark. This only wires up the control.
     if (!themeToggle) return;
-
-    var savedTheme = window.localStorage.getItem("theme");
-    if (savedTheme === "light" || savedTheme === "dark") {
-      root.setAttribute("data-theme", savedTheme);
-    }
 
     updateThemeControl();
     themeToggle.addEventListener("click", function () {
@@ -380,6 +378,22 @@
       window.localStorage.setItem("theme", next);
       updateThemeControl();
     });
+
+    // Until someone picks a side, follow the system. Once they use the toggle
+    // their choice is stored and we stop overriding it.
+    var systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+    var onSystemChange = function (event) {
+      var saved = window.localStorage.getItem("theme");
+      if (saved === "light" || saved === "dark") return;
+      root.setAttribute("data-theme", event.matches ? "dark" : "light");
+      updateThemeControl();
+    };
+
+    if (typeof systemDark.addEventListener === "function") {
+      systemDark.addEventListener("change", onSystemChange);
+    } else if (typeof systemDark.addListener === "function") {
+      systemDark.addListener(onSystemChange);
+    }
   }
 
   function setPrimaryMenu(open) {

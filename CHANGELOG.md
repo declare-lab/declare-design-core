@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.4.2
+
+- Made native code and keyboard elements inherit the single site family,
+  removing the browser's implicit monospace exception.
+
 ## 2.4.1
 
 - Narrowed the single-family verifier to real `font-family` declarations so it

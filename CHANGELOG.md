@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.4.0
+
+- Restored a two-family type system. `--font-sans` carries headings, navigation,
+  controls and labels; `--font-serif` carries reading prose; `--font-mono` carries
+  metadata. A single family had left every role separated only by size and weight.
+- New warm palette: paper `#f0eee6`, ink `#141413`, clay accent `#c1653f`, with a
+  matching dark theme. Replaces the cool paper and cobalt accent.
+- Removed the rule under the site header; the page header below it already opens
+  with a 2px ink divider.
+- Filter controls (`.pub-cat-btn`, `.pub-cat-badge`) are quieter: smaller, lighter
+  border, muted until active. They are navigation, not calls to action.
+
 ## 2.3.4
 
 - Section menus withdraw links to sections the page has filtered away, and

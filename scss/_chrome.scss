@@ -2,7 +2,9 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 1px solid var(--border);
+  /* No rule under the nav: the page header below already opens with a 2px ink
+   * divider, so a line here made three boundaries stacked in the first 200px. */
+  border-bottom: 0;
   background: color-mix(in srgb, var(--bg-page) 96%, transparent);
   box-shadow: none;
   backdrop-filter: saturate(150%) blur(22px);

@@ -219,3 +219,82 @@
   content: none;
   display: none;
 }
+
+/* ===== Font roles =====
+ * Sans for anything structural or interactive -- headings, navigation,
+ * controls, labels. Serif for reading prose. Mono for metadata. Assigning by
+ * role rather than per component keeps the two families from drifting apart.
+ */
+.declare-core h1,
+.declare-core h2,
+.declare-core h3,
+.declare-core h4,
+.declare-core h5,
+.declare-core h6,
+.declare-core .nav-links a,
+.declare-core .site-title,
+.declare-core .btn,
+.declare-core .btn-primary,
+.declare-core .btn-secondary,
+.declare-core .pub-filter,
+.declare-core .pub-cat-btn,
+.declare-core .pub-cat-badge,
+.declare-core .pub-links a,
+.declare-core .pub-abstract-toggle,
+.declare-core .project-links a,
+.declare-core .section-menu a,
+.declare-core .section-menu__label,
+.declare-core [data-type-role="section-title"],
+.declare-core [data-type-role="subsection-title"],
+.declare-core [data-type-role="control"] {
+  font-family: var(--font-sans);
+}
+
+.declare-core .site-main p,
+.declare-core .site-main li,
+.declare-core .site-main blockquote,
+.declare-core .site-main dd,
+.declare-core [data-type-role="body"],
+.declare-core [data-type-role="supporting"],
+.declare-core [data-type-role="small"] {
+  font-family: var(--font-serif);
+}
+
+.declare-core .page-meta-strip,
+.declare-core .date-marker,
+.declare-core .pub-venue,
+.declare-core .pub-year-tag,
+.declare-core .record-badge,
+.declare-core [data-type-role="meta"],
+.declare-core [data-type-role="label"] {
+  font-family: var(--font-mono);
+}
+
+/* ===== Quieter filter controls =====
+ * Category filters and similar switches are navigation, not calls to action.
+ * They previously carried the same height, border weight and padding as a
+ * primary button, so a row of them read louder than the papers they filter.
+ */
+.declare-core .pub-cat-btn,
+.declare-core .pub-cat-badge {
+  min-height: 26px;
+  padding: 0.2rem 0.5rem;
+  border-color: color-mix(in srgb, var(--rule) 70%, transparent);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: var(--type-label);
+  font-weight: var(--weight-meta);
+}
+
+.declare-core .pub-cat-btn:hover,
+.declare-core .pub-cat-badge:hover {
+  border-color: var(--accent);
+  background: var(--accent-light);
+  color: var(--accent-hover);
+}
+
+.declare-core .pub-cat-btn.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-contrast);
+}

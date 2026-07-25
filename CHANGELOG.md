@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.3.1
+
+- Added `--rule-heavy` token (`2px solid var(--rule-strong)`) for the heavy ink
+  rule that closes a page header. Routed the page-header divider and the
+  publication-card top rule through it, so the 2px structural weight is defined
+  in one place instead of being repeated as a literal in consuming sites.
+
 ## 2.3.0
 
 - Added reusable compact and split page-lead compositions.

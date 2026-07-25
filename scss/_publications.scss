@@ -14,7 +14,7 @@
   padding: var(--card-padding-block) var(--card-padding-inline);
   overflow: hidden;
   border: 1px solid var(--rule);
-  border-top: 2px solid var(--ink);
+  border-top: var(--rule-heavy);
   background: var(--paper-card);
 }
 

@@ -291,6 +291,9 @@
   color: var(--text-secondary);
   font-size: var(--type-small);
   line-height: 1.55;
+  /* An author list is metadata, not prose. Justifying it stretches the gaps
+   * between names on every line but the last, which reads as broken spacing. */
+  --prose-align: left;
 }
 
 .declare-core .pub-authors strong {

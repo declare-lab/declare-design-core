@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.3.4
+
+- Section menus withdraw links to sections the page has filtered away, and
+  refresh when those sections appear or disappear. A publication list filtered to
+  one topic previously still offered every year in the rail, and most of those
+  links moved nowhere.
+
 ## 2.3.3
 
 - Publication topic badges always start their own row. `.pub-meta` is a wrapping

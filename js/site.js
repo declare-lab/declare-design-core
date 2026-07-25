@@ -447,6 +447,31 @@
       }
     }
 
+    /*
+     * A section that the page has filtered away is not navigable, so its menu
+     * entry is withdrawn rather than left pointing at nothing. Without this, a
+     * publication list filtered to one topic still offered every year in the
+     * rail and most of those links moved nowhere.
+     */
+    function isSectionAvailable(section) {
+      if (!section) return false;
+      if (section.hasAttribute("hidden")) return false;
+      return section.getClientRects().length > 0;
+    }
+
+    function syncLinkAvailability(menu) {
+      var anyHidden = false;
+      getLinks(menu).forEach(function (link) {
+        var available = isSectionAvailable(getSection(link));
+        link.hidden = !available;
+        link.setAttribute("aria-hidden", available ? "false" : "true");
+        if (available) link.removeAttribute("tabindex");
+        else link.setAttribute("tabindex", "-1");
+        if (!available) anyHidden = true;
+      });
+      menu.classList.toggle("section-menu--filtered", anyHidden);
+    }
+
     function isVisible(menu) {
       return menu.getClientRects().length > 0;
     }
@@ -555,12 +580,14 @@
     function updateMenu(menu) {
       if (!isVisible(menu)) return;
 
+      syncLinkAvailability(menu);
+
       var pairs = getLinks(menu)
         .map(function (link) {
           return { link: link, section: getSection(link) };
         })
         .filter(function (pair) {
-          return pair.section;
+          return isSectionAvailable(pair.section);
         });
 
       if (!pairs.length) return;
@@ -761,6 +788,32 @@
     syncInitialHash();
     window.addEventListener("scroll", requestMenuUpdate, { passive: true });
     window.addEventListener("resize", requestMenuUpdate);
+
+    /*
+     * Filtering a list toggles `hidden` on its sections without scrolling, so
+     * no scroll or resize event would tell the menu that its targets changed.
+     * Watch the sections the menus point at and refresh when they appear or
+     * disappear.
+     */
+    if (typeof window.MutationObserver === "function") {
+      var watched = [];
+      menus.forEach(function (menu) {
+        getLinks(menu).forEach(function (link) {
+          var section = getSection(link);
+          if (section && watched.indexOf(section) === -1) watched.push(section);
+        });
+      });
+
+      if (watched.length) {
+        var availabilityObserver = new window.MutationObserver(requestMenuUpdate);
+        watched.forEach(function (section) {
+          availabilityObserver.observe(section, {
+            attributes: true,
+            attributeFilter: ["hidden", "style", "class"],
+          });
+        });
+      }
+    }
     window.addEventListener("load", function () {
       if (window.location.hash) syncInitialHash();
       else requestMenuUpdate();

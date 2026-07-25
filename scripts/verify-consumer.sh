@@ -21,7 +21,7 @@ if grep -R -Eq -- '--font-(serif|sans|mono|display|bengali)' \
   exit 1
 fi
 
-if grep -R -E 'font-family[[:space:]]*:' "$core_root/scss" \
+if grep -R -E '^[[:space:]]*font-family[[:space:]]*:' "$core_root/scss" \
   | grep -Ev 'font-family:[[:space:]]*(var\(--font-family\)|inherit)[[:space:]]*;' \
   >/dev/null; then
   echo "A shared-core font declaration bypasses --font-family inheritance" >&2

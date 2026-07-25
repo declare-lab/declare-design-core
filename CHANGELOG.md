@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.4.1
+
+- Narrowed the single-family verifier to real `font-family` declarations so it
+  does not mistake the `--font-family` token definition for an override.
+
 ## 2.4.0
 
 - Replaced the serif, sans-serif, monospace, display, and Bengali family tokens

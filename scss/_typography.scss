@@ -84,11 +84,6 @@
   text-justify: inter-word;
 }
 
-.declare-core .site-main [data-prose-align="left"] {
-  text-align: left !important;
-  text-align-last: left !important;
-}
-
 .declare-core
   .site-main
   :where(
@@ -137,6 +132,16 @@
   line-height: var(--card-leading) !important;
   text-align: left !important;
   text-align-last: auto !important;
+}
+
+.declare-core .site-main [data-prose-align="left"] {
+  text-align: left !important;
+  text-align-last: left !important;
+}
+
+.declare-core .site-main [data-prose-align="center"] {
+  text-align: center !important;
+  text-align-last: center !important;
 }
 
 .declare-core .site-main time,

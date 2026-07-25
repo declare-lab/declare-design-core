@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.5.0
+
+- Changed the unified default family from Archivo to Spectral for a more
+  scholarly, editorial voice across both sites.
+- Removed Archivo-specific variable-width settings; every semantic role now
+  inherits the same family without font-specific axes.
+
 ## 2.4.2
 
 - Made native code and keyboard elements inherit the single site family,

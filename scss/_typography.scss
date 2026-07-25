@@ -12,7 +12,6 @@
 .type-page-title {
   color: var(--text) !important;
   font-size: var(--type-page-title) !important;
-  font-variation-settings: "wdth" var(--heading-width) !important;
   font-weight: var(--weight-display) !important;
   letter-spacing: 0 !important;
   line-height: 1.08 !important;
@@ -23,7 +22,6 @@
 .type-section-title {
   color: var(--text) !important;
   font-size: var(--type-section-title) !important;
-  font-variation-settings: "wdth" var(--heading-width) !important;
   font-weight: var(--weight-section) !important;
   letter-spacing: 0 !important;
   line-height: 1.22 !important;
@@ -34,7 +32,6 @@
 .type-feature-title {
   color: var(--text) !important;
   font-size: var(--type-feature-title) !important;
-  font-variation-settings: "wdth" var(--heading-width) !important;
   font-weight: var(--weight-card) !important;
   letter-spacing: 0 !important;
   line-height: 1.3 !important;
@@ -45,7 +42,6 @@
 .type-card-title {
   color: var(--text) !important;
   font-size: var(--type-card-title) !important;
-  font-variation-settings: "wdth" var(--heading-width) !important;
   font-weight: var(--weight-card) !important;
   letter-spacing: 0 !important;
   line-height: 1.3 !important;
@@ -56,7 +52,6 @@
 .declare-core .site-main [data-type-role="minor-title"] {
   color: var(--text) !important;
   font-size: var(--type-body) !important;
-  font-variation-settings: "wdth" var(--heading-width) !important;
   font-weight: var(--weight-card) !important;
   letter-spacing: 0 !important;
   line-height: 1.35 !important;
@@ -186,7 +181,6 @@
 .declare-core .site-main [data-type-role="stat"] {
   color: var(--text) !important;
   font-size: var(--type-stat) !important;
-  font-variation-settings: "wdth" var(--heading-width) !important;
   font-weight: var(--weight-emphasis) !important;
   letter-spacing: 0 !important;
   line-height: 1 !important;
@@ -195,7 +189,6 @@
 .declare-core .site-main [data-type-role="hero-intro"] {
   color: var(--text-secondary) !important;
   font-size: var(--type-body) !important;
-  font-variation-settings: normal !important;
   font-weight: var(--weight-emphasis) !important;
   letter-spacing: 0 !important;
   line-height: 1.35 !important;
@@ -204,7 +197,6 @@
 .declare-core .site-main [data-type-role="hero-native"] {
   color: var(--text-secondary) !important;
   font-size: var(--type-feature-title) !important;
-  font-variation-settings: normal !important;
   font-weight: var(--weight-meta) !important;
   letter-spacing: 0 !important;
   line-height: 1.3 !important;

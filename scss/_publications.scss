@@ -177,7 +177,6 @@
   padding: 0;
   border: 0;
   font-size: var(--type-section-title);
-  font-variation-settings: "wdth" var(--heading-width);
   font-weight: var(--weight-section);
   letter-spacing: 0;
   line-height: 1.22;
@@ -237,7 +236,6 @@
   margin: 0;
   color: var(--text);
   font-size: var(--type-card-title);
-  font-variation-settings: "wdth" var(--heading-width);
   font-weight: var(--weight-card);
   line-height: 1.3;
 }

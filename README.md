@@ -94,7 +94,7 @@ argument is optional:
   $background: #f4f6f5,
   $card-background: #ffffff,
   $text: #15201e,
-  $font-family: ("Inter", sans-serif),
+  $font-family: ("Spectral", serif),
   $body-size: 1.05rem,
   $section-title-size: 1.8rem,
   $stat-size: 2.2rem,

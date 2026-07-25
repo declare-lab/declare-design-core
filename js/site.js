@@ -420,6 +420,88 @@
     });
   }
 
+  function initializeArchiveNavigation() {
+    var selects = Array.prototype.slice.call(
+      document.querySelectorAll("[data-year-jump]")
+    );
+
+    if (!selects.length) return;
+
+    function targetFor(option) {
+      return option && option.value
+        ? document.getElementById(option.value)
+        : null;
+    }
+
+    function syncOptions(select) {
+      Array.prototype.forEach.call(select.options, function (option) {
+        var target = targetFor(option);
+        option.disabled = Boolean(
+          target &&
+            (target.hidden ||
+              window.getComputedStyle(target).display === "none")
+        );
+      });
+    }
+
+    selects.forEach(function (select) {
+      var toolbar = select.closest(".pub-toolbar");
+      var observedTargets = [];
+
+      Array.prototype.forEach.call(select.options, function (option) {
+        var target = targetFor(option);
+        if (target) observedTargets.push(target);
+      });
+
+      syncOptions(select);
+
+      select.addEventListener("change", function () {
+        var target = targetFor(select.options[select.selectedIndex]);
+        var headerBottom;
+        var toolbarHeight;
+        var targetTop;
+
+        if (!target) return;
+
+        headerBottom = header
+          ? Math.max(0, header.getBoundingClientRect().bottom)
+          : 0;
+        toolbarHeight = toolbar
+          ? toolbar.getBoundingClientRect().height
+          : 0;
+        targetTop = Math.max(
+          0,
+          window.scrollY +
+            target.getBoundingClientRect().top -
+            headerBottom -
+            toolbarHeight -
+            16
+        );
+
+        window.history.pushState(null, "", "#" + target.id);
+        window.scrollTo({
+          top: targetTop,
+          behavior: reducedMotion.matches ? "auto" : "smooth"
+        });
+      });
+
+      if (
+        observedTargets.length &&
+        typeof window.MutationObserver === "function"
+      ) {
+        var observer = new window.MutationObserver(function () {
+          syncOptions(select);
+        });
+        observedTargets.forEach(function (target) {
+          observer.observe(target, {
+            attributes: true,
+            attributeFilter: ["hidden", "style", "class"]
+          });
+        });
+      }
+    });
+  }
+
   function initializeSectionMenus() {
     var menus = Array.prototype.slice.call(
       document.querySelectorAll("[data-section-menu]")
@@ -840,5 +922,6 @@
   initializeTheme();
   initializeTypographyContract();
   initializePrimaryMenu();
+  initializeArchiveNavigation();
   initializeSectionMenus();
 })();

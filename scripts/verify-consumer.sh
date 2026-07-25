@@ -15,25 +15,20 @@ test -f "$core_root/requirements.txt"
 test -f "$style_file"
 test -f "$layout_file"
 
-if grep -R -Eq -- '--font-(serif|sans|mono|display|bengali)' \
-  "$core_root/scss" "$core_root/config"; then
-  echo "Legacy multi-family font tokens remain in the shared core" >&2
-  exit 1
-fi
-
 if grep -R -E '^[[:space:]]*font-family[[:space:]]*:' "$core_root/scss" \
-  | grep -Ev 'font-family:[[:space:]]*(var\(--font-family\)|inherit)[[:space:]]*;' \
+  | grep -Ev 'font-family:[[:space:]]*(var\(--font-(family|sans|serif|mono)\)|inherit)[[:space:]]*;' \
   >/dev/null; then
-  echo "A shared-core font declaration bypasses --font-family inheritance" >&2
+  echo "A shared-core font declaration bypasses the semantic family tokens" >&2
   exit 1
 fi
 
 font_link_files="$(grep -RIl 'fonts.googleapis.com.*family=' \
   "$site_root/_layouts" "$site_root/_includes" 2>/dev/null || true)"
 for font_link_file in $font_link_files; do
-  if grep -Eq 'fonts.googleapis.com.*&family=' "$font_link_file" \
+  if ! grep -Eq 'fonts.googleapis.com.*family=Archivo([:&]|$)' "$font_link_file" \
+    || ! grep -Eq 'fonts.googleapis.com.*family=IBM[+]Plex[+]Mono([:&]|$)' "$font_link_file" \
     || ! grep -Eq 'fonts.googleapis.com.*family=Spectral([:&]|$)' "$font_link_file"; then
-    echo "Multiple or non-canonical web fonts are loaded in $font_link_file" >&2
+    echo "The canonical Archivo, IBM Plex Mono, and Spectral families are not loaded in $font_link_file" >&2
     exit 1
   fi
 done
@@ -143,7 +138,7 @@ for consumer_style in "$style_file" "$site_root/_sass/"*.scss; do
   fi
 
   if grep -Eq \
-    -- '--(accent|accent-hover|accent-light|accent-contrast|accent-2|accent-2-light|accent-3|accent-3-light|ink|ink-soft|paper|paper-2|paper-card|rule|rule-strong|text|text-secondary|text-muted|bg|bg-page|bg-card|bg-soft|border|border-hover|radius|radius-lg|shadow-sm|shadow-md|shadow-lg|transition|font-family|type-display|type-page-title|type-section-title|type-feature-title|type-card-title|type-stat|type-body|type-supporting|type-small|type-control|type-meta|type-label|type-context-nav|type-navigation|content-leading|content-measure|card-leading|compact-leading|prose-align|prose-last-line-align|weight-body|weight-meta|weight-emphasis|weight-label|weight-card|weight-section|weight-display|display-weight|section-weight|card-title-weight|max-width|chrome-height|control-height|compact-control-height|theme-toggle-size|footer-type|page-space-top|page-space-bottom|page-header-gap|page-meta-gap|page-lead-gap|page-lead-padding|section-space|section-rule-space|section-boundary-before|section-boundary-after|section-nav-offset|section-intro-gap|section-heading-gap|section-label-height|section-label-padding|section-label-background|section-label-text|code-background|code-text|panel-padding-block|panel-padding-inline|card-padding-block|card-padding-inline|layout-gap|card-gap|card-border|featured-border)[[:space:]]*:' \
+    -- '--(accent|accent-hover|accent-light|accent-contrast|accent-2|accent-2-light|accent-3|accent-3-light|ink|ink-soft|paper|paper-2|paper-card|rule|rule-strong|text|text-secondary|text-muted|bg|bg-page|bg-card|bg-soft|border|border-hover|radius|radius-lg|shadow-sm|shadow-md|shadow-lg|transition|font-family|font-sans|font-serif|font-mono|type-display|type-page-title|type-section-title|type-feature-title|type-card-title|type-stat|type-body|type-supporting|type-small|type-control|type-meta|type-label|type-context-nav|type-navigation|content-leading|content-measure|card-leading|compact-leading|prose-align|prose-last-line-align|weight-body|weight-meta|weight-emphasis|weight-label|weight-card|weight-section|weight-display|display-weight|section-weight|card-title-weight|max-width|chrome-height|control-height|compact-control-height|theme-toggle-size|footer-type|page-space-top|page-space-bottom|page-header-gap|page-meta-gap|page-lead-gap|page-lead-padding|section-space|section-rule-space|section-boundary-before|section-boundary-after|section-nav-offset|section-intro-gap|section-heading-gap|section-label-height|section-label-padding|section-label-background|section-label-text|code-background|code-text|panel-padding-block|panel-padding-inline|card-padding-block|card-padding-inline|layout-gap|card-gap|card-border|featured-border)[[:space:]]*:' \
     "$consumer_style"; then
     echo "A shared design token has reappeared in $consumer_style" >&2
     exit 1

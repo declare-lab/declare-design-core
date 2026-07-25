@@ -76,6 +76,37 @@
   justify-content: space-between;
 }
 
+.declare-core .pub-year-jump {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--text-muted);
+  font-size: var(--type-meta);
+  font-weight: var(--weight-meta);
+}
+
+.declare-core .pub-year-select {
+  min-height: var(--control-height);
+  padding: 0.34rem 2rem 0.34rem 0.58rem;
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  background-color: var(--paper-card);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.declare-core .pub-year-select:hover,
+.declare-core .pub-year-select:focus {
+  border-color: var(--accent);
+}
+
+.declare-core .pub-year-select:focus {
+  outline: 0;
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+
 .declare-core .pub-count-display {
   flex: 0 0 auto;
   margin-left: auto;
@@ -345,6 +376,11 @@
 
   .declare-core .pub-count-display {
     margin-left: 0;
+  }
+
+  .declare-core .pub-year-jump {
+    justify-content: space-between;
+    width: 100%;
   }
 
   .declare-core .pub-links {

@@ -79,6 +79,12 @@
   max-width: 100%;
 }
 
+.declare-core .page-flow {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
 /*
  * The personal site uses .page-rail-layout directly. The lab's established
  * .side-layout and .pub-layout names are compatibility aliases for the same

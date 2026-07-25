@@ -1,6 +1,27 @@
 # Changelog
 
-## 2.4.0
+## 2.7.0
+
+- Added a compact publication-year selector with sticky-toolbar-aware scrolling
+  and automatic disabling of years hidden by active filters.
+- Kept section rails available as an optional composition while allowing both
+  sites to use simpler single-column page flows.
+
+## 2.6.3
+
+- Section menus withdraw links to sections the page has filtered away, and
+  refresh when those sections appear or disappear.
+
+## 2.6.2
+
+- Publication topic badges always start their own row.
+
+## 2.6.1
+
+- Page leads fill their column instead of leaving unused space beside short
+  introductory copy.
+
+## 2.6.0
 
 - Restored a two-family type system. `--font-sans` carries headings, navigation,
   controls and labels; `--font-serif` carries reading prose; `--font-mono` carries
@@ -11,27 +32,6 @@
   with a 2px ink divider.
 - Filter controls (`.pub-cat-btn`, `.pub-cat-badge`) are quieter: smaller, lighter
   border, muted until active. They are navigation, not calls to action.
-
-## 2.3.4
-
-- Section menus withdraw links to sections the page has filtered away, and
-  refresh when those sections appear or disappear. A publication list filtered to
-  one topic previously still offered every year in the rail, and most of those
-  links moved nowhere.
-
-## 2.3.3
-
-- Publication topic badges always start their own row. `.pub-meta` is a wrapping
-  flex row, so a card with a single badge sat beside the links while a card with
-  several wrapped below them, leaving badges at different left edges from card to
-  card.
-
-## 2.3.2
-
-- Page leads fill their column. `.page-lead p` and `.page-lead__copy` no longer
-  cap at `--content-measure`; a lead is one or two sentences of display copy, and
-  the cap left dead space to the right of every line once a lead wrapped (260px
-  in an 804px column). The measure continues to govern body prose.
 
 ## 2.5.0
 

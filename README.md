@@ -102,6 +102,7 @@ argument is optional:
   $radius: 4px,
   $layout-max-width: 1280px,
   $sidebar-width: 300px,
+  $stacked-sidebar-width: 720px,
   $shell-gap: 2.5rem,
   $rail-width: 180px,
   $rail-gap: 1.5rem,
@@ -127,7 +128,7 @@ This is the supported argument surface:
 prose. Compact metadata remains left-aligned so short affiliations, dates, and
 profile details do not acquire exaggerated word spacing in narrow components.
 | Shape | `$radius` |
-| Layout | `$max-width`, `$layout-max-width`, `$sidebar-width`, `$shell-gap`, `$rail-width`, `$rail-gap`, `$publication-rail-width`, `$publication-rail-gap`, `$content-measure` |
+| Layout | `$max-width`, `$layout-max-width`, `$sidebar-width`, `$stacked-sidebar-width`, `$shell-gap`, `$rail-width`, `$rail-gap`, `$publication-rail-width`, `$publication-rail-gap`, `$content-measure` |
 | Page rhythm | `$page-space-top`, `$page-space-bottom`, `$page-header-gap`, `$page-meta-gap`, `$page-lead-gap`, `$page-lead-padding` |
 | Section rhythm | `$section-space`, `$section-rule-space`, `$section-boundary-before`, `$section-boundary-after`, `$layout-gap`, `$card-gap` |
 | Object density | `$panel-padding-block`, `$panel-padding-inline`, `$card-padding-block`, `$card-padding-inline` |
@@ -291,7 +292,9 @@ Whitespace has one owner at each boundary:
 chrome to use the same width. This is the preferred way to create generous
 outer margins on an academic site. `$content-measure` independently limits
 reading text; grids, publication controls, and other structured interfaces may
-continue to use the full canvas.
+continue to use the full canvas. `$stacked-sidebar-width` constrains a personal
+profile after the two-column shell collapses, preserving a readable identity
+panel instead of stretching it across the full page.
 
 The mixin writes public `--layout-*` configuration tokens. Layout profiles
 derive their internal `--site-*` values from those tokens so profile defaults

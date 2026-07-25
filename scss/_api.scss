@@ -47,6 +47,7 @@
   $max-width: null,
   $layout-max-width: null,
   $sidebar-width: null,
+  $stacked-sidebar-width: null,
   $shell-gap: null,
   $rail-width: null,
   $rail-gap: null,
@@ -177,6 +178,9 @@
     }
     @if $sidebar-width != null {
       --layout-sidebar-width: #{$sidebar-width};
+    }
+    @if $stacked-sidebar-width != null {
+      --layout-stacked-sidebar-width: #{$stacked-sidebar-width};
     }
     @if $shell-gap != null {
       --layout-shell-gap: #{$shell-gap};

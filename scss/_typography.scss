@@ -84,6 +84,11 @@
   text-justify: inter-word;
 }
 
+.declare-core .site-main [data-prose-align="left"] {
+  text-align: left !important;
+  text-align-last: left !important;
+}
+
 .declare-core
   .site-main
   :where(

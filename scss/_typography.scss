@@ -413,3 +413,35 @@
   font-size: var(--type-small);
 }
 
+/* ===== Compass labels on small screens =====
+ * The six boxes are capped at 28.3% of the field width — wider and they cross
+ * the field edge — so the labels have to step down for the longest of them,
+ * "Trustworthiness", to fit. Two steps rather than one: 12px still looks right
+ * on a tablet, 11px is what a 375px phone needs.
+ *
+ * These carry !important and match the role selector's specificity because the
+ * typography contract sets control type with !important; without that this rule
+ * silently loses and the label clips. Consumers cannot state any of this — type
+ * belongs to core.
+ */
+@media (min-width: 480px) and (max-width: 720px) {
+  .declare-core .site-main .research-node {
+    font-size: var(--type-meta) !important;
+  }
+}
+
+@media (max-width: 479px) {
+  .declare-core .site-main .research-node {
+    font-size: var(--type-label) !important;
+  }
+}
+
+/* "Read note" on a lab-note card is a span, not an anchor, so the typography
+ * contract never stamps it as a control and it kept the plain chip type while
+ * the identical-looking links beside it were promoted to control type. Same
+ * control, same face. */
+.declare-core .site-main .note-card-link .project-links span {
+  font-size: var(--type-control) !important;
+  font-weight: var(--weight-label) !important;
+  line-height: var(--compact-leading) !important;
+}

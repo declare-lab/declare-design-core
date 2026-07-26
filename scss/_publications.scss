@@ -394,3 +394,33 @@
     font-size: var(--type-card-title);
   }
 }
+
+/* ===== Control state =====
+ * An expanded abstract now reads as a pressed control: filled with the accent
+ * and labelled "Hide abstract". Before this the button looked identical open or
+ * closed, so the only way to tell was to hunt for the panel underneath.
+ */
+.declare-core .pub-abstract-toggle[aria-expanded="true"] {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+/* ===== Links that leave the site =====
+ * A trailing arrow on anything opening in a new tab. Applied by attribute
+ * rather than by hand so a link cannot be added later and miss the marker.
+ */
+.declare-core .pub-links a[target="_blank"]::after,
+.declare-core .project-links a[target="_blank"]::after {
+  content: "↗";
+  margin-left: 0.3em;
+  font-size: 0.85em;
+  line-height: 1;
+  vertical-align: baseline;
+  opacity: 0.65;
+}
+
+.declare-core .pub-links a[target="_blank"]:hover::after,
+.declare-core .project-links a[target="_blank"]:hover::after {
+  opacity: 1;
+}

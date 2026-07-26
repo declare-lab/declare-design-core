@@ -20,6 +20,11 @@
   --accent-light: #f0e2d8;
   --accent-contrast: #faf9f5;
   --accent-2: #5c6b73;
+  /* Backing for the robot mark. The logo's eyes are #eb4336 and #34a853; on the
+   * clay accent the red eye came out at 1.04:1 and simply vanished. This is a
+   * warm charcoal rather than flat black — dark enough to carry the white mark
+   * and give the compass a centre, warm enough to belong to the paper palette. */
+  --logo-backing: #2f2c26;
   --accent-2-light: #e2e8ea;
   --accent-3: #c1653f;
   --accent-3-light: #f0e2d8;
@@ -152,6 +157,7 @@
   --rule-strong: #f5f4ef;
 
   --accent: #e0906f;
+  --logo-backing: #f0eee6;
   --accent-hover: #eeaa8b;
   --accent-mid: #eeaa8b;
   --accent-deep: #c1653f;

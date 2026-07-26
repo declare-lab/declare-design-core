@@ -298,3 +298,32 @@
   background: var(--accent);
   color: var(--accent-contrast);
 }
+
+/* ===== Where justification is switched off =====
+ * Justification needs a measure to work with. In a card column — often under
+ * 300px in a three-up grid — it opens rivers between words instead. These are
+ * the containers narrow enough for that, plus a data hook so a consumer can
+ * mark a new one without a change here.
+ *
+ * This lives in core rather than in each site's stylesheet because core owns
+ * the justify rule itself, and because consumers are forbidden (correctly) from
+ * redefining shared tokens: verify-consumer.sh rejects any --prose-align in a
+ * consumer file. One rule here, both sites covered.
+ */
+.declare-core .pub-authors,
+.declare-core .collaboration-metrics,
+.declare-core .collab-legend,
+.declare-core .collab-inspector,
+.declare-core .activity-record,
+.declare-core .update-log__body,
+.declare-core .project-card,
+.declare-core .person-card,
+.declare-core .note-card-link,
+.declare-core .representative-card,
+.declare-core .opportunity-grid article,
+.declare-core .opening-list article,
+.declare-core .notes-grid article,
+.declare-core .funding-list article,
+.declare-core [data-prose="ragged"] {
+  --prose-align: left;
+}

@@ -336,21 +336,21 @@
  * geometry and colour of these components; only their type is stated here.
  */
 .content-text .research-node {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--type-small);
   font-weight: var(--weight-emphasis);
   letter-spacing: -0.005em;
 }
 
 .content-text .collab-legend__pct {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--type-feature-title);
   font-weight: var(--weight-emphasis);
   line-height: 1.15;
 }
 
 .content-text .collab-legend__label {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--type-body);
   font-weight: var(--weight-emphasis);
   line-height: 1.25;
@@ -376,7 +376,7 @@
 }
 
 .content-text .collab-node text {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--type-control);
 }
 
@@ -398,7 +398,7 @@
 }
 
 .content-text .updates-more-btn {
-  font-family: var(--font-display);
+  font-family: var(--font-sans);
   font-size: var(--type-small);
   font-weight: var(--weight-emphasis);
 }

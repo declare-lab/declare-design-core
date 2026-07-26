@@ -933,9 +933,65 @@
     }
   }
 
+
+  /* Abstract disclosure for publication records. This lived as an inline
+   * function on each site's publications page, so fixing the missing state on
+   * one left the other untouched. A control that says nothing about whether it
+   * is open is a problem for everyone, but for assistive technology it is the
+   * whole story: aria-expanded was never set at all. One implementation here,
+   * driven entirely by aria-controls, so both archives behave alike. */
+  function initializeAbstractToggles() {
+    var buttons = Array.prototype.slice.call(
+      document.querySelectorAll(".pub-abstract-toggle")
+    );
+    if (!buttons.length) return;
+
+    function panelFor(el) {
+      var id =
+        el.getAttribute("aria-controls") || el.getAttribute("data-abstract-target");
+      return id ? document.getElementById(id) : null;
+    }
+
+    function setState(button, panel, open) {
+      panel.classList.toggle("show", open);
+      if (!button) return;
+      button.setAttribute("aria-expanded", String(open));
+      button.textContent = open
+        ? button.getAttribute("data-label-open") || "Hide abstract"
+        : button.getAttribute("data-label-closed") || "Abstract";
+    }
+
+    buttons.forEach(function (button) {
+      var panel = panelFor(button);
+      if (!panel) return;
+      setState(button, panel, panel.classList.contains("show"));
+      button.addEventListener("click", function (event) {
+        event.stopPropagation();
+        setState(button, panel, !panel.classList.contains("show"));
+      });
+    });
+
+    // Some archives also make the title a control for the same panel. It has to
+    // drive the button too, or the two disagree about what is open.
+    Array.prototype.slice
+      .call(document.querySelectorAll("[data-abstract-target]"))
+      .forEach(function (title) {
+        if (title.classList.contains("pub-abstract-toggle")) return;
+        var panel = panelFor(title);
+        if (!panel) return;
+        var button = document.querySelector(
+          '.pub-abstract-toggle[aria-controls="' + panel.id + '"]'
+        );
+        title.addEventListener("click", function () {
+          setState(button, panel, !panel.classList.contains("show"));
+        });
+      });
+  }
+
   initializeTheme();
   initializeTypographyContract();
   initializePrimaryMenu();
   initializeArchiveNavigation();
   initializeSectionMenus();
+  initializeAbstractToggles();
 })();

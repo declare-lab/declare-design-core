@@ -141,3 +141,15 @@ strong {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* ===== hidden means hidden =====
+ * The hidden attribute sets display:none through a UA rule that any authored
+ * class-based display beats. A .timeline-item declaring display:grid therefore
+ * kept rendering while marked hidden, so progressive-disclosure controls looked
+ * like they did nothing on the first press. Consumers were patching this per
+ * component (.pub-card[hidden] had its own rule); this states it once, at the
+ * strength the attribute is supposed to carry.
+ */
+[hidden] {
+  display: none !important;
+}

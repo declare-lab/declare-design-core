@@ -223,11 +223,6 @@
   content: none;
 }
 
-.declare-core .pub-year-heading[hidden],
-.declare-core .pub-card[hidden] {
-  display: none;
-}
-
 .declare-core .pub-card {
   margin: 0;
   padding: 1.1rem 0;
@@ -407,11 +402,15 @@
 }
 
 /* ===== Links that leave the site =====
- * A trailing arrow on anything opening in a new tab. Applied by attribute
- * rather than by hand so a link cannot be added later and miss the marker.
+ * A trailing arrow on text-only links that open a new tab, so "Read VentureBeat"
+ * is distinguishable from "Read the lab note" at a glance. Links carrying an
+ * icon are excluded: a GitHub mark or a graduation cap already says where you
+ * are going, and the arrow only adds noise next to it. The :has() test does
+ * that automatically, so a link that gains an icon later drops the arrow
+ * without anyone remembering to update a list.
  */
-.declare-core .pub-links a[target="_blank"]::after,
-.declare-core .project-links a[target="_blank"]::after {
+.declare-core .pub-links a[target="_blank"]:not(:has(i, svg, img))::after,
+.declare-core .project-links a[target="_blank"]:not(:has(i, svg, img))::after {
   content: "↗";
   margin-left: 0.3em;
   font-size: 0.85em;

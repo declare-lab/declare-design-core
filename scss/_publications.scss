@@ -402,15 +402,21 @@
 }
 
 /* ===== Links that leave the site =====
- * A trailing arrow on text-only links that open a new tab, so "Read VentureBeat"
- * is distinguishable from "Read the lab note" at a glance. Links carrying an
- * icon are excluded: a GitHub mark or a graduation cap already says where you
- * are going, and the arrow only adds noise next to it. The :has() test does
- * that automatically, so a link that gains an icon later drops the arrow
- * without anyone remembering to update a list.
+ * A trailing arrow on text-only outbound links, so "Read VentureBeat" is
+ * distinguishable from "Read the lab note" sitting next to it.
+ *
+ * Keyed on an absolute href rather than target="_blank": every internal link on
+ * both sites is root-relative, while some outbound links (the update feed's,
+ * for instance) open in the same tab and so carry no target at all. Testing the
+ * href catches those too. The site's own absolute URLs are excluded.
+ *
+ * Links carrying an icon are skipped — a GitHub mark or graduation cap already
+ * says where you are going, and the arrow is just noise beside it. :has() makes
+ * that automatic, so a link that gains an icon later drops the arrow without
+ * anyone maintaining a list.
  */
-.declare-core .pub-links a[target="_blank"]:not(:has(i, svg, img))::after,
-.declare-core .project-links a[target="_blank"]:not(:has(i, svg, img))::after {
+.declare-core .pub-links a[href^="http"]:not([href*="declare-lab.github.io"]):not([href*="soujanyaporia.github.io"]):not(:has(i, svg, img))::after,
+.declare-core .project-links a[href^="http"]:not([href*="declare-lab.github.io"]):not([href*="soujanyaporia.github.io"]):not(:has(i, svg, img))::after {
   content: "↗";
   margin-left: 0.3em;
   font-size: 0.85em;
@@ -419,7 +425,7 @@
   opacity: 0.65;
 }
 
-.declare-core .pub-links a[target="_blank"]:hover::after,
-.declare-core .project-links a[target="_blank"]:hover::after {
+.declare-core .pub-links a[href^="http"]:hover::after,
+.declare-core .project-links a[href^="http"]:hover::after {
   opacity: 1;
 }

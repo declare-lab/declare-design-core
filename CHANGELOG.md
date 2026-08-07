@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.11.0
+
+- One chest board at every size. The tab icon carried a simpler one-trace board
+  while the header logo had two, so they were not the same mark. The simpler cut
+  read better at 16px, but an icon that changes its internals by size is worse
+  than a little softness. The second cut is gone.
+- Moved the header's `backdrop-filter` onto a pseudo-element behind the content.
+  It promotes its own element to a composited layer, and WebKit can rasterise
+  that below device resolution, which softened the logo and nav text on phones.
+  Behind the content the effect is identical and the children stay sharp.
+- Added `brand/social/` with square org avatars for GitHub and Hugging Face.
+  Neither platform serves a light and a dark avatar, so these are drawn on solid
+  white instead of transparent, and sized to survive a circular crop.
+
 ## 2.10.2
 
 - Fixed the header logo looking blurry on phones. The generated SVGs declared

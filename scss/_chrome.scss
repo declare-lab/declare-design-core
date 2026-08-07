@@ -7,8 +7,21 @@
   border-bottom: 0;
   background: color-mix(in srgb, var(--bg-page) 96%, transparent);
   box-shadow: none;
+}
+
+/* The frost lives on a pseudo-element rather than on the header itself.
+   backdrop-filter promotes its element to a composited layer, and WebKit can
+   rasterise that layer below device resolution, which softened the logo and
+   nav text on phones. Behind the content instead of around it, the effect is
+   identical and the children render at full resolution. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
   backdrop-filter: saturate(150%) blur(22px);
   -webkit-backdrop-filter: saturate(150%) blur(22px);
+  pointer-events: none;
 }
 
 .header-inner {

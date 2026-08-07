@@ -6,11 +6,9 @@ White in that mask is ink, black is a transparent hole.  The chest panel is a
 hole, so painting white traces into it (after it, in document order) yields
 ink-coloured circuit traces that inherit the theme colour like everything else.
 
-Two optical cuts of the same board:
-
-  full     two mirrored Z-traces.  The mark at display sizes (>= 48 px).
-  compact  one trace at wall weight.  Below ~32 px the panel is barely 7 px
-           tall and two traces silt up into grey; one heavy trace still reads.
+One chest board, used at every size. An earlier build carried a second,
+simpler cut for small icons; it read better at 16px but meant the tab icon and
+the header logo were not the same mark, which is worse than a little softness.
 
 Run with no arguments to write every consumer asset:
 
@@ -48,13 +46,6 @@ CUTS = {
     <circle cx="114" cy="131" r="7" fill="#fff"/>
     <circle cx="75" cy="135" r="7" fill="#fff"/>''',
 
-    'compact': '''<!-- Circuit board, small cut.  One trace at wall weight.  Below ~32 px
-         the panel is about 7 px tall; two thin traces silt up into grey, while a
-         single heavy trace and node still resolve. -->
-    <g stroke="#fff" stroke-width="7.5" stroke-linecap="butt" stroke-linejoin="miter" fill="none">
-      <path d="M59.3 128H92l10 10h10"/>
-    </g>
-    <circle cx="112" cy="138" r="8.5" fill="#fff"/>''',
 }
 
 
@@ -219,7 +210,7 @@ def favicon_svg():
     for. The theme colour moves out of the inline style so a media query can
     reach it: a black robot is invisible on a dark tab strip.
     """
-    svg = logo('declare-icon-compact-light')
+    svg = logo('declare-icon-light')
     assert svg.count('style="color:#000000"') == 1
     svg = svg.replace(' style="color:#000000"', '')
     rule = ('\n  #robot { color: #141413; }\n'
@@ -378,12 +369,23 @@ def build_core():
         svg = tighten(strip_dead(patch(open(os.path.join(SRC, name + '.svg')).read(), 'full')))
         open(os.path.join(LOGOS, name + '.svg'), 'w').write(svg)
         print('   %-34s %d bytes' % (name + '.svg', len(svg)))
-    for theme in ('light', 'dark'):
-        src = open(os.path.join(SRC, 'declare-icon-%s.svg' % theme)).read()
-        svg = tighten(strip_dead(patch(src, 'compact')))
-        out = 'declare-icon-compact-%s.svg' % theme
-        open(os.path.join(LOGOS, out), 'w').write(svg)
-        print('   %-34s %d bytes' % (out, len(svg)))
+
+
+# Neither GitHub nor Hugging Face serves a light and a dark org avatar; each is
+# one uploaded image shown on both themes. So these are drawn on solid white
+# rather than left transparent, where the dark ink would vanish on a dark page.
+AVATAR_PX = 1024
+AVATAR_FILL = 0.66          # room for the circular crop both platforms apply
+AVATARS = ['github-avatar.png', 'huggingface-avatar.png']
+
+
+def build_avatars():
+    out_dir = os.path.join(CORE_BRAND, 'social')
+    os.makedirs(out_dir, exist_ok=True)
+    for name in AVATARS:
+        out = os.path.join(out_dir, name)
+        export_square(logo('declare-icon-light'), out, AVATAR_PX, AVATAR_FILL)
+        print('   %-34s %dpx on white' % (name, AVATAR_PX))
 
 
 def logo(name):
@@ -408,9 +410,9 @@ def build_site(images, rasters, favicon, apple=None, explanation=False):
         # 48 keeps the plain name: things already point at favicon.png, and a
         # favicon-48.png beside it would be the same bytes under a second name
         out = os.path.join(images, 'favicon.png' if px == 48 else 'favicon-%d.png' % px)
-        export_square(logo('declare-icon-compact-light'), out, px, favicon)
+        export_square(logo('declare-icon-light'), out, px, favicon)
         written[px] = out
-        print('   %-34s %dpx (small cut)' % (os.path.basename(out), px))
+        print('   %-34s %dpx' % (os.path.basename(out), px))
     write_ico(os.path.join(os.path.dirname(os.path.dirname(images)), 'favicon.ico'),
               [written[px] for px in ICO_SIZES])
     print('   %-34s %s' % ('favicon.ico', '+'.join(str(p) for p in ICO_SIZES)))
@@ -437,6 +439,8 @@ if __name__ == '__main__':
 
     print('declare-design-core/brand/logos:')
     build_core()
+    print('declare-design-core/brand/social:')
+    build_avatars()
     for site, cfg in SITES:
         print('%s:' % site)
         build_site(**cfg)

@@ -289,14 +289,22 @@ LOGOS = os.path.join(CORE_BRAND, 'logos')
 MARKS = ['declare-icon-light', 'declare-icon-dark',
          'declare-horizontal-light', 'declare-horizontal-dark',
          'declare-square-theme-light', 'declare-square-theme-dark']
+# How much of a square icon's height the robot fills. One value per icon kind,
+# shared by every site: the same mark should sit the same in every browser tab.
+# The two sites had drifted to 42/48 and 39/48, which is only visible when you
+# put the two tabs side by side, and is exactly the kind of difference nobody
+# notices until it looks careless.
+FAVICON_FILL = 42 / 48.0
+TOUCH_ICON_FILL = 160 / 180.0
+
 SITES = [
     ('declare-lab.github.io', dict(
-        images=LAB, rasters=MARKS, favicon=42 / 48.0,
-        apple=160 / 180.0, explanation=True)),
+        images=LAB, rasters=MARKS, favicon=FAVICON_FILL,
+        apple=TOUCH_ICON_FILL, explanation=True)),
     # the personal site shows the vector only; its raster copies were duplicates
     # of the lab's and have been retired
     ('soujanyaporia.github.io', dict(
-        images=PERSONAL, rasters=[], favicon=39 / 48.0)),
+        images=PERSONAL, rasters=[], favicon=FAVICON_FILL)),
 ]
 
 
@@ -354,4 +362,18 @@ if __name__ == '__main__':
     for site, cfg in SITES:
         print('%s:' % site)
         build_site(**cfg)
+
+    # Same source, same size, same framing, so the bytes must match. This is
+    # what catches the framing drifting apart again.
+    favicons = {}
+    for site, cfg in SITES:
+        p = os.path.join(cfg['images'], 'favicon.png')
+        favicons[site] = (px_size(p), open(p, 'rb').read())
+    sizes = set(v[0] for v in favicons.values())
+    digests = set(v[1] for v in favicons.values())
+    assert len(sizes) == 1 and len(digests) == 1, (
+        'favicons differ across sites: ' +
+        ', '.join('%s %dx%d %d bytes' % ((s,) + v[0] + (len(v[1]),))
+                  for s, v in favicons.items()))
+    print('every site favicon is identical (%dx%d)' % list(sizes)[0])
     print('done')

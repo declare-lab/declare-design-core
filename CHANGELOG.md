@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.9.3
+
+- The favicon is framed identically on both sites. They had drifted to 42/48
+  and 39/48 of the canvas height, so the same mark sat at two different sizes
+  depending on which tab you were looking at. One constant now covers both, and
+  the generator asserts the two files come out byte for byte identical.
+
 ## 2.9.2
 
 - Removed the faint horizontal line that appeared under the robot's eyes at

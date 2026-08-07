@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.12.1
+
+- The inline partials carry no `<style>` block. The sites own no CSS, the core
+  does, so a stylesheet inside a consumer's markup both fails the ownership
+  audit and forks the styling. Nothing needed it: every element already carries
+  its own fill and the ink rides `currentColor`. The generator now asserts the
+  partials reference no classes at all.
+
 ## 2.12.0
 
 - The marks render as inline SVG instead of `<img src="...svg">`. An `<img>` is

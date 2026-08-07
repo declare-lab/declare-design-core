@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.9.2
+
+- Removed the faint horizontal line that appeared under the robot's eyes at
+  favicon sizes, joining the two mouth tabs. The head frame was a filled rect
+  with the window punched through it, and the two bottom edges sat 0.4 apart:
+  they cancel exactly at size, but inside one small pixel the black composites
+  over the white rather than subtracting, leaving about 20% ink across the whole
+  head. The frame is now a top bar and two walls, so there is nothing to cancel.
+
 ## 2.9.1
 
 - Fixed endless empty scrolling below the footer on mobile. The nav scrim is an

@@ -293,9 +293,10 @@ SITES = [
     ('declare-lab.github.io', dict(
         images=LAB, rasters=MARKS, favicon=42 / 48.0,
         apple=160 / 180.0, explanation=True)),
+    # the personal site shows the vector only; its raster copies were duplicates
+    # of the lab's and have been retired
     ('soujanyaporia.github.io', dict(
-        images=PERSONAL, rasters=['declare-icon-light', 'declare-icon-dark'],
-        favicon=39 / 48.0)),
+        images=PERSONAL, rasters=[], favicon=39 / 48.0)),
 ]
 
 

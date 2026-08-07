@@ -410,7 +410,7 @@
  * for instance) open in the same tab and so carry no target at all. Testing the
  * href catches those too. The site's own absolute URLs are excluded.
  *
- * Links carrying an icon are skipped — a GitHub mark or graduation cap already
+ * Links carrying an icon are skipped, because a GitHub mark or graduation cap already
  * says where you are going, and the arrow is just noise beside it. :has() makes
  * that automatic, so a link that gains an icon later drops the arrow without
  * anyone maintaining a list.

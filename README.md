@@ -372,7 +372,7 @@ Consume the vectors straight from the submodule:
 <img src="/assets/declare-core/brand/logos/declare-icon-light.svg" alt="DeCLaRe Lab">
 ```
 
-Rasters stay local to each site — favicons, touch icons and Open Graph images
+Rasters stay local to each site. Favicons, touch icons and Open Graph images
 need pixel dimensions and framing that belong to the site, not to the mark.
 `brand/tools/build_brand.py` regenerates those too. See `brand/README.md`.
 

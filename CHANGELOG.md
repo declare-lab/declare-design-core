@@ -4,7 +4,7 @@
 
 - Both websites now load the robot from `brand/logos/` through the submodule
   instead of keeping their own copies. The vectors live here; each site keeps
-  only the rasters whose framing is its own — favicons, touch icons, Open Graph.
+  only the rasters whose framing is its own: favicons, touch icons, Open Graph.
 - `brand/src/` holds the robot as authored and `brand/logos/` is generated, so
   there is one place to edit and no ambiguity about which file is canonical.
 - Dropped what nothing rendered: an unused alternate line-art robot that still

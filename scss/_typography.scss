@@ -300,8 +300,8 @@
 }
 
 /* ===== Where justification is switched off =====
- * Justification needs a measure to work with. In a card column — often under
- * 300px in a three-up grid — it opens rivers between words instead. These are
+ * Justification needs a measure to work with. In a card column,
+ * often under 300px in a three-up grid, it opens rivers between words instead. These are
  * the containers narrow enough for that, plus a data hook so a consumer can
  * mark a new one without a change here.
  *
@@ -330,7 +330,7 @@
 
 /* ===== Component type: DeCLaRe lab figures =====
  * Type for the research compass and the collaboration map. It lives here rather
- * than in the lab's own stylesheet because core owns typography outright —
+ * than in the lab's own stylesheet because core owns typography outright,
  * verify-consumer.sh rejects any font-family, font-size, font-weight,
  * letter-spacing or line-height in a consumer file. The consumer keeps the
  * geometry and colour of these components; only their type is stated here.
@@ -414,14 +414,14 @@
 }
 
 /* ===== Compass labels on small screens =====
- * The six boxes are capped at 28.3% of the field width — wider and they cross
- * the field edge — so the labels have to step down for the longest of them,
+ * The six boxes are capped at 28.3% of the field width, and wider they would cross
+ * the field edge, so the labels have to step down for the longest of them,
  * "Trustworthiness", to fit. Two steps rather than one: 12px still looks right
  * on a tablet, 11px is what a 375px phone needs.
  *
  * These carry !important and match the role selector's specificity because the
  * typography contract sets control type with !important; without that this rule
- * silently loses and the label clips. Consumers cannot state any of this — type
+ * silently loses and the label clips. Consumers cannot state any of this, because type
  * belongs to core.
  */
 @media (min-width: 480px) and (max-width: 720px) {

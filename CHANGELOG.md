@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.10.0
+
+- Icons are no longer one 48px bitmap that the browser rescales into every
+  context, which is what made them look soft. Each size is now rendered at that
+  size: a scalable `favicon.svg` that follows the tab bar's light or dark theme,
+  native 16 and 32 PNGs, a `favicon.ico` packing real 16/32/48 renders, a 192
+  for Android, and the 180 touch icon. Sizes at or below 32 use the small cut,
+  larger ones the display cut.
+- Both sites declare the full set through `rel="icon"` rather than the legacy
+  `rel="shortcut icon"`, and the personal site gained the touch icon it lacked.
+
 ## 2.9.3
 
 - The favicon is framed identically on both sites. They had drifted to 42/48

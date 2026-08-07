@@ -203,6 +203,38 @@ def export_square(svg, out, px, height_frac, bg='ffffffff'):
            view=(cx0 + cw / 2 - size / 2, cy0 + ch / 2 - size / 2, size, size))
 
 
+def favicon_svg():
+    """The small cut as a scalable favicon that follows the tab bar's theme.
+
+    A vector favicon is the only one that is sharp at every size a browser asks
+    for. The theme colour moves out of the inline style so a media query can
+    reach it: a black robot is invisible on a dark tab strip.
+    """
+    svg = logo('declare-icon-compact-light')
+    assert svg.count('style="color:#000000"') == 1
+    svg = svg.replace(' style="color:#000000"', '')
+    rule = ('\n  #robot { color: #141413; }\n'
+            '  @media (prefers-color-scheme: dark) { #robot { color: #F5F4EF; } }\n')
+    return svg.replace('</style>', rule + '</style>', 1)
+
+
+def write_ico(path, pngs):
+    """ICO container holding each PNG at its own size.
+
+    Browsers still request /favicon.ico by name, and packing real per-size
+    renders beats letting one bitmap be rescaled into all of them.
+    """
+    blobs = [open(p, 'rb').read() for p in pngs]
+    offset = 6 + 16 * len(blobs)
+    entries = b''
+    for p, data in zip(pngs, blobs):
+        w, h = px_size(p)
+        entries += struct.pack('<BBBBHHII', w % 256, h % 256, 0, 0, 1, 32, len(data), offset)
+        offset += len(data)
+    with open(path, 'wb') as f:
+        f.write(struct.pack('<HHH', 0, 1, len(blobs)) + entries + b''.join(blobs))
+
+
 def reembed(explanation_svg_path, lockup_png_path):
     """logo-explanation embeds a base64 copy of the horizontal lockup."""
     import base64
@@ -296,6 +328,9 @@ MARKS = ['declare-icon-light', 'declare-icon-dark',
 # notices until it looks careless.
 FAVICON_FILL = 42 / 48.0
 TOUCH_ICON_FILL = 160 / 180.0
+# Browser chrome asks for these; each is rendered, never rescaled from another.
+ICON_SIZES = [16, 32, 48]
+TOUCH_SIZES = [192]
 
 SITES = [
     ('declare-lab.github.io', dict(
@@ -336,13 +371,29 @@ def build_site(images, rasters, favicon, apple=None, explanation=False):
         w, h = px_size(png)
         export_tight(logo(name), png, w, h)
         print('   %-34s %dx%d' % (name + '.png', w, h))
-    fav = os.path.join(images, 'favicon.png')
-    export_square(logo('declare-icon-compact-light'), fav, px_size(fav)[0], favicon)
-    print('   %-34s %dpx (small cut)' % ('favicon.png', px_size(fav)[0]))
-    if apple:
-        ap = os.path.join(images, 'apple-touch-icon.png')
-        export_square(logo('declare-icon-light'), ap, px_size(ap)[0], apple)
-        print('   %-34s %dpx (display cut)' % ('apple-touch-icon.png', px_size(ap)[0]))
+    # Every icon is rendered at its final size. One bitmap rescaled by the
+    # browser into 16, 32, 64 and 128 is what makes a favicon look soft.
+    open(os.path.join(images, 'favicon.svg'), 'w').write(favicon_svg())
+    print('   %-34s vector, theme-aware' % 'favicon.svg')
+    icons = []
+    for px in ICON_SIZES:
+        cut = 'declare-icon-compact-light' if px <= 32 else 'declare-icon-light'
+        # 48 keeps the plain name: things already point at favicon.png, and a
+        # favicon-48.png beside it would be the same bytes under a second name
+        out = os.path.join(images, 'favicon.png' if px == 48 else 'favicon-%d.png' % px)
+        export_square(logo(cut), out, px, favicon)
+        icons.append(out)
+        print('   %-34s %dpx (%s cut)' % (os.path.basename(out), px,
+                                          'small' if px <= 32 else 'display'))
+    write_ico(os.path.join(os.path.dirname(os.path.dirname(images)), 'favicon.ico'), icons)
+    print('   %-34s %s' % ('favicon.ico', '+'.join(str(p) for p in ICON_SIZES)))
+    for px in TOUCH_SIZES:
+        out = os.path.join(images, 'icon-%d.png' % px)
+        export_square(logo('declare-icon-light'), out, px, apple or TOUCH_ICON_FILL)
+        print('   %-34s %dpx (display cut)' % (os.path.basename(out), px))
+    ap = os.path.join(images, 'apple-touch-icon.png')
+    export_square(logo('declare-icon-light'), ap, 180, apple or TOUCH_ICON_FILL)
+    print('   %-34s 180px (display cut)' % 'apple-touch-icon.png')
     if explanation:
         for theme in ('light', 'dark'):
             reembed(os.path.join(images, 'resources', 'logo-explanation-%s.svg' % theme),

@@ -152,7 +152,7 @@ def render(svg, out, px_w, px_h, view=None, bg='00000000'):
     s = svg
     if view:
         s = re.sub(r'viewBox="[^"]*"', 'viewBox="%.4f %.4f %.4f %.4f"' % view, s, count=1)
-    s = s.replace('<svg ', '<svg width="%d" height="%d" ' % (px_w, px_h), 1)
+    s = _set_root_size(s, px_w, px_h)
     html = os.path.join(TMP, '_r.html')
     open(html, 'w').write('<!doctype html><meta charset="utf-8">'
                           '<style>html,body{margin:0;padding:0}svg{display:block}</style>' + s)
@@ -164,6 +164,15 @@ def render(svg, out, px_w, px_h, view=None, bg='00000000'):
 
 
 _views = {}
+
+
+def _set_root_size(svg, w, h):
+    """Set width/height on the root <svg>, replacing any already there."""
+    m = re.search(r'<svg\b[^>]*>', svg)
+    tag = re.sub(r'\s+(width|height)="[^"]*"', '', m.group(0))
+    tag = tag.replace('<svg', '<svg width="%s" height="%s"' % (w, h), 1)
+    return svg[:m.start()] + tag + svg[m.end():]
+
 
 
 def content_view(svg, probe):
@@ -305,14 +314,25 @@ def strip_dead(svg):
     return svg.replace(style, '\n'.join(kept))
 
 
+# An <img> SVG with no width/height gets the browser's 300px default as its
+# intrinsic size, and some engines rasterise at that and scale up. The header
+# lockup sits at 138 CSS px, which is 414 device px on a 3x phone: past 300, so
+# it upscaled and went soft. Only phones reach that ratio, which is why it never
+# showed on a desktop. Declaring a generous intrinsic size settles it.
+INTRINSIC_MAX = 1024
+
+
 def tighten(svg):
-    """Set the viewBox to the drawn content.
+    """Set the viewBox to the drawn content and declare an intrinsic size.
 
     Consumers swap these in for tight-cropped PNGs, so the SVG must carry the
     same aspect and no baked-in padding; spacing belongs to their CSS.
     """
-    return re.sub(r'viewBox="[^"]*"',
-                  'viewBox="%.3f %.3f %.3f %.3f"' % content_view(svg, 2000), svg, count=1)
+    vx, vy, vw, vh = content_view(svg, 2000)
+    svg = re.sub(r'viewBox="[^"]*"', 'viewBox="%.3f %.3f %.3f %.3f"' % (vx, vy, vw, vh),
+                 svg, count=1)
+    k = INTRINSIC_MAX / max(vw, vh)
+    return _set_root_size(svg, round(vw * k), round(vh * k))
 
 
 # -------------------------------------------------------------------- targets

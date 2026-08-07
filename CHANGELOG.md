@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.10.2
+
+- Fixed the header logo looking blurry on phones. The generated SVGs declared
+  no width or height, so a browser treats their intrinsic size as its 300px
+  default and some engines rasterise at that before scaling up. The header
+  lockup sits at 138 CSS px, which is 414 device px at 3x: past 300, so it was
+  upscaled. Desktops never exceed 276 and so never showed it. Every generated
+  SVG now declares a generous intrinsic size.
+
 ## 2.10.1
 
 - Fixed the favicon looking blurry on phones. The ladder jumped 48 to 192, so a

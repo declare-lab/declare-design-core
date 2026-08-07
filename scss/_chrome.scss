@@ -210,7 +210,11 @@
 
 .site-main {
   max-width: var(--max-width);
+  /* dvh follows the mobile toolbars; vh is the toolbar-retracted height and
+     reserves more than the screen shows. Ordered so dvh wins where supported,
+     matching the other viewport-height rules in this file. */
   min-height: calc(100vh - 140px);
+  min-height: calc(100dvh - 140px);
   margin: 0 auto;
   padding: var(--page-space-top) var(--chrome-inline) var(--page-space-bottom);
 }
@@ -430,6 +434,12 @@
     content: "Dark";
   }
 
+  /* The scrim is an absolutely positioned child of a sticky header, so it
+     travels down the page as the header sticks. Giving it a viewport-tall box
+     while the menu is closed keeps pushing the scrollable area further down as
+     you scroll, which reads as endless empty space below the footer. Only the
+     root's overflow: clip contained it, and Safari before 16 drops that
+     declaration. A closed overlay should hold no layout at all. */
   .nav-scrim {
     position: absolute;
     top: 100%;
@@ -437,8 +447,7 @@
     left: 0;
     z-index: 102;
     display: block;
-    height: calc(100vh - 68px);
-    height: calc(100dvh - 68px);
+    height: 0;
     background: rgba(20, 23, 31, 0.28);
     opacity: 0;
     visibility: hidden;
@@ -451,6 +460,8 @@
   }
 
   .nav-scrim.open {
+    height: calc(100vh - 68px);
+    height: calc(100dvh - 68px);
     opacity: 1;
     visibility: visible;
     pointer-events: auto;

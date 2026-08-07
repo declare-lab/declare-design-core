@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.9.1
+
+- Fixed endless empty scrolling below the footer on mobile. The nav scrim is an
+  absolutely positioned child of a sticky header, and it held a viewport-tall
+  box even while the menu was closed, so it travelled down the page and kept
+  extending the scrollable area. It now holds no layout until it opens.
+- `.site-main` gained a `dvh` fallback for its minimum height, matching the
+  other viewport-height rules.
+
 ## 2.9.0
 
 - Both websites now load the robot from `brand/logos/` through the submodule

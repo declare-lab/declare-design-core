@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.10.1
+
+- Fixed the favicon looking blurry on phones. The ladder jumped 48 to 192, so a
+  device at 3x needing 48-72 real pixels had to stretch the 48. It now runs
+  16/32/48/64/96/128, each drawn at its size and all declared, and iOS matters
+  here because Safari ignores SVG favicons and only sees these.
+- The whole favicon ladder uses the small cut. Pixel count is not perceived
+  size: a 64px icon in a tab is a small icon rendered at 3x, not a large one.
+
 ## 2.10.0
 
 - Icons are no longer one 48px bitmap that the browser rescales into every

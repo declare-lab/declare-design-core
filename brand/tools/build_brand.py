@@ -328,8 +328,16 @@ MARKS = ['declare-icon-light', 'declare-icon-dark',
 # notices until it looks careless.
 FAVICON_FILL = 42 / 48.0
 TOUCH_ICON_FILL = 160 / 180.0
-# Browser chrome asks for these; each is rendered, never rescaled from another.
-ICON_SIZES = [16, 32, 48]
+# A browser picks the icon nearest the physical pixels it needs, and a phone at
+# 3x wants 48-72 of them for a tab slot. Jumping 48 -> 192 left it stretching the
+# 48, which is what looked blurry on mobile. Fill the ladder instead.
+#
+# Every one of these is displayed small (a tab, a bookmark row) and merely drawn
+# at high resolution, so they all use the small cut. Pixel count is not the same
+# thing as perceived size.
+ICON_SIZES = [16, 32, 48, 64, 96, 128]
+ICO_SIZES = [16, 32, 48]
+# Home-screen icons are perceived large, so these take the display cut.
 TOUCH_SIZES = [192]
 
 SITES = [
@@ -375,18 +383,17 @@ def build_site(images, rasters, favicon, apple=None, explanation=False):
     # browser into 16, 32, 64 and 128 is what makes a favicon look soft.
     open(os.path.join(images, 'favicon.svg'), 'w').write(favicon_svg())
     print('   %-34s vector, theme-aware' % 'favicon.svg')
-    icons = []
+    written = {}
     for px in ICON_SIZES:
-        cut = 'declare-icon-compact-light' if px <= 32 else 'declare-icon-light'
         # 48 keeps the plain name: things already point at favicon.png, and a
         # favicon-48.png beside it would be the same bytes under a second name
         out = os.path.join(images, 'favicon.png' if px == 48 else 'favicon-%d.png' % px)
-        export_square(logo(cut), out, px, favicon)
-        icons.append(out)
-        print('   %-34s %dpx (%s cut)' % (os.path.basename(out), px,
-                                          'small' if px <= 32 else 'display'))
-    write_ico(os.path.join(os.path.dirname(os.path.dirname(images)), 'favicon.ico'), icons)
-    print('   %-34s %s' % ('favicon.ico', '+'.join(str(p) for p in ICON_SIZES)))
+        export_square(logo('declare-icon-compact-light'), out, px, favicon)
+        written[px] = out
+        print('   %-34s %dpx (small cut)' % (os.path.basename(out), px))
+    write_ico(os.path.join(os.path.dirname(os.path.dirname(images)), 'favicon.ico'),
+              [written[px] for px in ICO_SIZES])
+    print('   %-34s %s' % ('favicon.ico', '+'.join(str(p) for p in ICO_SIZES)))
     for px in TOUCH_SIZES:
         out = os.path.join(images, 'icon-%d.png' % px)
         export_square(logo('declare-icon-light'), out, px, apple or TOUCH_ICON_FILL)

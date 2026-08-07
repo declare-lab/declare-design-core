@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.12.2
+
+- The inline partial's id prefix is a caller-supplied `uid` rather than a
+  constant. A page can include the same mark twice, as the personal site does
+  in the nav and the author profile, and two copies of `#robot-knockout` means
+  the second mask resolves to the first.
+
 ## 2.12.1
 
 - The inline partials carry no `<style>` block. The sites own no CSS, the core

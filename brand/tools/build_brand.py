@@ -391,15 +391,19 @@ INLINE = [
 
 def inline_partial(name, slug, title):
     svg = logo(name)
-    # namespace every id, so two marks can sit on one page without colliding
+    # Namespace every id. The prefix is a caller-supplied uid rather than a
+    # constant, because a page can include the same mark more than once: the
+    # personal site carries it in the nav and again in the author profile, and
+    # two copies of #robot-knockout means the second mask resolves to the first.
+    prefix = "{{ include.uid | default: '%s' }}" % slug
     for i in sorted(set(re.findall(r'\bid="([^"]+)"', svg)), key=len, reverse=True):
-        n = '%s-%s' % (slug, i)
+        n = '%s-%s' % (prefix, i)
         svg = (svg.replace('id="%s"' % i, 'id="%s"' % n)
                   .replace('url(#%s)' % i, 'url(#%s)' % n)
                   .replace('xlink:href="#%s"' % i, 'xlink:href="#%s"' % n))
     svg = re.sub(r'aria-labelledby="([^"]+)"',
                  lambda m: 'aria-labelledby="%s"' % ' '.join(
-                     slug + '-' + w for w in m.group(1).split()), svg)
+                     prefix + '-' + w for w in m.group(1).split()), svg)
     # the ink follows the page's theme through CSS rather than a baked colour,
     # so one partial serves light and dark and the display:none pair is gone
     svg = svg.replace(' style="color:#000000"', '').replace(' style="color:#FFFFFF"', '')

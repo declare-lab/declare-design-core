@@ -60,6 +60,14 @@
   text-overflow: ellipsis;
 }
 
+/* The marks are inline SVG, not <img>, so they stay live vector through any
+   compositing the page does and never get rasterised at a guessed resolution.
+   Their ink is currentColor, so one element serves both themes and the old
+   light/dark image pair is gone. */
+.brand-mark {
+  color: var(--text);
+}
+
 .site-logo {
   display: block;
   width: auto;

@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.12.0
+
+- The marks render as inline SVG instead of `<img src="...svg">`. An `<img>` is
+  still an image: the browser rasterises it into a bitmap whose resolution
+  depends on the intrinsic size, the device ratio and whatever compositing the
+  ancestors force, which is why the header and compass logos stayed soft on
+  phones through three attempts at those variables. Inline SVG is live vector
+  and none of it applies.
+- `brand/tools/build_brand.py` writes the partials into each site's
+  `_includes/brand/`, so the artwork still has one source. Ids are namespaced
+  per partial so two marks can share a page.
+- One element now serves both themes: the ink is `currentColor`, driven by
+  `.brand-mark { color: var(--text) }`, replacing the light/dark image pair and
+  its `display: none` toggling.
+
 ## 2.11.0
 
 - One chest board at every size. The tab icon carried a simpler one-trace board

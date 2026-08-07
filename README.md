@@ -360,6 +360,16 @@ FAQ content uses the shared ruled-list pattern:
 </div>
 ```
 
+## Brand artwork
+
+`brand/` holds the DeCLaRe robot: one themeable silhouette carved by a luminance
+mask, in a display cut and a small cut of the same chest board. Both websites
+show this mark, so it lives here.
+
+Each site keeps its own copies under `assets/images/`, at its own framing and
+export sizes. `brand/tools/build_brand.py` regenerates every one of them from
+the single definition in that file — see `brand/README.md`.
+
 ## What remains local
 
 Keep CSS local only when the object belongs to one site's identity or domain,

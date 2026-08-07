@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.8.0
+
+- The DeCLaRe robot moves into the core as `brand/`, with the generator that
+  writes every consumer asset from one definition. Both websites showed the
+  mark already; neither owned it.
+- The robot's chest panel becomes a circuit board. Its window and slot merge
+  into one panel carrying traces painted into the same luminance mask as the
+  silhouette, so the board takes the theme colour and stays transparent behind.
+- Two optical cuts: two mirrored traces for display sizes, one heavier trace
+  for 32 px and below, where the panel is too shallow to hold two.
+
 ## 2.7.0
 
 - Added a compact publication-year selector with sticky-toolbar-aware scrolling

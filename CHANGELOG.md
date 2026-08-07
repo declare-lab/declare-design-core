@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.9.0
+
+- Both websites now load the robot from `brand/logos/` through the submodule
+  instead of keeping their own copies. The vectors live here; each site keeps
+  only the rasters whose framing is its own — favicons, touch icons, Open Graph.
+- `brand/src/` holds the robot as authored and `brand/logos/` is generated, so
+  there is one place to edit and no ambiguity about which file is canonical.
+- Dropped what nothing rendered: an unused alternate line-art robot that still
+  carried the pre-circuit chest, the styles only it used, and the wordmark the
+  icon files never draw. Files are 17-49% smaller and render identically.
+- Each `viewBox` is now tight to the artwork, so the SVGs drop straight in where
+  a tight-cropped PNG used to sit.
+
 ## 2.8.0
 
 - The DeCLaRe robot moves into the core as `brand/`, with the generator that

@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  viewBox="34.030 8.037 407.669 180.159" xml:space="preserve" role="img" aria-labelledby="title desc"
+  viewBox="0 0 360 356" xml:space="preserve" role="img" aria-labelledby="title desc"
   >
-<title id="title">DeCLaRe horizontal logo, dark theme</title>
-<desc id="desc">Robot mascot on the left with the DeCLaRe wordmark on the right.</desc>
+<title id="title">DeCLaRe square theme logo, light theme</title>
+<desc id="desc">Robot mascot, DeCLaRe wordmark, and the Deep Cognition and Language Research theme text.</desc>
 <style type="text/css">
   /* DeCLaRe identity: wordmark purple #7C3AED; green eye
      #34A853; red angular eye #EB4336. */
   /* Classic robot: one themeable silhouette (currentColor) with interior detail
      carved out via #robot-knockout. */
+  /* Premium line-art robot: chamfered panels in wordmark purple, faint fill,
+     green/red eyes kept as the accent. */
+  .r-panel { fill: #7C3AED; fill-opacity: .10; stroke: #7C3AED; stroke-width: 6; stroke-linejoin: miter; stroke-linecap: butt; }
+  .r-line { fill: none; stroke: #7C3AED; stroke-width: 6; stroke-linecap: butt; stroke-linejoin: miter; }
+  .r-node { fill: #7C3AED; }
+  .thread { fill: none; stroke: #A78BFA; stroke-width: 5; stroke-linecap: butt; }
   .theme { fill: currentColor; font-family: Arial, Helvetica, sans-serif; font-size: 25px; font-weight: 500; letter-spacing: .2px; }
+  /* Octagon style: lightweight monoline letters, bevel-cut (octagonal) corners,
+     vertical gradient, and subtle "fused-lego" seams. */
+  .octa { fill: none; stroke: url(#wm-grad); stroke-width: 14; stroke-linejoin: bevel; stroke-linecap: butt; }
+  .octa-seam { fill: none; stroke: #4D18B8; stroke-width: 2; stroke-linecap: butt; opacity: .42; }
 
 </style>
 
@@ -24,23 +34,12 @@
     <rect x="41.3" y="63.7" width="14.6" height="11.8" fill="#fff"/>
     <rect x="34.1" y="167.5" width="121.3" height="20.7" fill="#fff"/>
     <rect x="52.1" y="106.2" width="85.3" height="53.9" fill="#fff"/>
-    <!-- chest panel: one tall cut-out carrying the circuit board -->
-    <rect x="59.3" y="113.4" width="70.9" height="39.5" fill="#000"/>
+    <rect x="59.3" y="113.4" width="70.9" height="24" fill="#000"/>
+    <rect x="59.3" y="144.6" width="70.9" height="8.3" fill="#000"/>
     <rect x="84" y="9.9" width="13.7" height="20.7" transform="matrix(0.9301 -0.3673 0.3673 0.9301 -1.0708 34.7719)" fill="#fff"/>
     <path clip-path="url(#robot-antenna-clip)" fill="none" stroke="#000" stroke-width="6" d="M73.9,12.4c3.4,1.8,6.5,4.4,9.3,7.5c2.9,3.3,5.3,7.2,5.8,11.7"/>
     <rect x="34.1" y="24.6" width="121.3" height="43.4" fill="#fff"/>
     <rect x="41.3" y="31.8" width="106.9" height="36.6" fill="#000"/>
-    <!-- Circuit board, display cut.  Two mirrored Z-traces: one enters from
-         the left wall and steps down to a terminal node on the right, the other
-         enters from the right wall and steps up to a node on the left, so the
-         pair is rotationally symmetric about the panel centre.  Stroke 6 against
-         the 7.2 walls keeps the board subordinate to the silhouette. -->
-    <g stroke="#fff" stroke-width="6" stroke-linecap="butt" stroke-linejoin="miter" fill="none">
-      <path d="M59.3 121H88l10 10h16"/>
-      <path d="M130.2 145H101l-10-10H75"/>
-    </g>
-    <circle cx="114" cy="131" r="7" fill="#fff"/>
-    <circle cx="75" cy="135" r="7" fill="#fff"/>
   </mask>
   <g id="robot-master">
     <rect x="0" y="0" width="200" height="200" fill="currentColor" mask="url(#robot-knockout)"/>
@@ -49,6 +48,17 @@
          a horizontal bar and a diagonal bar sharing a vertical left edge, so
          their intersection reads as a clean square corner, not a beveled cut. -->
     <g fill="#EB4336"><rect x="103.72" y="57.2" width="26.18" height="5.4"/><rect x="0" y="-5.4" width="27" height="5.4" transform="translate(103.72 62.6) rotate(-35.3)"/></g>
+  </g>
+  <g id="robot-premium">
+    <!-- curved quiff "hair" (lighter take on the original logo's curl) -->
+    <path class="r-node" d="M90 35L100 35L88 14L76 11Q82 25 90 35Z"/>
+    <path class="r-panel" d="M52 36H148L159 47V93L148 104H52L41 93V47Z"/>
+    <circle cx="78" cy="62" r="11" fill="#34A853"/>
+    <path d="M134 55L116 63L134 71" fill="none" stroke="#EB4336" stroke-width="6.5" stroke-linecap="butt" stroke-linejoin="miter"/>
+    <path class="r-line" d="M84 86Q100 97 116 86"/>
+    <path class="r-panel" d="M70 124H130L141 135V167L130 178H70L59 167V135Z"/>
+    <path class="r-line" d="M64 151H136"/>
+    <rect class="r-node" x="54" y="186" width="92" height="9"/>
   </g>
   
   <g id="wordmark-master">
@@ -63,6 +73,13 @@
     </g>
   </g>
 </defs>
-<g id="robot" style="color:#FFFFFF"><use xlink:href="#robot-master"/></g>
-<g id="wordmark" style="color:#FFFFFF" transform="translate(204 84.5) scale(0.42)"><use xlink:href="#wordmark-master"/></g>
+<g id="robot" style="color:#000000" transform="translate(-6 14) scale(0.74)"><use xlink:href="#robot-master"/></g>
+<g id="theme-text" class="theme" style="color:#000000">
+  <text x="142" y="54">Deep</text>
+  <text x="142" y="86">Cognition</text>
+  <text x="142" y="118">and</text>
+  <text x="142" y="150">Language</text>
+  <text x="142" y="182">Research</text>
+</g>
+<g id="wordmark" style="color:#000000" transform="translate(59.9 250) scale(0.42)"><use xlink:href="#wordmark-master"/></g>
 </svg>

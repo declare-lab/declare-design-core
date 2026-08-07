@@ -366,9 +366,15 @@ FAQ content uses the shared ruled-list pattern:
 mask, in a display cut and a small cut of the same chest board. Both websites
 show this mark, so it lives here.
 
-Each site keeps its own copies under `assets/images/`, at its own framing and
-export sizes. `brand/tools/build_brand.py` regenerates every one of them from
-the single definition in that file — see `brand/README.md`.
+Consume the vectors straight from the submodule:
+
+```html
+<img src="/assets/declare-core/brand/logos/declare-icon-light.svg" alt="DeCLaRe Lab">
+```
+
+Rasters stay local to each site — favicons, touch icons and Open Graph images
+need pixel dimensions and framing that belong to the site, not to the mark.
+`brand/tools/build_brand.py` regenerates those too. See `brand/README.md`.
 
 ## What remains local
 

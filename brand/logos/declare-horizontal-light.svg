@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-  viewBox="12 -14 454.2274 239" xml:space="preserve" role="img" aria-labelledby="title desc"
+  viewBox="34.030 8.037 407.669 180.159" xml:space="preserve" role="img" aria-labelledby="title desc"
   >
 <title id="title">DeCLaRe horizontal logo, light theme</title>
 <desc id="desc">Robot mascot on the left with the DeCLaRe wordmark on the right.</desc>
@@ -9,17 +9,7 @@
      #34A853; red angular eye #EB4336. */
   /* Classic robot: one themeable silhouette (currentColor) with interior detail
      carved out via #robot-knockout. */
-  /* Premium line-art robot: chamfered panels in wordmark purple, faint fill,
-     green/red eyes kept as the accent. */
-  .r-panel { fill: #7C3AED; fill-opacity: .10; stroke: #7C3AED; stroke-width: 6; stroke-linejoin: miter; stroke-linecap: butt; }
-  .r-line { fill: none; stroke: #7C3AED; stroke-width: 6; stroke-linecap: butt; stroke-linejoin: miter; }
-  .r-node { fill: #7C3AED; }
-  .thread { fill: none; stroke: #A78BFA; stroke-width: 5; stroke-linecap: butt; }
   .theme { fill: currentColor; font-family: Arial, Helvetica, sans-serif; font-size: 25px; font-weight: 500; letter-spacing: .2px; }
-  /* Octagon style: lightweight monoline letters, bevel-cut (octagonal) corners,
-     vertical gradient, and subtle "fused-lego" seams. */
-  .octa { fill: none; stroke: url(#wm-grad); stroke-width: 14; stroke-linejoin: bevel; stroke-linecap: butt; }
-  .octa-seam { fill: none; stroke: #4D18B8; stroke-width: 2; stroke-linecap: butt; opacity: .42; }
 
 </style>
 
@@ -59,17 +49,6 @@
          a horizontal bar and a diagonal bar sharing a vertical left edge, so
          their intersection reads as a clean square corner, not a beveled cut. -->
     <g fill="#EB4336"><rect x="103.72" y="57.2" width="26.18" height="5.4"/><rect x="0" y="-5.4" width="27" height="5.4" transform="translate(103.72 62.6) rotate(-35.3)"/></g>
-  </g>
-  <g id="robot-premium">
-    <!-- curved quiff "hair" (lighter take on the original logo's curl) -->
-    <path class="r-node" d="M90 35L100 35L88 14L76 11Q82 25 90 35Z"/>
-    <path class="r-panel" d="M52 36H148L159 47V93L148 104H52L41 93V47Z"/>
-    <circle cx="78" cy="62" r="11" fill="#34A853"/>
-    <path d="M134 55L116 63L134 71" fill="none" stroke="#EB4336" stroke-width="6.5" stroke-linecap="butt" stroke-linejoin="miter"/>
-    <path class="r-line" d="M84 86Q100 97 116 86"/>
-    <path class="r-panel" d="M70 124H130L141 135V167L130 178H70L59 167V135Z"/>
-    <path class="r-line" d="M64 151H136"/>
-    <rect class="r-node" x="54" y="186" width="92" height="9"/>
   </g>
   
   <g id="wordmark-master">

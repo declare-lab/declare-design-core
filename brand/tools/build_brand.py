@@ -215,77 +215,142 @@ def reembed(explanation_svg_path, lockup_png_path):
         t[:m.start(2)] + base64.b64encode(new).decode() + t[m.end(2):])
 
 
-# -------------------------------------------------------------------- targets
-LAB_MARKS = ['declare-icon-light', 'declare-icon-dark',
-             'declare-horizontal-light', 'declare-horizontal-dark',
-             'declare-square-theme-light', 'declare-square-theme-dark']
-PERSONAL_MARKS = ['declare-icon-light', 'declare-icon-dark',
-                  'declare-square-theme-light', 'declare-square-theme-dark']
-PERSONAL_RASTER = ['declare-icon-light', 'declare-icon-dark']
+
+# -------------------------------------------------------------------- cleanup
+# `#robot-premium` is an alternate line-art robot nothing references -- and it
+# still draws the pre-circuit chest, so leaving it in the shared artwork invites
+# someone editing the wrong panel.  `.r-*` styles exist only for it; `.thread`
+# and the `.octa*` styles are left over from wordmark experiments.
+DEAD_GROUPS = ['robot-premium']
+DEAD_RULES = ['.r-panel', '.r-line', '.r-node', '.thread', '.octa', '.octa-seam']
+DEAD_NOTES = [
+    '  /* Premium line-art robot: chamfered panels in wordmark purple, faint fill,\n'
+    '     green/red eyes kept as the accent. */\n',
+    '  /* Octagon style: lightweight monoline letters, bevel-cut (octagonal) corners,\n'
+    '     vertical gradient, and subtle "fused-lego" seams. */\n',
+]
 
 
-def pristine(repo_images, rel):
-    """Read a file as committed, so re-running never double-patches."""
-    root = os.path.dirname(os.path.dirname(repo_images))
-    rel_to_root = os.path.relpath(os.path.join(repo_images, rel), root)
-    return subprocess.run(['git', '-C', root, 'show', 'HEAD:' + rel_to_root],
-                          capture_output=True, text=True, check=True).stdout
-
-
-def build_site(images, marks, raster, favicon_frac, apple=None, explanation=False):
-    for name in marks:
-        svg_path = os.path.join(images, 'logos', name + '.svg')
-        svg = patch(pristine(images, 'logos/' + name + '.svg'), 'full')
-        open(svg_path, 'w').write(svg)
-        png = os.path.join(images, 'logos', name + '.png')
-        if name in raster and os.path.exists(png):
-            w, h = px_size(png)
-            export_tight(svg, png, w, h)
-            print('   %-32s svg + %dx%d png' % (name, w, h))
+def drop_group(svg, gid):
+    """Remove `<g id=gid> ... </g>`, matching nested groups."""
+    start = svg.index('<g id="%s"' % gid)
+    depth = 0; i = start
+    while True:
+        g = svg.find('<g', i); close = svg.find('</g>', i)
+        if 0 <= g < close:
+            depth += 1; i = g + 2
         else:
-            print('   %-32s svg' % name)
+            depth -= 1; i = close + 4
+            if depth == 0:
+                break
+    end = i
+    while end < len(svg) and svg[end] in ' \t':
+        end += 1
+    if end < len(svg) and svg[end] == '\n':
+        end += 1
+    return svg[:svg.rfind('\n', 0, start) + 1] + svg[end:]
 
-    icon_compact = patch(pristine(images, 'logos/declare-icon-light.svg'), 'compact')
-    icon_full = patch(pristine(images, 'logos/declare-icon-light.svg'), 'full')
+
+def strip_dead(svg):
+    """Drop defs and style rules nothing in this file renders."""
+    for gid in DEAD_GROUPS:
+        svg = drop_group(svg, gid)
+    # any <use> target that is no longer referenced is dead weight too --
+    # the icon files carry the whole wordmark and never draw it
+    body = svg[svg.index('</defs>'):]
+    used = set(re.findall(r'xlink:href="#([^"]+)"', body))
+    for gid in re.findall(r'<g id="([^"]+)"', svg):
+        if gid.endswith('-master') and gid not in used:
+            svg = drop_group(svg, gid)
+    for note in DEAD_NOTES:
+        svg = svg.replace(note, '')
+    style = svg[svg.index('<style'):svg.index('</style>')]
+    live = set()
+    for attr in re.findall(r'class="([^"]+)"', svg.replace(style, '')):
+        live.update('.' + c for c in attr.split())
+    kept = [ln for ln in style.split('\n')
+            if not any(ln.lstrip().startswith(r + ' ') for r in DEAD_RULES if r not in live)]
+    return svg.replace(style, '\n'.join(kept))
+
+
+def tighten(svg):
+    """Set the viewBox to the drawn content.
+
+    Consumers swap these in for tight-cropped PNGs, so the SVG must carry the
+    same aspect and no baked-in padding; spacing belongs to their CSS.
+    """
+    return re.sub(r'viewBox="[^"]*"',
+                  'viewBox="%.3f %.3f %.3f %.3f"' % content_view(svg, 2000), svg, count=1)
+
+
+# -------------------------------------------------------------------- targets
+SRC = os.path.join(CORE_BRAND, 'src')
+LOGOS = os.path.join(CORE_BRAND, 'logos')
+MARKS = ['declare-icon-light', 'declare-icon-dark',
+         'declare-horizontal-light', 'declare-horizontal-dark',
+         'declare-square-theme-light', 'declare-square-theme-dark']
+SITES = [
+    ('declare-lab.github.io', dict(
+        images=LAB, rasters=MARKS, favicon=42 / 48.0,
+        apple=160 / 180.0, explanation=True)),
+    ('soujanyaporia.github.io', dict(
+        images=PERSONAL, rasters=['declare-icon-light', 'declare-icon-dark'],
+        favicon=39 / 48.0)),
+]
+
+
+def build_core():
+    """brand/src -> brand/logos.  The only place the artwork is authored."""
+    os.makedirs(LOGOS, exist_ok=True)
+    for name in MARKS:
+        svg = tighten(strip_dead(patch(open(os.path.join(SRC, name + '.svg')).read(), 'full')))
+        open(os.path.join(LOGOS, name + '.svg'), 'w').write(svg)
+        print('   %-34s %d bytes' % (name + '.svg', len(svg)))
+    for theme in ('light', 'dark'):
+        src = open(os.path.join(SRC, 'declare-icon-%s.svg' % theme)).read()
+        svg = tighten(strip_dead(patch(src, 'compact')))
+        out = 'declare-icon-compact-%s.svg' % theme
+        open(os.path.join(LOGOS, out), 'w').write(svg)
+        print('   %-34s %d bytes' % (out, len(svg)))
+
+
+def logo(name):
+    return open(os.path.join(LOGOS, name + '.svg')).read()
+
+
+def build_site(images, rasters, favicon, apple=None, explanation=False):
+    """Only rasters live in the sites now; the vectors come from the submodule."""
+    for name in rasters:
+        png = os.path.join(images, 'logos', name + '.png')
+        if not os.path.exists(png):
+            continue
+        w, h = px_size(png)
+        export_tight(logo(name), png, w, h)
+        print('   %-34s %dx%d' % (name + '.png', w, h))
     fav = os.path.join(images, 'favicon.png')
-    export_square(icon_compact, fav, px_size(fav)[0], favicon_frac)
-    print('   %-32s %dpx (compact cut)' % ('favicon.png', px_size(fav)[0]))
+    export_square(logo('declare-icon-compact-light'), fav, px_size(fav)[0], favicon)
+    print('   %-34s %dpx (small cut)' % ('favicon.png', px_size(fav)[0]))
     if apple:
         ap = os.path.join(images, 'apple-touch-icon.png')
-        export_square(icon_full, ap, px_size(ap)[0], apple)
-        print('   %-32s %dpx (display cut)' % ('apple-touch-icon.png', px_size(ap)[0]))
+        export_square(logo('declare-icon-light'), ap, px_size(ap)[0], apple)
+        print('   %-34s %dpx (display cut)' % ('apple-touch-icon.png', px_size(ap)[0]))
     if explanation:
         for theme in ('light', 'dark'):
             reembed(os.path.join(images, 'resources', 'logo-explanation-%s.svg' % theme),
                     os.path.join(images, 'logos', 'declare-horizontal-%s.png' % theme))
-            print('   %-32s re-embedded lockup' % ('logo-explanation-%s.svg' % theme))
-
-
-def build_core():
-    """Canonical artwork for the design system."""
-    out = os.path.join(CORE_BRAND, 'logos')
-    os.makedirs(out, exist_ok=True)
-    for name in LAB_MARKS:
-        svg = patch(pristine(LAB, 'logos/' + name + '.svg'), 'full')
-        open(os.path.join(out, name + '.svg'), 'w').write(svg)
-        print('   %s.svg' % name)
-    for theme in ('light', 'dark'):
-        svg = patch(pristine(LAB, 'logos/declare-icon-%s.svg' % theme), 'compact')
-        open(os.path.join(out, 'declare-icon-compact-%s.svg' % theme), 'w').write(svg)
-        print('   declare-icon-compact-%s.svg' % theme)
+            print('   %-34s re-embedded lockup' % ('logo-explanation-%s.svg' % theme))
 
 
 if __name__ == '__main__':
     if '--check' in sys.argv:
-        for name in LAB_MARKS:
-            patch(pristine(LAB, 'logos/' + name + '.svg'), 'full')
-        print('sources match the expected chest geometry')
+        for name in MARKS:
+            strip_dead(patch(open(os.path.join(SRC, name + '.svg')).read(), 'full'))
+        print('brand/src matches the expected robot geometry')
         raise SystemExit
 
     print('declare-design-core/brand/logos:')
     build_core()
-    print('declare-lab.github.io:')
-    build_site(LAB, LAB_MARKS, LAB_MARKS, 42 / 48.0, apple=160 / 180.0, explanation=True)
-    print('soujanyaporia.github.io:')
-    build_site(PERSONAL, PERSONAL_MARKS, PERSONAL_RASTER, 39 / 48.0)
+    for site, cfg in SITES:
+        print('%s:' % site)
+        build_site(**cfg)
     print('done')

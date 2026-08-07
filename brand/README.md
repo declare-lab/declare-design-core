@@ -42,23 +42,42 @@ At 16 px the chest is about 3 px tall and no board survives in either cut. That
 is a property of the robot, not of the board: the mark reads by its head and
 base at that size.
 
-## Regenerating
+## Using it
 
-`tools/build_brand.py` writes every consumer asset from the definitions at the
-top of that file — the eight SVGs here, and the logo, favicon, touch-icon and
-identity-page assets in both websites.
+Both websites point straight at this directory through their submodule:
+
+```html
+<img src="/assets/declare-core/brand/logos/declare-icon-light.svg" alt="DeCLaRe Lab">
+```
+
+Each `viewBox` is tight to the drawn artwork — no baked-in padding, so these are
+drop-in replacements for a tight-cropped PNG and spacing stays with the
+consumer's CSS.
+
+Rasters stay local to each site: favicons, touch icons and Open Graph images
+need pixel dimensions and framing that belong to the site, not to the mark.
+`tools/build_brand.py` writes those too.
+
+## Layout
+
+    src/     the robot as authored, before any board.  Edit nothing else.
+    logos/   generated.  Tight viewBox, dead defs stripped, board applied.
+    tools/   the generator.
 
 ```sh
 python3 tools/build_brand.py            # write everything
-python3 tools/build_brand.py --check    # verify sources still match, write nothing
+python3 tools/build_brand.py --check    # verify src still matches, write nothing
 ```
 
-It reads each site's SVGs from `git show HEAD:`, so it always patches pristine
-sources and re-running never stacks one edit on another. PNG crops are measured
-rather than assumed: each committed raster is a tight box around its own drawn
-content, so the tool renders a probe, finds the alpha bounding box, maps it back
-to user units, and re-renders at the committed pixel size. Headless Chrome does
-the rasterising; PNG decoding is stdlib only.
+`logos/` and every consumer raster are generated — do not hand-edit them. To
+change the board, edit `CUTS` in the generator and re-run.
 
-Changing the board means editing `CUTS` in that file and re-running. Do not edit
-the generated SVGs — they carry no information the generator does not.
+PNG crops are measured rather than assumed: each committed raster is a tight box
+around its own drawn content, so the tool renders a probe, finds the alpha
+bounding box, maps it back to user units, and re-renders at the committed pixel
+size. Headless Chrome does the rasterising; PNG decoding is stdlib only.
+
+The generator also drops what nothing renders — an unused alternate line-art
+robot that still carried the pre-circuit chest, the styles only it used, and the
+wordmark the icon files never draw. That is verified by rendering before and
+after through one fixed viewBox and requiring the pixels to match.
